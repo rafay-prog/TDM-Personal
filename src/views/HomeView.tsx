@@ -8,6 +8,7 @@ import { asset } from "@/lib/asset-manifest";
 import { getContent } from "@/content";
 import { ui } from "@/content/ui";
 import {
+  ArrowPill,
   AuroraField,
   CtaBand,
   FaqSection,
@@ -266,12 +267,9 @@ export function HomeView({ locale }: { locale: Locale }) {
               <Kicker glow>{p.caseKicker}</Kicker>
               <h2 className="mt-3 text-3xl font-bold text-forest md:text-4xl">{p.caseTitle}</h2>
               <p className="mt-4 text-ink/75">{p.caseSub}</p>
-              <Link
-                href={href(locale, "/case-studies/")}
-                className="mt-6 inline-block border-b-2 border-amber pb-1 font-bold text-forest transition-colors hover:text-fern"
-              >
+              <ArrowPill to={href(locale, "/case-studies/")} locale={locale}>
                 {t.allCaseStudies}
-              </Link>
+              </ArrowPill>
             </Reveal>
 
             <ul className="border-t border-mint">

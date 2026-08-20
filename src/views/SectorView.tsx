@@ -9,6 +9,7 @@ import { serviceImage, SERVICE_IMAGE } from "@/lib/service-media";
 import { getContent } from "@/content";
 import { ui } from "@/content/ui";
 import {
+  ArrowPill,
   Breadcrumbs,
   CtaBand,
   FaqSection,
@@ -196,12 +197,9 @@ export function SectorView({ locale, sectorSlug }: { locale: Locale; sectorSlug:
                 <p className="kicker text-sage">{t.proof}</p>
                 <h2 className="mt-3 font-display text-3xl font-bold md:text-4xl">{extras.resultsTitle}</h2>
                 <div className="mt-5 h-1 w-14 rounded-full bg-amber" />
-                <Link
-                  href={href(locale, "/case-studies/")}
-                  className="mt-6 inline-block border-b-2 border-amber pb-1 font-bold text-white transition-colors hover:text-sage"
-                >
+                <ArrowPill to={href(locale, "/case-studies/")} locale={locale} dark>
                   {t.allCaseStudies}
-                </Link>
+                </ArrowPill>
               </Reveal>
 
               <ul className="border-t border-white/10">

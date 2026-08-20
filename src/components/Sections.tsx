@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import type { Faq, Feature, Locale, ProcessStep, ResultStat, Testimonial } from "@/lib/types";
-import { href } from "@/lib/i18n";
+import { href, isRtl } from "@/lib/i18n";
 import { ui } from "@/content/ui";
 import { SECTOR_IMAGE } from "@/lib/sector-media";
 import { ConsultationLink } from "./ConsultationLink";
@@ -35,6 +35,42 @@ export function Kicker({
       </span>
       <span className={`kicker ${dark ? "text-amber" : "text-fern"}`}>{children}</span>
     </p>
+  );
+}
+
+/**
+ * The "all case studies" control. It was an underlined text link, which read as
+ * body copy rather than as somewhere to go — this gives it an amber outline
+ * that fills on hover and an arrow badge that inverts with it.
+ *
+ * The arrow is an element rather than part of the label, so it can animate and
+ * so it flips for Arabic without three separate strings carrying a glyph.
+ */
+export function ArrowPill({
+  to,
+  children,
+  locale = "en",
+  dark = false,
+}: {
+  to: string;
+  children: React.ReactNode;
+  locale?: Locale;
+  dark?: boolean;
+}) {
+  return (
+    <Link
+      href={to}
+      className={`group/pill btn-fluid mt-6 inline-flex items-center gap-3 rounded-full border-2 px-5 py-2.5 font-bold transition-all duration-300 hover:shadow-lg hover:shadow-amber/30 ${
+        dark
+          ? "border-amber/60 bg-white/5 text-white hover:border-amber hover:bg-amber"
+          : "border-amber/60 bg-amber/10 text-forest hover:border-amber hover:bg-amber hover:text-white"
+      }`}
+    >
+      {children}
+      <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-amber text-white transition-colors duration-300 group-hover/pill:bg-white group-hover/pill:text-amber">
+        <span className="arrow-nudge text-sm leading-none">{isRtl(locale) ? "←" : "→"}</span>
+      </span>
+    </Link>
   );
 }
 
