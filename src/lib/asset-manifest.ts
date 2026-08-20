@@ -2,9 +2,9 @@
 // Run `node scripts/hash-assets.mjs` after adding or replacing an image.
 
 const manifest: Record<string, string> = {
-  "sectors/development.webp": "/sectors/development.c53647ed.webp",
+  "sectors/development.webp": "/sectors/development.e783af45.webp",
   "sectors/marketing.webp": "/sectors/marketing.8522c79f.webp",
-  "sectors/media.webp": "/sectors/media.48a2bcf6.webp",
+  "sectors/media.webp": "/sectors/media.5abe5bf1.webp",
   "why/01-ecommerce.webp": "/why/01-ecommerce.d8e08471.webp",
   "why/02-in-house.webp": "/why/02-in-house.63b8c91b.webp",
   "why/03-data.webp": "/why/03-data.39229732.webp",
