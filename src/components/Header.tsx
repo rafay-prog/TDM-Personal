@@ -230,14 +230,19 @@ export function Header({
             solid ? "h-[68px]" : "h-20"
           }`}
         >
-          <Link href={href(locale, "/")} className="flex shrink-0 items-center" aria-label={site.name}>
+          <Link href={href(locale, "/")} className="flex shrink-0 items-center pe-2" aria-label={site.name}>
+            {/* The lockup carries the strapline as well as the mark, so it needs
+                real height to stay legible. Each extra px of height costs 4.1px
+                of width, which the nav has to give back — see the 2xl step. */}
             <Image
               src="/logo-white.png"
               alt={site.name}
               width={679}
               height={164}
               priority
-              className={`w-auto transition-all duration-500 ${solid ? "h-8" : "h-9"}`}
+              className={`w-auto transition-all duration-500 ${
+                solid ? "h-10 2xl:h-11" : "h-11 2xl:h-12"
+              }`}
             />
           </Link>
 
@@ -254,7 +259,7 @@ export function Header({
                   <Link
                     href={href(locale, item.path)}
                     aria-expanded={hasMega ? openMega === item.path : undefined}
-                    className={`flex items-center gap-1.5 whitespace-nowrap rounded-full px-2.5 py-2 text-[14px] font-medium transition-colors duration-200 hover:bg-white/10 hover:text-white ${
+                    className={`flex items-center gap-1.5 whitespace-nowrap rounded-full px-2 py-2 text-[14px] font-medium transition-colors duration-200 hover:bg-white/10 hover:text-white 2xl:px-3 ${
                       openMega === item.path ? "bg-white/10 text-white" : "text-white/85"
                     }`}
                   >
