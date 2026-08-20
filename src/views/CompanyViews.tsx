@@ -9,6 +9,7 @@ import { ui } from "@/content/ui";
 import { ContactForm } from "@/components/ContactForm";
 import {
   Breadcrumbs,
+  CardTrace,
   CtaBand,
   FaqSection,
   Kicker,
@@ -329,6 +330,7 @@ export function PortfolioView({ locale }: { locale: Locale }) {
                       href={href(locale, `/case-studies/${cs.slug}/`)}
                       className="group sheen card-lift relative flex h-full flex-col rounded-3xl border border-mint bg-white p-6 hover:border-fern hover:shadow-2xl"
                     >
+                      <CardTrace index={si * 2 + i} />
                       <div className="flex items-start justify-between gap-3">
                         <p className="text-xs font-medium uppercase tracking-wide text-ink/50">{cs.industry}</p>
                         <span

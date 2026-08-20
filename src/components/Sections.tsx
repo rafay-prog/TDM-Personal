@@ -38,6 +38,28 @@ export function Kicker({
   );
 }
 
+/**
+ * A decorative line traced across a card, drawn in on hover.
+ *
+ * Four variants, picked by card index, so a grid does not repeat one identical
+ * squiggle. Each runs corner to corner through the card's dead space rather
+ * than straight through the middle of the copy.
+ */
+const CARD_TRACES = [
+  "M296,-14 C258,74 322,132 198,182 C120,214 142,272 78,332",
+  "M-16,44 C92,88 58,150 172,178 C270,202 248,268 342,304",
+  "M334,18 C240,58 270,140 158,164 C62,186 98,256 22,300",
+  "M40,-16 C74,86 22,140 128,190 C224,234 190,286 268,332",
+];
+
+export function CardTrace({ index = 0 }: { index?: number }) {
+  return (
+    <svg className="card-trace" viewBox="0 0 360 300" preserveAspectRatio="none" aria-hidden focusable="false">
+      <path d={CARD_TRACES[index % CARD_TRACES.length]} pathLength="1" />
+    </svg>
+  );
+}
+
 /** Decorative animated blobs for dark sections. */
 export function HeroBlobs() {
   return (

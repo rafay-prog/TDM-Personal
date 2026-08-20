@@ -561,6 +561,54 @@ details[open] .faq-answer {
   transform: scaleY(1);
 }
 
+/* A line traced across a card. Faint at rest, so a grid of them has some
+   movement in it rather than reading as plain boxes, then it brightens and
+   redraws itself under the cursor.
+
+   It lives at z-index -1 inside .sheen's stacking context, which paints it over
+   the card's background but under its text — a line through the words would
+   cost more in legibility than it buys in interest.
+
+   pathLength="1" on the path normalises its length, so one dash rule drives the
+   draw regardless of which variant is used, and non-scaling-stroke keeps the
+   stroke even after preserveAspectRatio="none" stretches the geometry to fit. */
+.card-trace {
+  position: absolute;
+  inset: 0;
+  /* Explicit, because an svg with a viewBox carries an intrinsic ratio that
+     otherwise wins over inset:0 and leaves the trace short of the card. */
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  overflow: hidden;
+  border-radius: inherit;
+  pointer-events: none;
+}
+.card-trace path {
+  fill: none;
+  stroke: var(--color-amber);
+  stroke-width: 2;
+  stroke-linecap: round;
+  vector-effect: non-scaling-stroke;
+  opacity: 0.14;
+  transition: opacity 0.45s ease, stroke-width 0.45s ease;
+}
+.group:hover .card-trace path {
+  opacity: 0.55;
+  stroke-width: 2.5;
+  animation: trace-draw 1.05s cubic-bezier(0.16, 1, 0.3, 1);
+}
+@keyframes trace-draw {
+  from {
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+  }
+  to {
+    stroke-dasharray: 1;
+    stroke-dashoffset: 0;
+  }
+}
+
 /* Numerals sitting behind bento card content. */
 .bento-index {
   transition:
@@ -589,6 +637,7 @@ details[open] .faq-answer {
   .float-card,
   .pill-shimmer::after,
   .kicker-pill,
+  .group:hover .card-trace path,
   .blob,
   .gradient-text,
   .aurora,
