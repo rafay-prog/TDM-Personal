@@ -16,15 +16,22 @@
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
 
+# Hashed by scripts/hash-assets.mjs, so immutable is truthful here.
 [[headers]]
   for = "/sectors/*"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
 
 [[headers]]
-  for = "/clients/*"
+  for = "/why/*"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
+
+# Plain filenames — must revalidate so a replacement is picked up.
+[[headers]]
+  for = "/clients/*"
+  [headers.values]
+    Cache-Control = "public, max-age=86400, stale-while-revalidate=604800"
 
 # HTML must revalidate so content edits go live on the next request.
 [[headers]]

@@ -1,6 +1,11 @@
 # Mirrors the [[headers]] blocks in netlify.toml. Both exist because netlify.toml
 # is only read on repo-connected builds, while this file ships inside out/ and so
 # also applies to manual folder deploys.
+#
+# `immutable` is only used where the filename carries a content hash — Next's own
+# build output, and /sectors and /why via scripts/hash-assets.mjs. Promising a
+# year of immutability for a URL whose bytes can be replaced is what left stale
+# and broken images behind on earlier deploys.
 
 /_next/static/*
   Cache-Control: public, max-age=31536000, immutable
@@ -8,8 +13,12 @@
 /sectors/*
   Cache-Control: public, max-age=31536000, immutable
 
-/clients/*
+/why/*
   Cache-Control: public, max-age=31536000, immutable
+
+# Client logos keep plain filenames, so these must revalidate instead.
+/clients/*
+  Cache-Control: public, max-age=86400, stale-while-revalidate=604800
 
 /*.html
   Cache-Control: public, max-age=0, must-revalidate

@@ -3,6 +3,7 @@ import Image from "next/image";
 import type { Locale } from "@/lib/types";
 import { href, isRtl } from "@/lib/i18n";
 import { site } from "@/lib/site";
+import { asset } from "@/lib/asset-manifest";
 import { getContent } from "@/content";
 import { ui } from "@/content/ui";
 import {
@@ -29,12 +30,12 @@ const displayName = (cs: { anonymous: boolean; publicName: string; client: strin
  * these images are supporting, not informational.
  */
 const whyImages = [
-  { src: "/why/01-ecommerce.webp", alt: "Online store checkout on a laptop" },
-  { src: "/why/02-in-house.webp", alt: "A team joining hands over a desk" },
-  { src: "/why/03-data.webp", alt: "Scales weighing decisions against data" },
-  { src: "/why/04-reporting.webp", alt: "Signing off an approved report" },
-  { src: "/why/05-multilingual.webp", alt: "A globe labelled English, Français and العربية" },
-  { src: "/why/06-support.webp", alt: "A handshake in front of a rising growth chart" },
+  { src: asset("why/01-ecommerce.webp"), alt: "Online store checkout on a laptop" },
+  { src: asset("why/02-in-house.webp"), alt: "A team joining hands over a desk" },
+  { src: asset("why/03-data.webp"), alt: "Scales weighing decisions against data" },
+  { src: asset("why/04-reporting.webp"), alt: "Signing off an approved report" },
+  { src: asset("why/05-multilingual.webp"), alt: "A globe labelled English, Français and العربية" },
+  { src: asset("why/06-support.webp"), alt: "A handshake in front of a rising growth chart" },
 ];
 
 /**

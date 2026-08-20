@@ -1,4 +1,5 @@
 import type { SectorSlug } from "./types";
+import { asset } from "./asset-manifest";
 
 /** Every sector photo is pre-cropped to this size, so all the heroes match. */
 export const SECTOR_IMAGE = { width: 1100, height: 733 } as const;
@@ -15,7 +16,7 @@ export const SECTOR_IMAGE = { width: 1100, height: 733 } as const;
  * Files are served as-is: `images.unoptimized` is on for the static export.
  */
 export const sectorHeroImage: Partial<Record<SectorSlug, string>> = {
-  media: "/sectors/media.webp",
-  development: "/sectors/development.webp",
-  marketing: "/sectors/marketing.webp",
+  media: asset("sectors/media.webp"),
+  development: asset("sectors/development.webp"),
+  marketing: asset("sectors/marketing.webp"),
 };

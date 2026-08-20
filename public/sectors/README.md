@@ -40,3 +40,23 @@ at 34 KB, a 98% saving, and it renders at roughly 600px wide on desktop anyway.
 Explorer hides known extensions by default, so a file saved as
 `development.webp.jpg` displays as `development.webp` while actually being a
 JPEG. Turn on **View → File name extensions** in Explorer to see the truth.
+
+## Filenames carry a content hash
+
+Files here are named `media.<hash>.webp`. Do not rename them by hand and do not
+reference them directly — code resolves them through `src/lib/asset-manifest.ts`
+using the stable key `sectors/media.webp`.
+
+After adding or replacing any image in `public/sectors` or `public/why`:
+
+```bash
+node scripts/hash-assets.mjs
+```
+
+That renames the file to match its new contents and regenerates the manifest.
+
+**Why it matters:** these paths are served `Cache-Control: immutable` for a
+year. Reusing a filename for different bytes means browsers and CDN edges keep
+serving the old image — or briefly none at all mid-deploy, which is what left a
+broken image on the Marketing page. A hash in the name makes new content a new
+URL, so that cannot happen.
