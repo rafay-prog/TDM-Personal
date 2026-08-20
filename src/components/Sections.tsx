@@ -199,12 +199,14 @@ export function StatBand({ stats, dark = true }: { stats: ResultStat[]; dark?: b
  */
 export function ServiceLoops({
   services,
+  sectors = [],
   kicker,
   title,
   sub,
   locale = "en",
 }: {
   services: { slug: string; name: string; sector: string }[];
+  sectors?: { slug: string; name: string }[];
   kicker: string;
   title: string;
   sub?: string;
@@ -218,21 +220,57 @@ export function ServiceLoops({
     return [...services.slice(start), ...services.slice(0, start)];
   });
 
+  // Gradient the closing word, matching the hero headline's treatment.
+  const words = title.split(" ");
+  const lead = words.slice(0, -1).join(" ");
+  const last = words[words.length - 1];
+
   return (
     <section className="relative overflow-hidden bg-forest text-white">
       <HeroBlobs />
       <div className="relative mx-auto max-w-7xl px-4 py-16 sm:px-6 md:py-20">
-        <div className="grid gap-10 lg:grid-cols-[minmax(0,22rem)_1fr] lg:gap-16">
-          <Reveal from="left" className="lg:sticky lg:top-28 lg:self-start">
-            <p className="kicker text-sage">{kicker}</p>
-            <h2 className="mt-3 text-3xl font-bold md:text-4xl">{title}</h2>
-            {sub && <p className="mt-4 text-white/70">{sub}</p>}
-            <Link
-              href={href(locale, "/contact/")}
-              className="btn-fluid btn-shine mt-7 inline-block rounded-full bg-amber px-6 py-3 text-sm font-bold text-white shadow-lg shadow-amber/25"
-            >
-              {t.cta}
-            </Link>
+        <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,24rem)_1fr] lg:gap-16">
+          <Reveal from="left">
+            <p className="kicker flex items-center gap-2.5 text-sage">
+              <span className="relative flex h-2 w-2 shrink-0">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-amber opacity-75" />
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-amber" />
+              </span>
+              {kicker}
+            </p>
+
+            <h2 className="mt-4 font-display text-3xl font-bold leading-[1.12] md:text-4xl lg:text-5xl">
+              {lead} <span className="gradient-text">{last}</span>
+            </h2>
+            <div className="mt-5 h-1 w-14 rounded-full bg-amber" />
+
+            {sub && <p className="mt-5 leading-relaxed text-white/70">{sub}</p>}
+
+            {sectors.length > 0 && (
+              <div className="mt-6 flex flex-wrap gap-2">
+                {sectors.map((s) => (
+                  <Link
+                    key={s.slug}
+                    href={href(locale, `/${s.slug}/`)}
+                    className="btn-fluid rounded-full border border-white/15 bg-white/5 px-3.5 py-1.5 text-xs font-semibold text-white/75 hover:border-amber/60 hover:bg-white/10 hover:text-white"
+                  >
+                    {s.name}
+                  </Link>
+                ))}
+              </div>
+            )}
+
+            <div className="mt-8 flex flex-wrap items-center gap-x-5 gap-y-3">
+              <Link
+                href={href(locale, "/contact/")}
+                className="btn-fluid btn-shine inline-block rounded-full bg-amber px-6 py-3 text-sm font-bold text-white shadow-lg shadow-amber/25"
+              >
+                {t.cta}
+              </Link>
+              <p className="text-xs font-semibold uppercase tracking-wider text-white/45">
+                {services.length} {t.services} · EN / FR / AR
+              </p>
+            </div>
           </Reveal>
 
           <div

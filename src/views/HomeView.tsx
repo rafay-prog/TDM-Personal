@@ -211,6 +211,7 @@ export function HomeView({ locale }: { locale: Locale }) {
 
       <ServiceLoops
         services={c.services}
+        sectors={c.sectors.map((s) => ({ slug: s.slug, name: s.name }))}
         kicker={t.servicesKicker}
         title={t.servicesTitle}
         sub={t.servicesSub}

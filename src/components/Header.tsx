@@ -415,7 +415,7 @@ export function Header({
 
                 <div className="flex items-center justify-between gap-6 border-t border-mint bg-cream px-8 py-4">
                   <p className="text-xs text-ink/60">
-                    {site.stats.specialists} · {site.stats.countries} · EN / FR / AR
+                    {activeMega.services.length} {t.services} · EN / FR / AR
                   </p>
                   <Link
                     href={href(locale, "/contact/")}
