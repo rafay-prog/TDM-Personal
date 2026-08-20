@@ -594,7 +594,7 @@ export function LogoWall({
   return (
     <section className="mx-auto max-w-7xl px-4 py-14 sm:px-6">
       {title && (
-        <Reveal>
+        <Reveal className="text-center">
           <Kicker glow>{ui[locale].ourClients}</Kicker>
           <h2 className="mt-3 text-3xl font-bold text-forest">{title}</h2>
         </Reveal>
