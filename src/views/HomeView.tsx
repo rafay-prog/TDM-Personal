@@ -117,12 +117,12 @@ export function HomeView({ locale }: { locale: Locale }) {
         ))}
         <div className="relative mx-auto max-w-7xl px-4 pb-12 pt-16 text-center sm:px-6 md:pb-14 md:pt-28">
           <div className="hero-enter flex justify-center">
-            <span className="glass inline-flex items-center gap-2.5 rounded-full px-4 py-2">
-              <span className="relative flex h-2 w-2 shrink-0">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-amber opacity-75" />
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-amber" />
+            <span className="pill-shimmer inline-flex items-center gap-3 rounded-full border border-amber/45 bg-amber/12 px-5 py-2.5 shadow-lg shadow-amber/10 backdrop-blur-md">
+              <span className="relative flex h-2.5 w-2.5 shrink-0">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-amber opacity-80" />
+                <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-amber shadow-[0_0_10px_2px_rgba(232,134,45,0.7)]" />
               </span>
-              <span className="kicker text-sage">{p.heroKicker}</span>
+              <span className="kicker text-amber">{p.heroKicker}</span>
             </span>
           </div>
 

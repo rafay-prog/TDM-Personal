@@ -198,6 +198,33 @@ h1, h2 {
   animation-direction: reverse;
 }
 
+/* Hero eyebrow: a light band sweeps across every few seconds, so the pill
+   catches the eye without shouting. Sits under the text via the isolate +
+   negative z-index pairing, same as .btn-shine. */
+@keyframes pill-sheen {
+  0% {
+    transform: translateX(-160%);
+  }
+  55%,
+  100% {
+    transform: translateX(160%);
+  }
+}
+.pill-shimmer {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+.pill-shimmer::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(110deg, transparent 35%, rgba(255, 255, 255, 0.22) 50%, transparent 65%);
+  transform: translateX(-160%);
+  animation: pill-sheen 5.5s ease-in-out infinite;
+}
+
 /* Hero stat cards floating around the centred copy. The tilt lives inside the
    keyframes because a Tailwind rotate utility would be overwritten by the
    animation's own transform. Hover scaling sits on the inner card instead. */
@@ -539,6 +566,7 @@ details[open] .faq-answer {
   .marquee-track,
   .loop-col,
   .float-card,
+  .pill-shimmer::after,
   .blob,
   .gradient-text,
   .aurora,
