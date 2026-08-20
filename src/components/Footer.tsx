@@ -27,7 +27,7 @@ function FooterLink({ to, children }: { to: string; children: React.ReactNode })
   return (
     <Link
       href={to}
-      className="group inline-flex items-center gap-1.5 text-white/75 transition-all duration-300 hover:translate-x-1 hover:text-white rtl:hover:-translate-x-1"
+      className="group inline-flex min-h-[2.25rem] items-center gap-1.5 py-1 text-white/75 transition-all duration-300 hover:translate-x-1 hover:text-white rtl:hover:-translate-x-1"
     >
       <span className="h-px w-0 bg-amber transition-all duration-300 group-hover:w-3" aria-hidden />
       {children}
@@ -93,7 +93,7 @@ export function Footer({ locale = "en" }: { locale?: Locale }) {
             <div className="mt-6 space-y-3 text-sm">
               <a
                 href={`mailto:${site.email}`}
-                className="group flex w-fit items-center gap-3 text-white/80 transition-colors hover:text-white"
+                className="group flex min-h-[2.25rem] w-fit items-center gap-3 py-1 text-white/80 transition-colors hover:text-white"
               >
                 <span className="flex h-9 w-9 items-center justify-center rounded-full bg-white/10 transition-all duration-300 group-hover:scale-110 group-hover:bg-amber">
                   <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
@@ -105,7 +105,7 @@ export function Footer({ locale = "en" }: { locale?: Locale }) {
               </a>
               <a
                 href={`tel:${site.phoneHref}`}
-                className="group flex w-fit items-center gap-3 text-white/80 transition-colors hover:text-white"
+                className="group flex min-h-[2.25rem] w-fit items-center gap-3 py-1 text-white/80 transition-colors hover:text-white"
               >
                 <span className="flex h-9 w-9 items-center justify-center rounded-full bg-white/10 transition-all duration-300 group-hover:scale-110 group-hover:bg-amber">
                   <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
@@ -116,7 +116,7 @@ export function Footer({ locale = "en" }: { locale?: Locale }) {
               </a>
               <a
                 href={`tel:${site.phoneUk.replace(/\s/g, "")}`}
-                className="group flex w-fit items-center gap-3 text-white/80 transition-colors hover:text-white"
+                className="group flex min-h-[2.25rem] w-fit items-center gap-3 py-1 text-white/80 transition-colors hover:text-white"
               >
                 <span className="flex h-9 w-9 items-center justify-center rounded-full bg-white/10 transition-all duration-300 group-hover:scale-110 group-hover:bg-amber">
                   <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>

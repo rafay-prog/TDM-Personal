@@ -514,11 +514,11 @@ export function Header({
           </Link>
 
           <div className="mt-6 space-y-2 text-sm text-white/65">
-            <a href={`mailto:${site.email}`} className="flex items-center gap-3">
+            <a href={`mailto:${site.email}`} className="flex min-h-[2.5rem] items-center gap-3 py-1">
               <MailIcon />
               {site.email}
             </a>
-            <a href={`tel:${site.phoneHref}`} className="flex items-center gap-3">
+            <a href={`tel:${site.phoneHref}`} className="flex min-h-[2.5rem] items-center gap-3 py-1">
               <PhoneIcon />
               {site.phone}
             </a>

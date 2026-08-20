@@ -342,18 +342,17 @@ export function HomeView({ locale }: { locale: Locale }) {
                       alt={whyImages[i].alt}
                       width={800}
                       height={500}
+                      sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
                       className="aspect-8/5 w-full object-cover transition-transform duration-700 group-hover:scale-105"
                     />
-                    <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-forest/55 to-transparent" />
-                    <span className="pointer-events-none absolute end-4 top-3 font-display text-4xl font-bold text-white/35">
-                      {String(i + 1).padStart(2, "0")}
-                    </span>
-                    {/* Icon straddles the image edge so the card reads as one piece. */}
-                    <span className="absolute -bottom-6 start-6 flex h-12 w-12 items-center justify-center rounded-2xl bg-white text-fern shadow-lg ring-1 ring-mint transition-all duration-300 group-hover:scale-110 group-hover:bg-amber group-hover:text-white group-hover:ring-amber">
+                    <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-forest/45 to-transparent" />
+                    {/* Sits fully inside the image — the wrapper clips, so anything
+                        hanging over the edge would be cut in half. */}
+                    <span className="absolute bottom-4 start-5 flex h-12 w-12 items-center justify-center rounded-2xl bg-white text-fern shadow-lg ring-1 ring-white/40 transition-all duration-300 group-hover:scale-110 group-hover:bg-amber group-hover:text-white">
                       <WhyIcon index={i} />
                     </span>
                   </div>
-                  <div className="p-7 pt-10">
+                  <div className="p-6 sm:p-7">
                     <h3 className="font-display text-lg font-bold text-forest transition-colors duration-300 group-hover:text-fern">
                       {title}
                     </h3>
