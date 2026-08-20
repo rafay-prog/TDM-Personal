@@ -21,7 +21,21 @@ const notoArabic = Noto_Sans_Arabic({
 });
 
 export function LocaleShell({ locale, children }: { locale: Locale; children: React.ReactNode }) {
-  const offices = getContent(locale).offices;
+  const content = getContent(locale);
+  const offices = content.offices;
+
+  // Real, already-translated copy for the header's mega-menus. Built here
+  // because Header is a client component and cannot reach the content layer.
+  const megaSectors = content.sectors
+    .filter((s) => content.services.some((sv) => sv.sector === s.slug))
+    .map((s) => ({
+      slug: s.slug,
+      name: s.name,
+      tagline: s.tagline,
+      services: content.services
+        .filter((sv) => sv.sector === s.slug)
+        .map((sv) => ({ slug: sv.slug, name: sv.navLabel ?? sv.name, desc: sv.shortDesc })),
+    }));
 
   const organizationSchema = {
     "@context": "https://schema.org",
@@ -58,7 +72,7 @@ export function LocaleShell({ locale, children }: { locale: Locale; children: Re
           <style>{`.reveal{opacity:1 !important;transform:none !important}`}</style>
         </noscript>
         <JsonLd data={organizationSchema} />
-        <Header locale={locale} />
+        <Header locale={locale} megaSectors={megaSectors} />
         <main>{children}</main>
         <Footer locale={locale} />
         <BackToTop label={ui[locale].backToTop} />

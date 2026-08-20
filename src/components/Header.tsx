@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import type { Locale } from "@/lib/types";
-import { href } from "@/lib/i18n";
+import { href, isRtl } from "@/lib/i18n";
 import { site } from "@/lib/site";
 import { ui } from "@/content/ui";
 
@@ -173,12 +173,53 @@ function GlobeIcon() {
   );
 }
 
-export function Header({ locale = "en" }: { locale?: Locale }) {
+export interface MegaSector {
+  slug: string;
+  name: string;
+  tagline: string;
+  services: { slug: string; name: string; desc: string }[];
+}
+
+/** One line icon per service, keyed by slug. Falls back to a generic mark. */
+function ServiceIcon({ slug }: { slug: string }) {
+  const paths: Record<string, React.ReactNode> = {
+    "video-editing": <path d="M4 5h16v14H4zM9 5v14M15 5v14M4 9h5M4 15h5M15 9h5M15 15h5" />,
+    "video-shoots": <path d="M2 7h11v10H2zM13 10l7-3v10l-7-3" />,
+    "ugc-ads": <path d="M12 3a4 4 0 1 1 0 8 4 4 0 0 1 0-8ZM4 21a8 8 0 0 1 16 0" />,
+    "product-shoots": <path d="M4 8h16v12H4zM9 8V5h6v3M12 12v4M10 14h4" />,
+    "ad-creatives": <path d="M4 4h16v12H4zM8 20h8M12 16v4M8 10l3 3 5-5" />,
+    "performance-marketing": <path d="M3 17l5-5 4 4 8-8M21 8v5h-5" />,
+    seo: <path d="M11 4a7 7 0 1 1 0 14 7 7 0 0 1 0-14ZM20 20l-4-4" />,
+    "social-media": <path d="M18 5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM6 9.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM18 14a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM8.2 10.8l7.6-3.6M8.2 13.2l7.6 3.6" />,
+    shopify: <path d="M6 8h12l-1 12H7L6 8ZM9 8V6a3 3 0 0 1 6 0v2" />,
+    wordpress: <path d="M12 3a9 9 0 1 1 0 18 9 9 0 0 1 0-18ZM4 9h16M7 9l3 10M14 9l3 10" />,
+    magento: <path d="M12 3 5 7v10l2 1V9l5-3 5 3v9l2-1V7l-7-4ZM12 11l-2 1v6l2 1 2-1v-6l-2-1Z" />,
+    "custom-development": <path d="m8 7-5 5 5 5M16 7l5 5-5 5M14 4l-4 16" />,
+    "crm-erp": <path d="M4 6h16v4H4zM4 14h16v4H4zM8 8h.01M8 16h.01" />,
+    "mobile-apps": <path d="M7 3h10v18H7zM11 18h2" />,
+  };
+  return (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+      {paths[slug] ?? <path d="M12 3v18M3 12h18" />}
+    </svg>
+  );
+}
+
+export function Header({
+  locale = "en",
+  megaSectors = [],
+}: {
+  locale?: Locale;
+  megaSectors?: MegaSector[];
+}) {
   const [open, setOpen] = useState(false);
   const [openGroup, setOpenGroup] = useState<string | null>(null);
+  const [openMega, setOpenMega] = useState<string | null>(null);
   const [scrolled, setScrolled] = useState(false);
   const nav = navByLocale[locale];
   const t = ui[locale];
+  const megaBySlug = new Map(megaSectors.map((s) => [`/${s.slug}/`, s]));
+  const activeMega = openMega ? megaBySlug.get(openMega) : undefined;
   const closeDrawer = () => {
     setOpen(false);
     setOpenGroup(null);
@@ -199,17 +240,21 @@ export function Header({ locale = "en" }: { locale?: Locale }) {
   }, [open]);
 
   useEffect(() => {
-    if (!open) return;
-    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key !== "Escape") return;
+      setOpen(false);
+      setOpenMega(null);
+    };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [open]);
+  }, []);
 
   const solid = scrolled || open;
 
   return (
     <>
       <header
+        onMouseLeave={() => setOpenMega(null)}
         className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
           solid
             ? "border-b border-white/10 bg-forest/85 shadow-[0_8px_30px_rgba(0,0,0,0.28)] backdrop-blur-xl"
@@ -233,39 +278,34 @@ export function Header({ locale = "en" }: { locale?: Locale }) {
           </Link>
 
           <nav className="hidden items-center gap-0.5 xl:flex" aria-label="Main">
-            {nav.map((item) => (
-              <div key={item.path} className="group relative">
-                <Link
-                  href={href(locale, item.path)}
-                  className="flex items-center gap-1.5 whitespace-nowrap rounded-full px-2.5 py-2 text-[14px] font-medium text-white/85 transition-colors duration-200 hover:bg-white/10 hover:text-white"
+            {nav.map((item) => {
+              const hasMega = megaBySlug.has(item.path);
+              return (
+                <div
+                  key={item.path}
+                  className="group"
+                  onMouseEnter={() => setOpenMega(hasMega ? item.path : null)}
+                  onFocus={() => setOpenMega(hasMega ? item.path : null)}
                 >
-                  {item.label}
-                  {item.children && (
-                    <ChevronIcon className="text-white/45 transition-transform duration-300 group-hover:rotate-180 group-hover:text-white/80" />
-                  )}
-                </Link>
-
-                {item.children && (
-                  <div className="invisible absolute start-0 top-full translate-y-1 pt-3 opacity-0 transition-all duration-200 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100">
-                    <div
-                      className={`overflow-hidden rounded-2xl border border-mint/70 bg-white p-2 shadow-[0_20px_50px_-12px_rgba(15,53,39,0.35)] ${
-                        item.children.length > 4 ? "grid w-[420px] grid-cols-2 gap-0.5" : "w-64"
-                      }`}
-                    >
-                      {item.children.map((c) => (
-                        <Link
-                          key={c.path}
-                          href={href(locale, c.path)}
-                          className="block rounded-xl px-3.5 py-2.5 text-sm font-medium text-ink/80 transition-colors duration-150 hover:bg-cream hover:text-forest"
-                        >
-                          {c.label}
-                        </Link>
-                      ))}
-                    </div>
-                  </div>
-                )}
-              </div>
-            ))}
+                  <Link
+                    href={href(locale, item.path)}
+                    aria-expanded={hasMega ? openMega === item.path : undefined}
+                    className={`flex items-center gap-1.5 whitespace-nowrap rounded-full px-2.5 py-2 text-[14px] font-medium transition-colors duration-200 hover:bg-white/10 hover:text-white ${
+                      openMega === item.path ? "bg-white/10 text-white" : "text-white/85"
+                    }`}
+                  >
+                    {item.label}
+                    {item.children && (
+                      <ChevronIcon
+                        className={`text-white/45 transition-transform duration-300 group-hover:text-white/80 ${
+                          openMega === item.path ? "rotate-180 text-white/80" : ""
+                        }`}
+                      />
+                    )}
+                  </Link>
+                </div>
+              );
+            })}
           </nav>
 
           <div className="hidden items-center gap-2.5 xl:flex">
@@ -324,6 +364,69 @@ export function Header({ locale = "en" }: { locale?: Locale }) {
             <span className={`absolute start-3 end-3 top-[21px] h-0.5 rounded-full bg-white transition-all duration-300 ${open ? "opacity-0" : ""}`} />
             <span className={`absolute start-3 end-3 h-0.5 rounded-full bg-white transition-all duration-300 ${open ? "top-[21px] -rotate-45" : "top-[27px]"}`} />
           </button>
+        </div>
+
+        {/* Full-width mega panel, anchored to the header rather than the trigger
+            so it can span the container without overflowing near the edges. */}
+        <div
+          className={`absolute inset-x-0 top-full hidden px-4 transition-all duration-200 sm:px-6 xl:block ${
+            activeMega ? "visible translate-y-0 opacity-100" : "pointer-events-none invisible -translate-y-1 opacity-0"
+          }`}
+        >
+          <div className="mx-auto max-w-[1440px]">
+            {activeMega && (
+              <div className="overflow-hidden rounded-3xl border border-mint/70 bg-white shadow-[0_28px_70px_-18px_rgba(15,53,39,0.45)]">
+                <div className="flex items-start justify-between gap-8 px-8 pt-7">
+                  <div>
+                    <p className="kicker flex items-center gap-2 text-fern">
+                      <span className="h-1.5 w-1.5 rounded-full bg-amber" aria-hidden />
+                      {activeMega.name}
+                    </p>
+                    <p className="mt-2 max-w-xl font-display text-xl font-bold text-forest">{activeMega.tagline}</p>
+                  </div>
+                  <Link
+                    href={href(locale, `/${activeMega.slug}/`)}
+                    className="group/all mt-1 flex shrink-0 items-center gap-2 whitespace-nowrap text-sm font-bold text-forest hover:text-fern"
+                  >
+                    {t.explore} {activeMega.name}
+                    <span className="arrow-nudge" aria-hidden>
+                      {isRtl(locale) ? "←" : "→"}
+                    </span>
+                  </Link>
+                </div>
+
+                <div className="mt-6 grid grid-cols-2 gap-1 border-t border-mint px-5 py-5 lg:grid-cols-3">
+                  {activeMega.services.map((sv) => (
+                    <Link
+                      key={sv.slug}
+                      href={href(locale, `/${activeMega.slug}/${sv.slug}/`)}
+                      className="group/item flex gap-3 rounded-2xl p-3 transition-colors duration-200 hover:bg-cream"
+                    >
+                      <span className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-mint text-fern transition-colors duration-200 group-hover/item:bg-amber group-hover/item:text-white">
+                        <ServiceIcon slug={sv.slug} />
+                      </span>
+                      <span className="min-w-0">
+                        <span className="block text-sm font-bold text-forest">{sv.name}</span>
+                        <span className="mt-0.5 line-clamp-2 block text-xs leading-relaxed text-ink/60">{sv.desc}</span>
+                      </span>
+                    </Link>
+                  ))}
+                </div>
+
+                <div className="flex items-center justify-between gap-6 border-t border-mint bg-cream px-8 py-4">
+                  <p className="text-xs text-ink/60">
+                    {site.stats.specialists} · {site.stats.countries} · EN / FR / AR
+                  </p>
+                  <Link
+                    href={href(locale, "/contact/")}
+                    className="btn-fluid btn-shine whitespace-nowrap rounded-full bg-forest px-5 py-2.5 text-xs font-bold text-white"
+                  >
+                    {t.cta}
+                  </Link>
+                </div>
+              </div>
+            )}
+          </div>
         </div>
       </header>
 
