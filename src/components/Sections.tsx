@@ -75,24 +75,49 @@ export function ArrowPill({
 }
 
 /**
- * A decorative line traced across a card, drawn in on hover.
+ * The white surface of a card, cut into shards that sit apart until hover.
  *
- * Four variants, picked by card index, so a grid does not repeat one identical
- * squiggle. Each runs corner to corner through the card's dead space rather
- * than straight through the middle of the copy.
+ * Each variant is a true partition of the rectangle — the polygons tile it with
+ * no overlap and no gap — so once every shard is back in place the surface is
+ * continuous. The interior vertices are shared between neighbouring shards,
+ * which is what makes the pieces read as one card that broke rather than as
+ * shapes that happen to be near each other.
+ *
+ * Three variants, picked by card index, so a grid does not repeat one break.
  */
-const CARD_TRACES = [
-  "M296,-14 C258,74 322,132 198,182 C120,214 142,272 78,332",
-  "M-16,44 C92,88 58,150 172,178 C270,202 248,268 342,304",
-  "M334,18 C240,58 270,140 158,164 C62,186 98,256 22,300",
-  "M40,-16 C74,86 22,140 128,190 C224,234 190,286 268,332",
+type Shard = { clip: string; tx: string; ty: string; r: string };
+
+const SHATTER: Shard[][] = [
+  [
+    { clip: "polygon(0% 0%, 100% 0%, 100% 20%, 0% 30%)", tx: "-4px", ty: "-6px", r: "-0.6deg" },
+    { clip: "polygon(0% 30%, 44% 25.6%, 50% 62%, 0% 66%)", tx: "-7px", ty: "2px", r: "0.7deg" },
+    { clip: "polygon(44% 25.6%, 100% 20%, 100% 58%, 50% 62%)", tx: "6px", ty: "-3px", r: "0.5deg" },
+    { clip: "polygon(0% 66%, 50% 62%, 100% 58%, 100% 100%, 0% 100%)", tx: "2px", ty: "7px", r: "-0.5deg" },
+  ],
+  [
+    { clip: "polygon(0% 0%, 100% 0%, 100% 34%, 0% 22%)", tx: "5px", ty: "-6px", r: "0.5deg" },
+    { clip: "polygon(0% 22%, 56% 28.7%, 48% 65.2%, 0% 70%)", tx: "-6px", ty: "-2px", r: "-0.7deg" },
+    { clip: "polygon(56% 28.7%, 100% 34%, 100% 60%, 48% 65.2%)", tx: "7px", ty: "3px", r: "0.6deg" },
+    { clip: "polygon(0% 70%, 48% 65.2%, 100% 60%, 100% 100%, 0% 100%)", tx: "-3px", ty: "7px", r: "-0.4deg" },
+  ],
+  [
+    { clip: "polygon(0% 0%, 38% 0%, 46% 37.6%, 0% 44%)", tx: "-6px", ty: "-5px", r: "-0.7deg" },
+    { clip: "polygon(38% 0%, 100% 0%, 100% 30%, 46% 37.6%)", tx: "6px", ty: "-6px", r: "0.6deg" },
+    { clip: "polygon(0% 44%, 46% 37.6%, 100% 30%, 100% 80%, 0% 74%)", tx: "-4px", ty: "3px", r: "0.45deg" },
+    { clip: "polygon(0% 74%, 100% 80%, 100% 100%, 0% 100%)", tx: "3px", ty: "7px", r: "-0.6deg" },
+  ],
 ];
 
-export function CardTrace({ index = 0 }: { index?: number }) {
+export function ShatterSurface({ index = 0 }: { index?: number }) {
   return (
-    <svg className="card-trace" viewBox="0 0 360 300" preserveAspectRatio="none" aria-hidden focusable="false">
-      <path d={CARD_TRACES[index % CARD_TRACES.length]} pathLength="1" />
-    </svg>
+    <span className="shatter" aria-hidden>
+      {SHATTER[index % SHATTER.length].map((sh, n) => (
+        <i
+          key={n}
+          style={{ "--clip": sh.clip, "--tx": sh.tx, "--ty": sh.ty, "--r": sh.r } as React.CSSProperties}
+        />
+      ))}
+    </span>
   );
 }
 

@@ -9,13 +9,13 @@ import { ui } from "@/content/ui";
 import { ContactForm } from "@/components/ContactForm";
 import {
   Breadcrumbs,
-  CardTrace,
   CtaBand,
   FaqSection,
   Kicker,
   LogoWall,
   PageHero,
   Prose,
+  ShatterSurface,
   StatBand,
   TestimonialCard,
 } from "@/components/Sections";
@@ -328,9 +328,9 @@ export function PortfolioView({ locale }: { locale: Locale }) {
                   >
                     <Link
                       href={href(locale, `/case-studies/${cs.slug}/`)}
-                      className="group sheen card-lift relative flex h-full flex-col rounded-3xl border border-mint bg-white p-6 hover:border-fern hover:shadow-2xl"
+                      className="group sheen card-lift relative flex h-full flex-col rounded-3xl border border-transparent p-6 transition-colors duration-300 hover:border-fern hover:shadow-2xl"
                     >
-                      <CardTrace index={si * 2 + i} />
+                      <ShatterSurface index={si * 2 + i} />
                       <div className="flex items-start justify-between gap-3">
                         <p className="text-xs font-medium uppercase tracking-wide text-ink/50">{cs.industry}</p>
                         <span
