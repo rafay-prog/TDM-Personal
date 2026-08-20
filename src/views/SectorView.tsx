@@ -1,8 +1,10 @@
 import Link from "next/link";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import type { Locale } from "@/lib/types";
 import { href, isRtl } from "@/lib/i18n";
 import { sectorHeroImage } from "@/lib/sector-media";
+import { serviceImage, SERVICE_IMAGE } from "@/lib/service-media";
 import { getContent } from "@/content";
 import { ui } from "@/content/ui";
 import {
@@ -92,21 +94,40 @@ export function SectorView({ locale, sectorSlug }: { locale: Locale; sectorSlug:
               >
                 <Link
                   href={href(locale, `/${s.slug}/${sv.slug}/`)}
-                  className="group sheen card-lift relative flex h-full flex-col rounded-3xl border border-mint bg-white p-7 hover:border-fern hover:shadow-2xl"
+                  className="group sheen card-lift relative flex h-full flex-col overflow-hidden rounded-3xl border border-mint bg-white hover:border-fern hover:shadow-2xl"
                 >
-                  <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-mint text-fern transition-all duration-300 group-hover:scale-110 group-hover:bg-amber group-hover:text-white">
-                    <ServiceIcon slug={sv.slug} />
-                  </span>
-                  <h3 className="mt-5 font-display text-lg font-bold text-forest transition-colors duration-300 group-hover:text-fern">
-                    {sv.name}
-                  </h3>
-                  <p className="mt-2.5 flex-1 text-sm leading-relaxed text-ink/75">{sv.shortDesc}</p>
-                  <p className="mt-5 flex items-center gap-2 text-sm font-bold text-forest">
-                    {t.explore}
-                    <span className="arrow-nudge" aria-hidden>
-                      {isRtl(locale) ? "←" : "→"}
+                  {serviceImage[`${s.slug}/${sv.slug}`] ? (
+                    <div className="relative overflow-hidden">
+                      <Image
+                        src={serviceImage[`${s.slug}/${sv.slug}`]}
+                        alt={`${sv.name} — ${s.name}`}
+                        width={SERVICE_IMAGE.width}
+                        height={SERVICE_IMAGE.height}
+                        sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                        className="aspect-8/5 w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                      />
+                      <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-forest/45 to-transparent" />
+                      <span className="absolute bottom-4 start-5 flex h-12 w-12 items-center justify-center rounded-2xl bg-white text-fern shadow-lg ring-1 ring-white/40 transition-all duration-300 group-hover:scale-110 group-hover:bg-amber group-hover:text-white">
+                        <ServiceIcon slug={sv.slug} />
+                      </span>
+                    </div>
+                  ) : (
+                    <span className="ms-7 mt-7 flex h-12 w-12 items-center justify-center rounded-2xl bg-mint text-fern transition-all duration-300 group-hover:scale-110 group-hover:bg-amber group-hover:text-white">
+                      <ServiceIcon slug={sv.slug} />
                     </span>
-                  </p>
+                  )}
+                  <div className="flex flex-1 flex-col p-6 sm:p-7">
+                    <h3 className="font-display text-lg font-bold text-forest transition-colors duration-300 group-hover:text-fern">
+                      {sv.name}
+                    </h3>
+                    <p className="mt-2.5 flex-1 text-sm leading-relaxed text-ink/75">{sv.shortDesc}</p>
+                    <p className="mt-5 flex items-center gap-2 text-sm font-bold text-forest">
+                      {t.explore}
+                      <span className="arrow-nudge" aria-hidden>
+                        {isRtl(locale) ? "←" : "→"}
+                      </span>
+                    </p>
+                  </div>
                 </Link>
               </Reveal>
             ))}
