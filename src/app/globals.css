@@ -478,24 +478,39 @@ details[open] .faq-answer {
   position: relative;
   isolation: isolate;
 }
+/* A warm lift rather than a green tint — fern at 14% over white read muddy
+   against the cream section behind it. */
 .sheen::before {
   content: "";
   position: absolute;
   inset: 0;
   z-index: -1;
   border-radius: inherit;
-  background: radial-gradient(120% 90% at 0% 0%, rgba(46, 125, 91, 0.14), transparent 60%);
+  background: linear-gradient(135deg, rgba(232, 134, 45, 0.07), rgba(255, 255, 255, 0) 55%);
   opacity: 0;
-  transition: opacity 0.5s ease;
-}
-.sheen-dark::before {
-  background: radial-gradient(120% 90% at 0% 0%, rgba(232, 134, 45, 0.28), transparent 60%);
+  transition: opacity 0.45s ease;
 }
 [dir="rtl"] .sheen::before {
-  background-position: 100% 0%;
+  background: linear-gradient(225deg, rgba(232, 134, 45, 0.07), rgba(255, 255, 255, 0) 55%);
 }
 .sheen:hover::before {
   opacity: 1;
+}
+
+/* Amber rule that grows down the leading edge on hover. */
+.sheen::after {
+  content: "";
+  position: absolute;
+  inset-block: 1.5rem;
+  inset-inline-start: 0;
+  width: 3px;
+  border-radius: 999px;
+  background: var(--color-amber);
+  transform: scaleY(0);
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.sheen:hover::after {
+  transform: scaleY(1);
 }
 
 /* Numerals sitting behind bento card content. */
@@ -534,6 +549,7 @@ details[open] .faq-answer {
     animation: none;
   }
   .card-lift:hover,
+  .sheen:hover::after,
   .group:hover .arrow-nudge,
   .btn-fluid:hover,
   .btn-fluid:active,
