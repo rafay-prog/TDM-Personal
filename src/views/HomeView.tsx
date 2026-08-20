@@ -21,6 +21,26 @@ import { CountUp } from "@/components/motion/CountUp";
 const displayName = (cs: { anonymous: boolean; publicName: string; client: string }) =>
   cs.anonymous ? cs.publicName : cs.client;
 
+/**
+ * Icons for the six "why" cards, keyed by position. Safe because `whyItems`
+ * holds the same six reasons in the same order in every locale.
+ */
+function WhyIcon({ index }: { index: number }) {
+  const paths = [
+    <path key="0" d="M3 4h2l2.4 11.2a2 2 0 0 0 2 1.6h7.6a2 2 0 0 0 2-1.5L21 8H6M9 21h.01M17 21h.01" />,
+    <path key="1" d="M9 4a3 3 0 1 1 0 6 3 3 0 0 1 0-6ZM2 20a7 7 0 0 1 14 0M17 8a2.5 2.5 0 1 1 0 5M18 20a5.5 5.5 0 0 0-2-4.3" />,
+    <path key="2" d="M4 20V10M10 20V4M16 20v-7M22 20H2" />,
+    <path key="3" d="M6 3h9l3 3v15H6zM15 3v4h4M9 12h6M9 16h4" />,
+    <path key="4" d="M12 3a9 9 0 1 1 0 18 9 9 0 0 1 0-18ZM3 12h18M12 3c2.5 2.6 3.8 6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-6-3.8-9s1.3-6.4 3.8-9Z" />,
+    <path key="5" d="M12 3a9 9 0 1 1 0 18 9 9 0 0 1 0-18ZM12 8a4 4 0 1 1 0 8 4 4 0 0 1 0-8ZM5.6 5.6l3.2 3.2M15.2 15.2l3.2 3.2M18.4 5.6l-3.2 3.2M8.8 15.2l-3.2 3.2" />,
+  ];
+  return (
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+      {paths[index] ?? paths[0]}
+    </svg>
+  );
+}
+
 export function HomeView({ locale }: { locale: Locale }) {
   const c = getContent(locale);
   const t = ui[locale];
@@ -280,28 +300,40 @@ export function HomeView({ locale }: { locale: Locale }) {
         </div>
       </section>
 
-      {/* A two-column ruled spec list instead of equal-weight cards. */}
-      <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 md:py-20">
-        <Reveal>
-          <Kicker>{p.whyKicker}</Kicker>
-          <h2 className="mt-3 max-w-3xl text-3xl font-bold text-forest md:text-4xl">{p.whyTitle}</h2>
-        </Reveal>
-        <div className="mt-10 grid border-t border-mint sm:grid-cols-2 sm:gap-x-12 lg:gap-x-20">
-          {p.whyItems.map(([title, desc], i) => (
-            <Reveal key={title} delay={(i % 2) * 0.1} from={i % 2 === 0 ? "left" : "right"}>
-              <div className="group flex h-full gap-5 border-b border-mint py-6">
-                <span className="bento-index font-display text-2xl font-bold text-mint group-hover:text-sage">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <div>
-                  <h3 className="font-display text-lg font-semibold text-forest transition-colors group-hover:text-fern">
+      {/* Six reasons as cards, three to a row. */}
+      <section className="ribbon-bg border-y border-mint">
+        <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 md:py-20">
+          <Reveal>
+            <div className="text-center">
+              <Kicker>{p.whyKicker}</Kicker>
+              <h2 className="mx-auto mt-3 max-w-3xl text-3xl font-bold text-forest md:text-4xl">{p.whyTitle}</h2>
+              <div className="mx-auto mt-5 h-1 w-14 rounded-full bg-amber" />
+            </div>
+          </Reveal>
+
+          <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {p.whyItems.map(([title, desc], i) => (
+              <Reveal
+                key={title}
+                delay={(i % 3) * 0.08}
+                from={i % 3 === 0 ? "left" : i % 3 === 2 ? "right" : "snap"}
+                className="h-full"
+              >
+                <div className="group sheen card-lift relative flex h-full flex-col overflow-hidden rounded-3xl border border-mint bg-white p-7 hover:border-fern hover:shadow-2xl">
+                  <span className="bento-index pointer-events-none absolute end-5 top-4 font-display text-5xl font-bold text-mint/70 group-hover:text-sage/60">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-mint text-fern transition-all duration-300 group-hover:scale-110 group-hover:bg-amber group-hover:text-white">
+                    <WhyIcon index={i} />
+                  </span>
+                  <h3 className="mt-5 font-display text-lg font-bold text-forest transition-colors duration-300 group-hover:text-fern">
                     {title}
                   </h3>
-                  <p className="mt-2 text-sm leading-relaxed text-ink/75">{desc}</p>
+                  <p className="mt-2.5 text-sm leading-relaxed text-ink/75">{desc}</p>
                 </div>
-              </div>
-            </Reveal>
-          ))}
+              </Reveal>
+            ))}
+          </div>
         </div>
       </section>
 
