@@ -11,11 +11,16 @@ export const site = {
   phoneHref: "+971589094045",
   phoneUk: "+44 7946 186955",
   /**
-   * Scheduling link for every "book a consultation" CTA — a Calendly event URL
-   * such as https://calendly.com/tdm/30min. While this is empty the CTAs fall
-   * back to the contact page, so nothing is ever a dead link.
+   * Scheduling link for every "book a consultation" CTA.
+   *
+   * Points straight at the one event on the TDM Calendly rather than at the
+   * profile page, which saves the visitor a click while it is the only event.
+   * If more event types are added, switch this to the profile URL
+   * (https://calendly.com/thedigitalmarketingservices) so they can choose.
+   *
+   * Empty falls back to the contact page, so the CTA is never a dead link.
    */
-  booking: "",
+  booking: "https://calendly.com/thedigitalmarketingservices/15minutes-intro-call",
   // TODO(user): WhatsApp number + social profile URLs
   socials: [] as { label: string; href: string }[],
   stats: {
