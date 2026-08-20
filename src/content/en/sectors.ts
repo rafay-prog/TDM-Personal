@@ -2,36 +2,6 @@ import type { Sector } from "@/lib/types";
 
 export const sectors: Sector[] = [
   {
-    slug: "media",
-    name: "Media",
-    tagline: "Content that stops the scroll and sells.",
-    metaTitle: "Media Production Services — Video, UGC Ads & Product Shoots | TDM",
-    metaDescription:
-      "TDM's media division produces video shoots, video editing, UGC ads, product photography and ad creatives for e-commerce and consumer brands worldwide.",
-    hero: {
-      headline: "Media production built for performance.",
-      sub: "Video shoots, editing, UGC ads, product photography and ad creatives — produced in-house and engineered to convert, not just to look good.",
-    },
-    intro: [
-      "TDM Media is the content production arm of The Digital Marketing Services. We plan, shoot, edit and deliver the creative assets that power modern e-commerce: brand films, product videos, user-generated-content ads, product photography and paid-social creatives.",
-      "Every asset we produce is built with distribution in mind. Because the same agency runs your ads, SEO and social channels, our media team knows exactly what format, hook and length each platform rewards — and we iterate creative based on real campaign data, not taste.",
-    ],
-    faqs: [
-      {
-        q: "What media production services does TDM offer?",
-        a: "TDM offers video shoots, professional video editing, UGC (user-generated content) ads, product photography and shoots, and static or motion ad creatives. We handle everything from concept and scripting to final delivery in platform-ready formats.",
-      },
-      {
-        q: "Can TDM produce content remotely for international brands?",
-        a: "Yes. Our production and editing hub in Lahore works with brands across the UAE, UK, USA, Europe, Africa and Asia. Shoots are arranged locally where needed, while editing, post-production and creative iteration run centrally for fast turnaround.",
-      },
-      {
-        q: "How is TDM's media work different from a standalone video agency?",
-        a: "Our media team sits next to our performance-marketing team. Creative decisions are informed by live ad-account data — hooks, formats and edits are tested and iterated against actual conversion metrics, so content is judged by results, not just aesthetics.",
-      },
-    ],
-  },
-  {
     slug: "marketing",
     name: "Marketing",
     tagline: "Growth you can measure.",
@@ -88,6 +58,36 @@ export const sectors: Sector[] = [
       {
         q: "Can TDM take over or rebuild an existing website?",
         a: "Yes. We regularly audit, rebuild and migrate existing sites — preserving SEO with proper redirects, improving speed and Core Web Vitals, and modernizing the stack without disrupting trading.",
+      },
+    ],
+  },
+  {
+    slug: "media",
+    name: "Media",
+    tagline: "Content that stops the scroll and sells.",
+    metaTitle: "Media Production Services — Video, UGC Ads & Product Shoots | TDM",
+    metaDescription:
+      "TDM's media division produces video shoots, video editing, UGC ads, product photography and ad creatives for e-commerce and consumer brands worldwide.",
+    hero: {
+      headline: "Media production built for performance.",
+      sub: "Video shoots, editing, UGC ads, product photography and ad creatives — produced in-house and engineered to convert, not just to look good.",
+    },
+    intro: [
+      "TDM Media is the content production arm of The Digital Marketing Services. We plan, shoot, edit and deliver the creative assets that power modern e-commerce: brand films, product videos, user-generated-content ads, product photography and paid-social creatives.",
+      "Every asset we produce is built with distribution in mind. Because the same agency runs your ads, SEO and social channels, our media team knows exactly what format, hook and length each platform rewards — and we iterate creative based on real campaign data, not taste.",
+    ],
+    faqs: [
+      {
+        q: "What media production services does TDM offer?",
+        a: "TDM offers video shoots, professional video editing, UGC (user-generated content) ads, product photography and shoots, and static or motion ad creatives. We handle everything from concept and scripting to final delivery in platform-ready formats.",
+      },
+      {
+        q: "Can TDM produce content remotely for international brands?",
+        a: "Yes. Our production and editing hub in Lahore works with brands across the UAE, UK, USA, Europe, Africa and Asia. Shoots are arranged locally where needed, while editing, post-production and creative iteration run centrally for fast turnaround.",
+      },
+      {
+        q: "How is TDM's media work different from a standalone video agency?",
+        a: "Our media team sits next to our performance-marketing team. Creative decisions are informed by live ad-account data — hooks, formats and edits are tested and iterated against actual conversion metrics, so content is judged by results, not just aesthetics.",
       },
     ],
   },

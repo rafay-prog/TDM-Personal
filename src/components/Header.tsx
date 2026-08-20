@@ -24,17 +24,6 @@ interface NavItem {
 const navByLocale: Record<Locale, NavItem[]> = {
   en: [
     {
-      label: "Media",
-      path: "/media/",
-      children: [
-        { label: "Video Editing", path: "/media/video-editing/" },
-        { label: "Video Shoots", path: "/media/video-shoots/" },
-        { label: "UGC Ads", path: "/media/ugc-ads/" },
-        { label: "Product Shoots", path: "/media/product-shoots/" },
-        { label: "Ad Creatives", path: "/media/ad-creatives/" },
-      ],
-    },
-    {
       label: "Marketing",
       path: "/marketing/",
       children: [
@@ -55,23 +44,23 @@ const navByLocale: Record<Locale, NavItem[]> = {
         { label: "Mobile Apps", path: "/development/mobile-apps/" },
       ],
     },
+    {
+      label: "Media",
+      path: "/media/",
+      children: [
+        { label: "Video Editing", path: "/media/video-editing/" },
+        { label: "Video Shoots", path: "/media/video-shoots/" },
+        { label: "UGC Ads", path: "/media/ugc-ads/" },
+        { label: "Product Shoots", path: "/media/product-shoots/" },
+        { label: "Ad Creatives", path: "/media/ad-creatives/" },
+      ],
+    },
     { label: "Staff Augmentation", path: "/staff-augmentation/" },
     { label: "Portfolio", path: "/portfolio/" },
     { label: "About", path: "/about/" },
     { label: "Blog", path: "/blog/" },
   ],
   fr: [
-    {
-      label: "Média",
-      path: "/media/",
-      children: [
-        { label: "Montage vidéo", path: "/media/video-editing/" },
-        { label: "Tournages vidéo", path: "/media/video-shoots/" },
-        { label: "Publicités UGC", path: "/media/ugc-ads/" },
-        { label: "Shooting produits", path: "/media/product-shoots/" },
-        { label: "Créations publicitaires", path: "/media/ad-creatives/" },
-      ],
-    },
     {
       label: "Marketing",
       path: "/marketing/",
@@ -93,22 +82,22 @@ const navByLocale: Record<Locale, NavItem[]> = {
         { label: "Applications mobiles", path: "/development/mobile-apps/" },
       ],
     },
+    {
+      label: "Média",
+      path: "/media/",
+      children: [
+        { label: "Montage vidéo", path: "/media/video-editing/" },
+        { label: "Tournages vidéo", path: "/media/video-shoots/" },
+        { label: "Publicités UGC", path: "/media/ugc-ads/" },
+        { label: "Shooting produits", path: "/media/product-shoots/" },
+        { label: "Créations publicitaires", path: "/media/ad-creatives/" },
+      ],
+    },
     { label: "Renfort d'équipes", path: "/staff-augmentation/" },
     { label: "Portfolio", path: "/portfolio/" },
     { label: "À propos", path: "/about/" },
   ],
   ar: [
-    {
-      label: "الميديا",
-      path: "/media/",
-      children: [
-        { label: "مونتاج الفيديو", path: "/media/video-editing/" },
-        { label: "تصوير الفيديو", path: "/media/video-shoots/" },
-        { label: "إعلانات UGC", path: "/media/ugc-ads/" },
-        { label: "تصوير المنتجات", path: "/media/product-shoots/" },
-        { label: "التصاميم الإعلانية", path: "/media/ad-creatives/" },
-      ],
-    },
     {
       label: "التسويق",
       path: "/marketing/",
@@ -128,6 +117,17 @@ const navByLocale: Record<Locale, NavItem[]> = {
         { label: "تطوير مخصص", path: "/development/custom-development/" },
         { label: "أنظمة CRM و ERP", path: "/development/crm-erp/" },
         { label: "تطبيقات الجوال", path: "/development/mobile-apps/" },
+      ],
+    },
+    {
+      label: "الميديا",
+      path: "/media/",
+      children: [
+        { label: "مونتاج الفيديو", path: "/media/video-editing/" },
+        { label: "تصوير الفيديو", path: "/media/video-shoots/" },
+        { label: "إعلانات UGC", path: "/media/ugc-ads/" },
+        { label: "تصوير المنتجات", path: "/media/product-shoots/" },
+        { label: "التصاميم الإعلانية", path: "/media/ad-creatives/" },
       ],
     },
     { label: "تعزيز فرق العمل", path: "/staff-augmentation/" },

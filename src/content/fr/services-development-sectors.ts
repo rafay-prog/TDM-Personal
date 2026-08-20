@@ -592,36 +592,6 @@ export const frDevelopmentServices: Service[] = [
 
 export const frSectors: Sector[] = [
   {
-    slug: "media",
-    name: "Média",
-    tagline: "Des contenus qui arrêtent le scroll et qui vendent.",
-    metaTitle: "Production média — Vidéo, UGC & photo produit | TDM",
-    metaDescription:
-      "La division média de TDM produit tournages vidéo, montage, publicités UGC, photo produit et créations publicitaires pour les marques e-commerce du monde entier.",
-    hero: {
-      headline: "Une production média pensée pour la performance.",
-      sub: "Tournages vidéo, montage, publicités UGC, photographie produit et créations publicitaires — produits en interne et conçus pour convertir, pas seulement pour être beaux.",
-    },
-    intro: [
-      "TDM Média est le pôle de production de contenus de The Digital Marketing Services. Nous concevons, tournons, montons et livrons les actifs créatifs qui alimentent l'e-commerce moderne : films de marque, vidéos produits, publicités UGC (contenu généré par les utilisateurs), photographie produit et créations pour le paid social.",
-      "Chaque contenu que nous produisons est pensé pour sa diffusion. Parce que la même agence gère vos publicités, votre SEO et vos réseaux sociaux, notre équipe média sait exactement quel format, quelle accroche et quelle durée chaque plateforme récompense — et nous itérons la création à partir de vraies données de campagne, pas au goût.",
-    ],
-    faqs: [
-      {
-        q: "Quels services de production média TDM propose-t-il ?",
-        a: "TDM propose des tournages vidéo, du montage vidéo professionnel, des publicités UGC (contenu généré par les utilisateurs), de la photographie et des shootings produits, ainsi que des créations publicitaires statiques ou animées. Nous prenons tout en charge, du concept et de l'écriture jusqu'à la livraison finale dans des formats prêts pour chaque plateforme.",
-      },
-      {
-        q: "TDM peut-il produire du contenu à distance pour des marques internationales ?",
-        a: "Oui. Notre hub de production et de montage à Lahore travaille avec des marques aux Émirats, au Royaume-Uni, aux États-Unis, en Europe, en Afrique et en Asie. Les tournages sont organisés localement quand c'est nécessaire, tandis que le montage, la post-production et l'itération créative sont centralisés pour des délais rapides.",
-      },
-      {
-        q: "En quoi le travail média de TDM diffère-t-il d'une agence vidéo indépendante ?",
-        a: "Notre équipe média travaille aux côtés de notre équipe performance marketing. Les décisions créatives s'appuient sur les données publicitaires en temps réel — accroches, formats et montages sont testés et itérés contre de véritables indicateurs de conversion, si bien que le contenu est jugé sur ses résultats, pas seulement sur son esthétique.",
-      },
-    ],
-  },
-  {
     slug: "marketing",
     name: "Marketing",
     tagline: "Une croissance qui se mesure.",
@@ -678,6 +648,36 @@ export const frSectors: Sector[] = [
       {
         q: "TDM peut-il reprendre ou reconstruire un site existant ?",
         a: "Oui. Nous auditons, reconstruisons et migrons régulièrement des sites existants — en préservant le SEO avec des redirections propres, en améliorant la vitesse et les Core Web Vitals, et en modernisant la stack sans perturber l'activité.",
+      },
+    ],
+  },
+  {
+    slug: "media",
+    name: "Média",
+    tagline: "Des contenus qui arrêtent le scroll et qui vendent.",
+    metaTitle: "Production média — Vidéo, UGC & photo produit | TDM",
+    metaDescription:
+      "La division média de TDM produit tournages vidéo, montage, publicités UGC, photo produit et créations publicitaires pour les marques e-commerce du monde entier.",
+    hero: {
+      headline: "Une production média pensée pour la performance.",
+      sub: "Tournages vidéo, montage, publicités UGC, photographie produit et créations publicitaires — produits en interne et conçus pour convertir, pas seulement pour être beaux.",
+    },
+    intro: [
+      "TDM Média est le pôle de production de contenus de The Digital Marketing Services. Nous concevons, tournons, montons et livrons les actifs créatifs qui alimentent l'e-commerce moderne : films de marque, vidéos produits, publicités UGC (contenu généré par les utilisateurs), photographie produit et créations pour le paid social.",
+      "Chaque contenu que nous produisons est pensé pour sa diffusion. Parce que la même agence gère vos publicités, votre SEO et vos réseaux sociaux, notre équipe média sait exactement quel format, quelle accroche et quelle durée chaque plateforme récompense — et nous itérons la création à partir de vraies données de campagne, pas au goût.",
+    ],
+    faqs: [
+      {
+        q: "Quels services de production média TDM propose-t-il ?",
+        a: "TDM propose des tournages vidéo, du montage vidéo professionnel, des publicités UGC (contenu généré par les utilisateurs), de la photographie et des shootings produits, ainsi que des créations publicitaires statiques ou animées. Nous prenons tout en charge, du concept et de l'écriture jusqu'à la livraison finale dans des formats prêts pour chaque plateforme.",
+      },
+      {
+        q: "TDM peut-il produire du contenu à distance pour des marques internationales ?",
+        a: "Oui. Notre hub de production et de montage à Lahore travaille avec des marques aux Émirats, au Royaume-Uni, aux États-Unis, en Europe, en Afrique et en Asie. Les tournages sont organisés localement quand c'est nécessaire, tandis que le montage, la post-production et l'itération créative sont centralisés pour des délais rapides.",
+      },
+      {
+        q: "En quoi le travail média de TDM diffère-t-il d'une agence vidéo indépendante ?",
+        a: "Notre équipe média travaille aux côtés de notre équipe performance marketing. Les décisions créatives s'appuient sur les données publicitaires en temps réel — accroches, formats et montages sont testés et itérés contre de véritables indicateurs de conversion, si bien que le contenu est jugé sur ses résultats, pas seulement sur son esthétique.",
       },
     ],
   },
