@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Locale } from "@/lib/types";
-import { href } from "@/lib/i18n";
+import { href, isRtl } from "@/lib/i18n";
 import { sectorHeroImage } from "@/lib/sector-media";
 import { getContent } from "@/content";
 import { ui } from "@/content/ui";
@@ -9,9 +9,11 @@ import {
   Breadcrumbs,
   CtaBand,
   FaqSection,
+  HeroBlobs,
   Kicker,
   PageHero,
   Prose,
+  ServiceIcon,
 } from "@/components/Sections";
 import { Reveal } from "@/components/motion/Reveal";
 
@@ -45,26 +47,66 @@ export function SectorView({ locale, sectorSlug }: { locale: Locale; sectorSlug:
         ]}
       />
 
-      <section className="mx-auto max-w-7xl px-4 py-12 sm:px-6">
-        <Prose paragraphs={s.intro} />
+      {/* Intro pins on the left while the copy scrolls past, as on the home page. */}
+      <section className="ribbon-bg border-b border-mint">
+        <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 md:py-16">
+          <div className="grid gap-10 lg:grid-cols-[minmax(0,20rem)_1fr] lg:gap-16">
+            <Reveal from="left" className="lg:sticky lg:top-28 lg:self-start">
+              <p className="kicker flex items-center gap-2.5 text-fern">
+                <span className="relative flex h-2 w-2 shrink-0">
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-amber opacity-75" />
+                  <span className="relative inline-flex h-2 w-2 rounded-full bg-amber" />
+                </span>
+                {s.name}
+              </p>
+              <h2 className="mt-4 font-display text-2xl font-bold leading-snug text-forest md:text-3xl">
+                {s.tagline}
+              </h2>
+              <div className="mt-5 h-1 w-14 rounded-full bg-amber" />
+            </Reveal>
+            <Reveal from="right">
+              <Prose paragraphs={s.intro} />
+            </Reveal>
+          </div>
+        </div>
       </section>
 
       {services.length > 0 && (
-        <section className="mx-auto max-w-7xl px-4 pb-14 sm:px-6">
+        <section className="mx-auto max-w-7xl px-4 py-14 sm:px-6 md:py-20">
           <Reveal>
-            <Kicker>{extras.servicesKicker}</Kicker>
-            <h2 className="mt-3 text-3xl font-bold text-forest">{extras.servicesTitle(s.name)}</h2>
+            <div className="text-center">
+              <Kicker>{extras.servicesKicker}</Kicker>
+              <h2 className="mx-auto mt-3 max-w-2xl text-3xl font-bold text-forest md:text-4xl">
+                {extras.servicesTitle(s.name)}
+              </h2>
+              <div className="mx-auto mt-5 h-1 w-14 rounded-full bg-amber" />
+            </div>
           </Reveal>
-          <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {services.map((sv, i) => (
-              <Reveal key={sv.slug} delay={(i % 3) * 0.08}>
+              <Reveal
+                key={sv.slug}
+                delay={(i % 3) * 0.08}
+                from={i % 3 === 0 ? "left" : i % 3 === 2 ? "right" : "snap"}
+                className="h-full"
+              >
                 <Link
                   href={href(locale, `/${s.slug}/${sv.slug}/`)}
-                  className="group card-lift block h-full rounded-2xl border border-mint bg-white p-6 hover:border-fern hover:shadow-xl"
+                  className="group sheen card-lift relative flex h-full flex-col rounded-3xl border border-mint bg-white p-7 hover:border-fern hover:shadow-2xl"
                 >
-                  <h3 className="font-display text-lg font-semibold text-forest">{sv.name}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-ink/75">{sv.shortDesc}</p>
-                  <p className="mt-4 text-sm font-semibold text-forest group-hover:underline">{t.learnMore}</p>
+                  <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-mint text-fern transition-all duration-300 group-hover:scale-110 group-hover:bg-amber group-hover:text-white">
+                    <ServiceIcon slug={sv.slug} />
+                  </span>
+                  <h3 className="mt-5 font-display text-lg font-bold text-forest transition-colors duration-300 group-hover:text-fern">
+                    {sv.name}
+                  </h3>
+                  <p className="mt-2.5 flex-1 text-sm leading-relaxed text-ink/75">{sv.shortDesc}</p>
+                  <p className="mt-5 flex items-center gap-2 text-sm font-bold text-forest">
+                    {t.explore}
+                    <span className="arrow-nudge" aria-hidden>
+                      {isRtl(locale) ? "←" : "→"}
+                    </span>
+                  </p>
                 </Link>
               </Reveal>
             ))}
@@ -82,9 +124,13 @@ export function SectorView({ locale, sectorSlug }: { locale: Locale; sectorSlug:
             <div className="mt-8 grid gap-6 md:grid-cols-3">
               {extras.staffAug.pillars.map((pl, i) => (
                 <Reveal key={pl.title} delay={i * 0.1}>
-                  <div className="card-lift h-full rounded-2xl border border-mint bg-white p-6 hover:border-fern hover:shadow-lg">
-                    <p className="font-display text-2xl font-bold text-amber">{String(i + 1).padStart(2, "0")}</p>
-                    <h3 className="mt-2 font-display text-lg font-semibold text-forest">{pl.title}</h3>
+                  <div className="group sheen card-lift relative h-full rounded-3xl border border-mint bg-white p-7 hover:border-fern hover:shadow-2xl">
+                    <p className="font-display text-2xl font-bold text-amber transition-transform duration-500 group-hover:-translate-y-1">
+                      {String(i + 1).padStart(2, "0")}
+                    </p>
+                    <h3 className="mt-2 font-display text-lg font-bold text-forest transition-colors duration-300 group-hover:text-fern">
+                      {pl.title}
+                    </h3>
                     <p className="mt-2 text-sm leading-relaxed text-ink/75">{pl.desc}</p>
                   </div>
                 </Reveal>
@@ -100,24 +146,61 @@ export function SectorView({ locale, sectorSlug }: { locale: Locale; sectorSlug:
       )}
 
       {related.length > 0 && (
-        <section className="mx-auto max-w-7xl px-4 py-14 sm:px-6">
-          <Reveal>
-            <Kicker>{t.proof}</Kicker>
-            <h2 className="mt-3 text-3xl font-bold text-forest">{extras.resultsTitle}</h2>
-          </Reveal>
-          <div className="mt-8 grid gap-6 lg:grid-cols-3">
-            {related.map((cs, i) => (
-              <Reveal key={cs.slug} delay={(i % 3) * 0.08}>
+        <section className="relative overflow-hidden bg-forest text-white">
+          <HeroBlobs />
+          <div className="relative mx-auto max-w-7xl px-4 py-16 sm:px-6 md:py-20">
+            <div className="grid gap-10 lg:grid-cols-[minmax(0,20rem)_1fr] lg:gap-16">
+              <Reveal from="left" className="lg:sticky lg:top-28 lg:self-start">
+                <p className="kicker text-sage">{t.proof}</p>
+                <h2 className="mt-3 font-display text-3xl font-bold md:text-4xl">{extras.resultsTitle}</h2>
+                <div className="mt-5 h-1 w-14 rounded-full bg-amber" />
                 <Link
-                  href={href(locale, `/case-studies/${cs.slug}/`)}
-                  className="group card-lift block h-full rounded-2xl border border-mint bg-white p-6 hover:border-fern hover:shadow-xl"
+                  href={href(locale, "/case-studies/")}
+                  className="mt-6 inline-block border-b-2 border-amber pb-1 font-bold text-white transition-colors hover:text-sage"
                 >
-                  <p className="text-xs font-medium uppercase tracking-wide text-ink/50">{cs.industry}</p>
-                  <h3 className="mt-2 font-display text-lg font-semibold text-forest">{displayName(cs)}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-ink/75">{cs.summary}</p>
+                  {t.allCaseStudies}
                 </Link>
               </Reveal>
-            ))}
+
+              <ul className="border-t border-white/10">
+                {related.map((cs, i) => (
+                  <Reveal key={cs.slug} delay={i * 0.08} from="right">
+                    <li className="border-b border-white/10">
+                      <Link
+                        href={href(locale, `/case-studies/${cs.slug}/`)}
+                        className="card-lift group -mx-4 grid grid-cols-[auto_1fr] items-center gap-5 rounded-2xl px-4 py-6 hover:bg-white/[0.06] md:grid-cols-[auto_1fr_auto] md:gap-8 md:px-6"
+                      >
+                        <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-sage/40 font-display text-sm font-bold text-sage transition-all duration-300 group-hover:scale-110 group-hover:border-amber group-hover:bg-amber group-hover:text-white">
+                          {i + 1}
+                        </span>
+                        <div>
+                          <p className="text-xs font-medium uppercase tracking-wide text-white/45">{cs.industry}</p>
+                          <h3 className="mt-1 font-display text-lg font-bold transition-colors group-hover:text-sage md:text-xl">
+                            {displayName(cs)}
+                          </h3>
+                          <div className="mt-3 flex flex-wrap gap-2">
+                            {cs.results.slice(0, 2).map((r) => (
+                              <span
+                                key={r.label}
+                                className="rounded-full bg-white/10 px-3 py-1 text-xs font-semibold text-white/85 transition-colors duration-300 group-hover:bg-amber/25"
+                              >
+                                {r.value} {r.label.split("(")[0].trim()}
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+                        <span
+                          aria-hidden
+                          className="hidden h-11 w-11 shrink-0 items-center justify-center rounded-full border border-white/20 transition-all duration-300 group-hover:border-amber group-hover:bg-amber md:flex"
+                        >
+                          <span className="arrow-nudge text-lg leading-none">{isRtl(locale) ? "←" : "→"}</span>
+                        </span>
+                      </Link>
+                    </li>
+                  </Reveal>
+                ))}
+              </ul>
+            </div>
           </div>
         </section>
       )}

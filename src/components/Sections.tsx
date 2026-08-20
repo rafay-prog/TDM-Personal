@@ -106,6 +106,31 @@ export function GlobeField() {
   );
 }
 
+/** One line icon per service, keyed by slug. Falls back to a generic mark. */
+export function ServiceIcon({ slug }: { slug: string }) {
+  const paths: Record<string, React.ReactNode> = {
+    "video-editing": <path d="M4 5h16v14H4zM9 5v14M15 5v14M4 9h5M4 15h5M15 9h5M15 15h5" />,
+    "video-shoots": <path d="M2 7h11v10H2zM13 10l7-3v10l-7-3" />,
+    "ugc-ads": <path d="M12 3a4 4 0 1 1 0 8 4 4 0 0 1 0-8ZM4 21a8 8 0 0 1 16 0" />,
+    "product-shoots": <path d="M4 8h16v12H4zM9 8V5h6v3M12 12v4M10 14h4" />,
+    "ad-creatives": <path d="M4 4h16v12H4zM8 20h8M12 16v4M8 10l3 3 5-5" />,
+    "performance-marketing": <path d="M3 17l5-5 4 4 8-8M21 8v5h-5" />,
+    seo: <path d="M11 4a7 7 0 1 1 0 14 7 7 0 0 1 0-14ZM20 20l-4-4" />,
+    "social-media": <path d="M18 5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM6 9.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM18 14a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM8.2 10.8l7.6-3.6M8.2 13.2l7.6 3.6" />,
+    shopify: <path d="M6 8h12l-1 12H7L6 8ZM9 8V6a3 3 0 0 1 6 0v2" />,
+    wordpress: <path d="M12 3a9 9 0 1 1 0 18 9 9 0 0 1 0-18ZM4 9h16M7 9l3 10M14 9l3 10" />,
+    magento: <path d="M12 3 5 7v10l2 1V9l5-3 5 3v9l2-1V7l-7-4ZM12 11l-2 1v6l2 1 2-1v-6l-2-1Z" />,
+    "custom-development": <path d="m8 7-5 5 5 5M16 7l5 5-5 5M14 4l-4 16" />,
+    "crm-erp": <path d="M4 6h16v4H4zM4 14h16v4H4zM8 8h.01M8 16h.01" />,
+    "mobile-apps": <path d="M7 3h10v18H7zM11 18h2" />,
+  };
+  return (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+      {paths[slug] ?? <path d="M12 3v18M3 12h18" />}
+    </svg>
+  );
+}
+
 export function PageHero({
   kicker,
   headline,
