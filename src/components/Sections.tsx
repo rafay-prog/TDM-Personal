@@ -323,7 +323,6 @@ export function ServiceLoops({
   locale?: Locale;
 }) {
   if (services.length === 0) return null;
-  const t = ui[locale];
   const step = Math.max(1, Math.floor(services.length / 3));
   const columns = [0, 1, 2].map((col) => {
     const start = (col * step) % services.length;
@@ -369,18 +368,6 @@ export function ServiceLoops({
                 ))}
               </div>
             )}
-
-            <div className="mt-8 flex flex-wrap items-center gap-x-5 gap-y-3">
-              <ConsultationLink
-                locale={locale}
-                className="btn-fluid btn-shine inline-block rounded-full bg-amber px-6 py-3 text-sm font-bold text-white shadow-lg shadow-amber/25"
-              >
-                {t.cta}
-              </ConsultationLink>
-              <p className="text-xs font-semibold uppercase tracking-wider text-white/45">
-                {services.length} {t.services} · EN / FR / AR
-              </p>
-            </div>
           </Reveal>
 
           <div
