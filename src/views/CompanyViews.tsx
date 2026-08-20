@@ -1,6 +1,6 @@
 import Link from "next/link";
 import type { Locale } from "@/lib/types";
-import { href } from "@/lib/i18n";
+import { href, isRtl } from "@/lib/i18n";
 import { site } from "@/lib/site";
 import { getContent } from "@/content";
 import { ui } from "@/content/ui";
@@ -55,13 +55,13 @@ export function AboutView({ locale }: { locale: Locale }) {
         <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6">
           <div className="grid gap-8 md:grid-cols-2">
             <Reveal>
-              <div className="card-lift h-full rounded-2xl bg-fern p-8 text-white">
+              <div className="group sheen sheen-dark card-lift relative h-full overflow-hidden rounded-3xl bg-fern p-8 text-white">
                 <h2 className="kicker text-white/80">{p.missionLabel}</h2>
                 <p className="mt-4 text-lg font-medium leading-relaxed">{p.mission}</p>
               </div>
             </Reveal>
             <Reveal delay={0.12}>
-              <div className="card-lift h-full rounded-2xl bg-forest p-8 text-white">
+              <div className="group sheen sheen-dark card-lift relative h-full overflow-hidden rounded-3xl bg-forest p-8 text-white">
                 <h2 className="kicker text-white/80">{p.visionLabel}</h2>
                 <p className="mt-4 text-lg font-medium leading-relaxed">{p.vision}</p>
               </div>
@@ -79,8 +79,8 @@ export function AboutView({ locale }: { locale: Locale }) {
         <div className="mt-10 grid gap-6 sm:grid-cols-3">
           {c.leadership.map((m, i) => (
             <Reveal key={m.name} delay={i * 0.1}>
-              <div className="card-lift h-full rounded-2xl border border-mint bg-white p-6 text-center hover:border-fern hover:shadow-lg">
-                <div className="mx-auto flex h-24 w-24 items-center justify-center rounded-full bg-mint font-display text-2xl font-bold text-forest">
+              <div className="group sheen card-lift relative h-full rounded-3xl border border-mint bg-white p-6 text-center hover:border-fern hover:shadow-2xl">
+                <div className="mx-auto flex h-24 w-24 items-center justify-center rounded-full bg-mint font-display text-2xl font-bold text-forest transition-all duration-300 group-hover:scale-110 group-hover:bg-amber group-hover:text-white">
                   {m.name.split(" ").map((w) => w[0]).join("")}
                 </div>
                 <h3 className="mt-4 font-display text-lg font-semibold text-forest">{m.name}</h3>
@@ -102,7 +102,7 @@ export function AboutView({ locale }: { locale: Locale }) {
               <Reveal key={o.slug} delay={(i % 4) * 0.07}>
                 <Link
                   href={href(locale, `/locations/${o.slug}/`)}
-                  className="card-lift block h-full rounded-xl border border-mint bg-white p-5 hover:border-fern hover:shadow-lg"
+                  className="group sheen card-lift relative block h-full rounded-2xl border border-mint bg-white p-5 hover:border-fern hover:shadow-xl"
                 >
                   <p className="text-xs font-semibold uppercase tracking-wide text-amber">{o.roleLabel}</p>
                   <p className="mt-1 font-display font-semibold text-forest">
@@ -289,22 +289,39 @@ export function PortfolioView({ locale }: { locale: Locale }) {
                   <div>
                     <Kicker>{s.name}</Kicker>
                     <h2 className="mt-2 text-2xl font-bold text-forest md:text-3xl">
-                      <Link href={href(locale, `/${s.slug}/`)} className="group/title hover:underline">
-                        {s.tagline} <span className="arrow-nudge inline-block text-fern">→</span>
+                      <Link href={href(locale, `/${s.slug}/`)} className="group/title hover:text-fern">
+                        {s.tagline}{" "}
+                        <span className="arrow-nudge inline-block text-amber">
+                          {isRtl(locale) ? "←" : "→"}
+                        </span>
                       </Link>
                     </h2>
+                    <div className="mt-4 h-1 w-14 rounded-full bg-amber" />
                   </div>
                 </div>
               </Reveal>
               <div className="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
                 {items.map((cs, i) => (
-                  <Reveal key={cs.slug} delay={(i % 3) * 0.08}>
+                  <Reveal
+                    key={cs.slug}
+                    delay={(i % 3) * 0.08}
+                    from={i % 3 === 0 ? "left" : i % 3 === 2 ? "right" : "snap"}
+                    className="h-full"
+                  >
                     <Link
                       href={href(locale, `/case-studies/${cs.slug}/`)}
-                      className="group card-lift flex h-full flex-col rounded-2xl border border-mint bg-white p-6 hover:border-fern hover:shadow-xl"
+                      className="group sheen card-lift relative flex h-full flex-col rounded-3xl border border-mint bg-white p-6 hover:border-fern hover:shadow-2xl"
                     >
-                      <p className="text-xs font-medium uppercase tracking-wide text-ink/50">{cs.industry}</p>
-                      <h3 className="mt-2 font-display text-lg font-semibold text-forest transition-colors group-hover:text-pine">
+                      <div className="flex items-start justify-between gap-3">
+                        <p className="text-xs font-medium uppercase tracking-wide text-ink/50">{cs.industry}</p>
+                        <span
+                          aria-hidden
+                          className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-mint text-forest transition-all duration-300 group-hover:border-amber group-hover:bg-amber group-hover:text-white"
+                        >
+                          <span className="arrow-nudge leading-none">{isRtl(locale) ? "←" : "→"}</span>
+                        </span>
+                      </div>
+                      <h3 className="mt-2 font-display text-lg font-bold text-forest transition-colors group-hover:text-fern">
                         {displayName(cs)}
                       </h3>
                       <p className="mt-2 flex-1 text-sm leading-relaxed text-ink/75">{cs.summary}</p>

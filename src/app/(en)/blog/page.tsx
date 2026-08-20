@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import type { BlogPost } from "@/lib/types";
 import { blogPosts } from "@/content/en/blog";
-import { Breadcrumbs, CtaBand, PageHero } from "@/components/Sections";
+import { Breadcrumbs, CtaBand, Kicker, PageHero } from "@/components/Sections";
 import { Reveal } from "@/components/motion/Reveal";
 
 export const metadata: Metadata = {
@@ -71,12 +71,26 @@ export default function BlogPage() {
         </Reveal>
 
         {/* Remaining posts */}
-        <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <Reveal>
+          <div className="mt-16 text-center">
+            <Kicker>More reading</Kicker>
+            <h2 className="mx-auto mt-3 max-w-2xl text-3xl font-bold text-forest md:text-4xl">
+              Guides from the people doing the work.
+            </h2>
+            <div className="mx-auto mt-5 h-1 w-14 rounded-full bg-amber" />
+          </div>
+        </Reveal>
+        <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {rest.map((p, i) => (
-            <Reveal key={p.slug} delay={(i % 3) * 0.08}>
+            <Reveal
+              key={p.slug}
+              delay={(i % 3) * 0.08}
+              from={i % 3 === 0 ? "left" : i % 3 === 2 ? "right" : "snap"}
+              className="h-full"
+            >
               <Link
                 href={`/blog/${p.slug}/`}
-                className="group card-lift flex h-full flex-col rounded-2xl border border-mint bg-white p-7 hover:border-fern hover:shadow-xl"
+                className="group sheen card-lift relative flex h-full flex-col rounded-3xl border border-mint bg-white p-7 hover:border-fern hover:shadow-2xl"
               >
                 <div className="flex items-center gap-2 text-xs font-semibold">
                   <span className={`rounded-full px-3 py-1 ${categoryColor[p.category] ?? "bg-mint text-forest"}`}>
@@ -84,7 +98,7 @@ export default function BlogPage() {
                   </span>
                   <span className="font-normal text-ink/50">{readMinutes(p)} min read</span>
                 </div>
-                <h2 className="mt-4 font-display text-lg font-semibold leading-snug text-forest transition-colors group-hover:text-pine">
+                <h2 className="mt-4 font-display text-lg font-bold leading-snug text-forest transition-colors group-hover:text-fern">
                   {p.title}
                 </h2>
                 <p className="mt-2 flex-1 text-sm leading-relaxed text-ink/70">{p.excerpt}</p>
@@ -92,8 +106,11 @@ export default function BlogPage() {
                   <span>
                     {new Date(p.date).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })}
                   </span>
-                  <span className="font-semibold text-fern">
-                    Read <span className="arrow-nudge">→</span>
+                  <span
+                    aria-hidden
+                    className="flex h-9 w-9 items-center justify-center rounded-full border border-mint text-forest transition-all duration-300 group-hover:border-amber group-hover:bg-amber group-hover:text-white"
+                  >
+                    <span className="arrow-nudge leading-none">→</span>
                   </span>
                 </div>
               </Link>

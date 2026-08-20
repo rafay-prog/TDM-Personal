@@ -3,6 +3,7 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import type { Locale } from "@/lib/types";
 import { href, isRtl } from "@/lib/i18n";
+import { site } from "@/lib/site";
 import { sectorHeroImage } from "@/lib/sector-media";
 import { serviceImage, SERVICE_IMAGE } from "@/lib/service-media";
 import { getContent } from "@/content";
@@ -16,6 +17,7 @@ import {
   PageHero,
   Prose,
   ServiceIcon,
+  StatBand,
 } from "@/components/Sections";
 import { Reveal } from "@/components/motion/Reveal";
 
@@ -139,12 +141,31 @@ export function SectorView({ locale, sectorSlug }: { locale: Locale; sectorSlug:
         <section className="bg-mint/50">
           <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6">
             <Reveal>
-              <Kicker>{extras.staffAug.kicker}</Kicker>
-              <h2 className="mt-3 text-3xl font-bold text-forest">{extras.staffAug.title}</h2>
+              <div className="text-center">
+                <Kicker>{extras.staffAug.kicker}</Kicker>
+                <h2 className="mx-auto mt-3 max-w-2xl text-3xl font-bold text-forest md:text-4xl">
+                  {extras.staffAug.title}
+                </h2>
+                <div className="mx-auto mt-5 h-1 w-14 rounded-full bg-amber" />
+              </div>
             </Reveal>
-            <div className="mt-8 grid gap-6 md:grid-cols-3">
+
+            {/* This sector has no service cards, so the numbers carry the weight. */}
+            <div className="mt-10">
+              <StatBand
+                dark={false}
+                stats={[
+                  { value: site.stats.specialists, label: c.pages.home.statLabels.specialists },
+                  { value: site.stats.countries, label: c.pages.home.statLabels.countries },
+                  { value: site.stats.clients, label: c.pages.home.statLabels.clients },
+                  { value: site.stats.satisfaction, label: c.pages.home.statLabels.satisfaction },
+                ]}
+              />
+            </div>
+
+            <div className="mt-10 grid gap-6 md:grid-cols-3">
               {extras.staffAug.pillars.map((pl, i) => (
-                <Reveal key={pl.title} delay={i * 0.1}>
+                <Reveal key={pl.title} delay={i * 0.1} from={i === 0 ? "left" : i === 2 ? "right" : "snap"} className="h-full">
                   <div className="group sheen card-lift relative h-full rounded-3xl border border-mint bg-white p-7 hover:border-fern hover:shadow-2xl">
                     <p className="font-display text-2xl font-bold text-amber transition-transform duration-500 group-hover:-translate-y-1">
                       {String(i + 1).padStart(2, "0")}
