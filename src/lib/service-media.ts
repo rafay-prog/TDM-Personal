@@ -6,9 +6,8 @@ export const SERVICE_IMAGE = { width: 800, height: 500 } as const;
 /**
  * Artwork for individual service cards, keyed by "<sector>/<slug>".
  *
- * Media and Marketing are covered so far. Services without an entry fall back to the
- * icon-only card, so adding artwork for Development later is just
- * a matter of dropping files in /public/services and adding lines here.
+ * All fourteen services are covered. Any service without an entry falls back to
+ * the icon-only card, so this stays safe if a service is added later.
  *
  * Run `node scripts/hash-assets.mjs` after adding a file.
  */
@@ -22,4 +21,11 @@ export const serviceImage: Record<string, string> = {
   "marketing/performance-marketing": asset("services/performance-marketing.webp"),
   "marketing/seo": asset("services/seo.webp"),
   "marketing/social-media": asset("services/social-media.webp"),
+
+  "development/shopify": asset("services/shopify.webp"),
+  "development/wordpress": asset("services/wordpress.webp"),
+  "development/magento": asset("services/magento.webp"),
+  "development/custom-development": asset("services/custom-development.webp"),
+  "development/crm-erp": asset("services/crm-erp.webp"),
+  "development/mobile-apps": asset("services/mobile-apps.webp"),
 };
