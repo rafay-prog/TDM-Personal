@@ -1,7 +1,9 @@
+import Image from "next/image";
 import Link from "next/link";
 import type { Locale } from "@/lib/types";
 import { href, isRtl } from "@/lib/i18n";
 import { site } from "@/lib/site";
+import { officeFlag } from "@/lib/flags";
 import { getContent } from "@/content";
 import { ui } from "@/content/ui";
 import { ContactForm } from "@/components/ContactForm";
@@ -105,10 +107,25 @@ export function AboutView({ locale }: { locale: Locale }) {
                   className="group sheen card-lift relative block h-full rounded-2xl border border-mint bg-white p-5 hover:border-fern hover:shadow-xl"
                 >
                   <p className="text-xs font-semibold uppercase tracking-wide text-amber">{o.roleLabel}</p>
-                  <p className="mt-1 font-display font-semibold text-forest">
-                    {o.city ? `${o.city}, ` : ""}
-                    {o.country}
-                  </p>
+                  {/* The flag sits beside the place name rather than floating in
+                      a corner, so it reads as part of the label. Decorative:
+                      the country is already written next to it. */}
+                  <div className="mt-1 flex items-start gap-2.5">
+                    {officeFlag[o.slug] && (
+                      <Image
+                        src={officeFlag[o.slug].src}
+                        alt=""
+                        aria-hidden
+                        width={officeFlag[o.slug].width}
+                        height={officeFlag[o.slug].height}
+                        className="mt-[3px] h-3.5 w-auto shrink-0 rounded-[2px] shadow-sm ring-1 ring-ink/15 transition-transform duration-300 group-hover:scale-110"
+                      />
+                    )}
+                    <p className="font-display font-semibold text-forest">
+                      {o.city ? `${o.city}, ` : ""}
+                      {o.country}
+                    </p>
+                  </div>
                 </Link>
               </Reveal>
             ))}

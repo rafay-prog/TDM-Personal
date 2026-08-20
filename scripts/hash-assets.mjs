@@ -21,7 +21,7 @@ import { readdir, readFile, rename, writeFile } from "node:fs/promises";
 import { existsSync } from "node:fs";
 import path from "node:path";
 
-const FOLDERS = ["public/sectors", "public/why", "public/services", "public/partners"];
+const FOLDERS = ["public/sectors", "public/why", "public/services", "public/partners", "public/flags"];
 const IMAGE = /\.(webp|png|jpe?g|avif|svg)$/i;
 const HASHED = /\.[0-9a-f]{8}(\.[a-z0-9]+)$/i;
 

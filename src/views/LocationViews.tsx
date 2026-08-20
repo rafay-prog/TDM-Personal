@@ -1,8 +1,10 @@
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Locale } from "@/lib/types";
 import { href, localePrefix } from "@/lib/i18n";
 import { site } from "@/lib/site";
+import { officeFlag } from "@/lib/flags";
 import { getContent } from "@/content";
 import { ui } from "@/content/ui";
 import { JsonLd } from "@/components/JsonLd";
@@ -33,10 +35,23 @@ export function LocationsIndexView({ locale }: { locale: Locale }) {
                 className="group card-lift block h-full rounded-2xl border border-mint bg-white p-6 hover:border-fern hover:shadow-xl"
               >
                 <p className="text-xs font-semibold uppercase tracking-wide text-amber">{o.roleLabel}</p>
-                <h2 className="mt-2 font-display text-xl font-semibold text-forest">
-                  {o.city ? `${o.city}, ` : ""}
-                  {o.country}
-                </h2>
+                {/* Decorative — the country is spelled out right beside it. */}
+                <div className="mt-2 flex items-start gap-3">
+                  {officeFlag[o.slug] && (
+                    <Image
+                      src={officeFlag[o.slug].src}
+                      alt=""
+                      aria-hidden
+                      width={officeFlag[o.slug].width}
+                      height={officeFlag[o.slug].height}
+                      className="mt-1.5 h-4 w-auto shrink-0 rounded-[2px] shadow-sm ring-1 ring-ink/15 transition-transform duration-300 group-hover:scale-110"
+                    />
+                  )}
+                  <h2 className="font-display text-xl font-semibold text-forest">
+                    {o.city ? `${o.city}, ` : ""}
+                    {o.country}
+                  </h2>
+                </div>
                 {o.address && <p className="mt-2 text-sm text-ink/70">{o.address}</p>}
                 <p className="mt-4 text-sm font-semibold text-forest group-hover:underline">{t.learnMore}</p>
               </Link>
