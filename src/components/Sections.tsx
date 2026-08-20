@@ -144,7 +144,7 @@ export function PageHero({
   sub?: string;
   dark?: boolean;
   /** Optional artwork; when present the hero splits into copy + image. */
-  image?: string;
+  image?: { src: string; width: number; height: number };
   imageAlt?: string;
 }) {
   const copy = (
@@ -175,19 +175,29 @@ export function PageHero({
           <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
             {copy}
             <div
-              className="hero-enter overflow-hidden rounded-3xl shadow-2xl shadow-black/40"
+              className="hero-enter relative mx-auto w-fit"
               style={{ "--enter-delay": "0.36s" } as React.CSSProperties}
             >
-              {/* Fixed ratio so sector heroes stay the same shape whatever the
-                  source image's dimensions are. */}
-              <Image
-                src={image}
-                alt={imageAlt ?? ""}
-                width={1600}
-                height={1067}
-                priority
-                className="aspect-3/2 w-full object-cover"
-              />
+              {/* Warm halo so the photo sits in the section rather than on it. */}
+              <div aria-hidden className="absolute -inset-8 rounded-[2.5rem] bg-fern/25 blur-3xl" />
+              <div aria-hidden className="absolute -bottom-5 -end-5 h-24 w-24 rounded-full bg-amber/25 blur-2xl" />
+              <div className="relative overflow-hidden rounded-3xl shadow-2xl shadow-black/50 ring-1 ring-white/15">
+                {/* Each photo keeps its own ratio under a shared height cap —
+                    forcing a portrait shot into a landscape frame crops it to a ribbon. */}
+                <Image
+                  src={image.src}
+                  alt={imageAlt ?? ""}
+                  width={image.width}
+                  height={image.height}
+                  priority
+                  sizes="(min-width: 1024px) 40vw, 90vw"
+                  className="max-h-[26rem] w-auto max-w-full object-cover md:max-h-[30rem]"
+                />
+                <div
+                  aria-hidden
+                  className="pointer-events-none absolute inset-x-0 bottom-0 h-1/4 bg-gradient-to-t from-forest/50 to-transparent"
+                />
+              </div>
             </div>
           </div>
         ) : (
