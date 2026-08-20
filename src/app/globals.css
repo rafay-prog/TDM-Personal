@@ -198,6 +198,28 @@ h1, h2 {
   animation-direction: reverse;
 }
 
+/* Hero stat cards floating around the centred copy. The tilt lives inside the
+   keyframes because a Tailwind rotate utility would be overwritten by the
+   animation's own transform. Hover scaling sits on the inner card instead. */
+@keyframes float-y {
+  0%,
+  100% {
+    transform: translateY(0) rotate(var(--tilt, 0deg));
+  }
+  50% {
+    transform: translateY(-14px) rotate(var(--tilt, 0deg));
+  }
+}
+.float-card {
+  transform: rotate(var(--tilt, 0deg));
+  animation: float-y var(--float-dur, 7s) ease-in-out infinite;
+  animation-delay: var(--float-delay, 0s);
+  will-change: transform;
+}
+.float-card:hover {
+  animation-play-state: paused;
+}
+
 /* Vertical service loops — three columns, each seeded at a different service
    and running at its own speed so the rows never line up. */
 @keyframes marquee-y {
@@ -500,6 +522,7 @@ details[open] .faq-answer {
   .hero-enter,
   .marquee-track,
   .loop-col,
+  .float-card,
   .blob,
   .gradient-text,
   .aurora,

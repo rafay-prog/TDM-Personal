@@ -34,6 +34,15 @@ export function HomeView({ locale }: { locale: Locale }) {
     { value: site.stats.bestRoas, label: p.statLabels.roas },
   ];
 
+  // Corner placements for the floating variant. Sits high and low on each side,
+  // clear of the headline's vertical band. Each drifts on its own clock.
+  const floatSlots = [
+    { pos: "top-[19%] start-4 2xl:start-10", tilt: "-6deg", dur: "7s", delay: "0s" },
+    { pos: "top-[27%] end-4 2xl:end-10", tilt: "5deg", dur: "8.5s", delay: "-2.5s" },
+    { pos: "bottom-[20%] start-6 2xl:start-16", tilt: "4deg", dur: "9.5s", delay: "-1.2s" },
+    { pos: "bottom-[27%] end-6 2xl:end-14", tilt: "-5deg", dur: "7.8s", delay: "-3.8s" },
+  ];
+
   // The headline reveals word by word; everything else follows once it has landed.
   const words = p.heroHeadline.split(" ");
   const HEAD_START = 0.3;
@@ -44,6 +53,30 @@ export function HomeView({ locale }: { locale: Locale }) {
     <>
       <section className="relative overflow-hidden bg-forest text-white">
         <AuroraField />
+
+        {heroStats.map((s, i) => (
+          <div
+            key={`float-${s.label}`}
+            className={`float-card absolute z-10 hidden w-[196px] xl:block ${floatSlots[i].pos}`}
+            style={
+              {
+                "--tilt": floatSlots[i].tilt,
+                "--float-dur": floatSlots[i].dur,
+                "--float-delay": floatSlots[i].delay,
+              } as React.CSSProperties
+            }
+          >
+            <div
+              className="hero-enter btn-fluid glass rounded-2xl px-5 py-4 shadow-2xl shadow-black/30 hover:border-white/35"
+              style={{ "--enter-delay": `${afterHeadline + 0.5 + i * 0.12}s` } as React.CSSProperties}
+            >
+              <p className="font-display text-3xl font-bold text-amber">
+                <CountUp value={s.value} />
+              </p>
+              <p className="mt-1 text-xs leading-snug text-white/70">{s.label}</p>
+            </div>
+          </div>
+        ))}
         <div className="relative mx-auto max-w-7xl px-4 pb-12 pt-16 text-center sm:px-6 md:pb-14 md:pt-28">
           <div className="hero-enter flex justify-center">
             <span className="glass inline-flex items-center gap-2.5 rounded-full px-4 py-2">
@@ -55,7 +88,8 @@ export function HomeView({ locale }: { locale: Locale }) {
             </span>
           </div>
 
-          <h1 className="mx-auto mt-7 max-w-5xl font-display text-[2.2rem] font-bold leading-[1.08] md:text-5xl lg:text-6xl">
+          {/* Narrower from xl so the floating stat cards have clearance either side. */}
+          <h1 className="mx-auto mt-7 max-w-5xl font-display text-[2.2rem] font-bold leading-[1.08] md:text-5xl lg:text-6xl xl:max-w-3xl">
             {words.map((w, i) => (
               <span
                 key={`${w}-${i}`}
@@ -106,8 +140,10 @@ export function HomeView({ locale }: { locale: Locale }) {
             ))}
           </div>
 
+          {/* Below xl the stats stay in flow; from xl they float at the corners.
+              Only one copy is ever displayed, so screen readers see it once. */}
           <div
-            className="hero-enter mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4"
+            className="hero-enter mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4 xl:hidden"
             style={{ "--enter-delay": `${afterHeadline + 0.6}s` } as React.CSSProperties}
           >
             {heroStats.map((s) => (
