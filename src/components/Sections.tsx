@@ -66,18 +66,18 @@ export function AuroraField() {
 export function GlobeField() {
   return (
     <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
-      <div className="absolute start-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+      <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
         <div className="h-[34rem] w-[34rem] rounded-full bg-fern/25 blur-[130px]" />
       </div>
 
-      <div className="absolute start-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+      <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
         <div className="spin-slow h-[52rem] w-[52rem] rounded-full border border-white/[0.06]" />
       </div>
-      <div className="absolute start-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+      <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
         <div className="h-[40rem] w-[40rem] rounded-full border border-white/[0.08]" />
       </div>
 
-      <div className="absolute start-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+      <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
         <svg
           className="spin-slow h-[30rem] w-[30rem] opacity-[0.16]"
           viewBox="0 0 200 200"
