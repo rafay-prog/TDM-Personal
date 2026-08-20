@@ -9,8 +9,33 @@ import { JsonLd } from "./JsonLd";
 import { Reveal } from "./motion/Reveal";
 import { CountUp } from "./motion/CountUp";
 
-export function Kicker({ children }: { children: React.ReactNode }) {
-  return <p className="kicker text-fern">{children}</p>;
+/**
+ * Section eyebrow. `glow` wraps it in the same amber pill the hero kicker
+ * wears, so section openings carry the headline's signal. The label keeps its
+ * contextual colour rather than going amber like the hero's: amber text clears
+ * contrast on the forest sections but not on cream or mint, so `dark` picks the
+ * one that reads.
+ */
+export function Kicker({
+  children,
+  glow = false,
+  dark = false,
+}: {
+  children: React.ReactNode;
+  glow?: boolean;
+  dark?: boolean;
+}) {
+  if (!glow) return <p className={`kicker ${dark ? "text-sage" : "text-fern"}`}>{children}</p>;
+
+  return (
+    <p className="kicker-pill pill-shimmer inline-flex items-center gap-2.5 rounded-full border border-amber/45 bg-amber/12 px-4 py-2 backdrop-blur-sm">
+      <span className="relative flex h-2 w-2 shrink-0">
+        <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-amber opacity-80" />
+        <span className="relative inline-flex h-2 w-2 rounded-full bg-amber shadow-[0_0_8px_2px_rgba(232,134,45,0.7)]" />
+      </span>
+      <span className={`kicker ${dark ? "text-amber" : "text-fern"}`}>{children}</span>
+    </p>
+  );
 }
 
 /** Decorative animated blobs for dark sections. */
@@ -428,7 +453,7 @@ export function FaqSection({
       {/* Split: the intro stays pinned on the left while the answers scroll past. */}
       <div className="grid gap-10 lg:grid-cols-[minmax(0,20rem)_1fr] lg:gap-16">
         <Reveal from="left" className="lg:sticky lg:top-28 lg:self-start">
-          <Kicker>{t.faqKicker}</Kicker>
+          <Kicker glow>{t.faqKicker}</Kicker>
           <h2 className="mt-3 text-3xl font-bold text-forest md:text-4xl">{title ?? t.faqTitle}</h2>
           <div className="mt-5 h-1 w-14 rounded-full bg-amber" />
         </Reveal>
@@ -498,7 +523,7 @@ export function CtaBand({
       <HeroBlobs />
       <div className="relative mx-auto flex max-w-7xl flex-col items-start gap-6 px-4 py-16 sm:px-6 md:flex-row md:items-center md:justify-between">
         <Reveal>
-          <p className="kicker text-sage">{t.letsTalk}</p>
+          <Kicker glow dark>{t.letsTalk}</Kicker>
           <h2 className="mt-3 text-3xl font-bold text-white md:text-4xl">{headline ?? t.ctaHeadline}</h2>
           <p className="mt-3 max-w-xl text-white/80">{sub ?? t.ctaSub}</p>
         </Reveal>
@@ -535,7 +560,7 @@ export function FeaturedClients({
       <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 md:py-20">
         <Reveal>
           <div className="text-center">
-            <Kicker>{t.featuredKicker}</Kicker>
+            <Kicker glow>{t.featuredKicker}</Kicker>
             <h2 className="mx-auto mt-3 max-w-2xl text-3xl font-bold text-forest md:text-4xl">
               {t.featuredTitle}
             </h2>
@@ -583,7 +608,7 @@ export function LogoWall({
     <section className="mx-auto max-w-7xl px-4 py-14 sm:px-6">
       {title && (
         <Reveal>
-          <Kicker>{ui[locale].ourClients}</Kicker>
+          <Kicker glow>{ui[locale].ourClients}</Kicker>
           <h2 className="mt-3 text-3xl font-bold text-forest">{title}</h2>
         </Reveal>
       )}

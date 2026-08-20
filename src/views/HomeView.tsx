@@ -212,7 +212,7 @@ export function HomeView({ locale }: { locale: Locale }) {
         <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 md:py-20">
           <div className="grid gap-10 lg:grid-cols-[minmax(0,22rem)_1fr] lg:gap-16">
             <Reveal from="left" className="lg:sticky lg:top-28 lg:self-start">
-              <Kicker>{p.sectorsKicker}</Kicker>
+              <Kicker glow>{p.sectorsKicker}</Kicker>
               <h2 className="mt-3 text-3xl font-bold text-forest md:text-4xl">{p.sectorsTitle}</h2>
               <p className="mt-4 text-ink/75">{p.sectorsSub}</p>
               <div className="mt-5 h-1 w-14 rounded-full bg-amber" />
@@ -263,7 +263,7 @@ export function HomeView({ locale }: { locale: Locale }) {
         <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 md:py-20">
           <div className="grid gap-10 lg:grid-cols-[minmax(0,22rem)_1fr] lg:gap-16">
             <Reveal from="left" className="lg:sticky lg:top-28 lg:self-start">
-              <Kicker>{p.caseKicker}</Kicker>
+              <Kicker glow>{p.caseKicker}</Kicker>
               <h2 className="mt-3 text-3xl font-bold text-forest md:text-4xl">{p.caseTitle}</h2>
               <p className="mt-4 text-ink/75">{p.caseSub}</p>
               <Link
@@ -323,7 +323,7 @@ export function HomeView({ locale }: { locale: Locale }) {
         <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 md:py-20">
           <Reveal>
             <div className="text-center">
-              <Kicker>{p.whyKicker}</Kicker>
+              <Kicker glow>{p.whyKicker}</Kicker>
               <h2 className="mx-auto mt-3 max-w-3xl text-3xl font-bold text-forest md:text-4xl">{p.whyTitle}</h2>
               <div className="mx-auto mt-5 h-1 w-14 rounded-full bg-amber" />
             </div>
@@ -380,7 +380,7 @@ export function HomeView({ locale }: { locale: Locale }) {
         />
         <div className="relative mx-auto max-w-7xl px-4 py-16 sm:px-6 md:py-20">
           <Reveal>
-            <p className="kicker text-sage">{t.homeProcess.kicker}</p>
+            <Kicker glow dark>{t.homeProcess.kicker}</Kicker>
             <h2 className="mt-3 max-w-2xl text-3xl font-bold md:text-4xl">{t.homeProcess.title}</h2>
           </Reveal>
           <div className="mt-12 grid gap-8 md:grid-cols-4">

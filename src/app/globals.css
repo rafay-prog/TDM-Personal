@@ -225,6 +225,27 @@ h1, h2 {
   animation: pill-sheen 5.5s ease-in-out infinite;
 }
 
+/* Section eyebrows echo the hero pill: an amber ring that breathes, so every
+   section opens with the same signal the headline carries. The glow is a
+   box-shadow rather than the hero's white sheen, which would all but vanish
+   against the cream and mint section backgrounds. */
+@keyframes kicker-glow {
+  0%,
+  100% {
+    box-shadow:
+      0 0 0 0 rgba(232, 134, 45, 0),
+      0 4px 14px -8px rgba(232, 134, 45, 0.4);
+  }
+  50% {
+    box-shadow:
+      0 0 20px 1px rgba(232, 134, 45, 0.3),
+      0 4px 14px -8px rgba(232, 134, 45, 0.55);
+  }
+}
+.kicker-pill {
+  animation: kicker-glow 4.5s ease-in-out infinite;
+}
+
 /* Hero stat cards floating around the centred copy. The tilt lives inside the
    keyframes because a Tailwind rotate utility would be overwritten by the
    animation's own transform. Hover scaling sits on the inner card instead. */
@@ -567,6 +588,7 @@ details[open] .faq-answer {
   .loop-col,
   .float-card,
   .pill-shimmer::after,
+  .kicker-pill,
   .blob,
   .gradient-text,
   .aurora,
