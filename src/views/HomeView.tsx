@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import type { Locale } from "@/lib/types";
 import { href, isRtl } from "@/lib/i18n";
 import { site } from "@/lib/site";
@@ -21,6 +22,20 @@ import { CountUp } from "@/components/motion/CountUp";
 
 const displayName = (cs: { anonymous: boolean; publicName: string; client: string }) =>
   cs.anonymous ? cs.publicName : cs.client;
+
+/**
+ * Artwork for the six "why" cards, in `whyItems` order. Alt text is generic
+ * rather than translated because the cards' own titles carry the meaning and
+ * these images are supporting, not informational.
+ */
+const whyImages = [
+  { src: "/why/01-ecommerce.webp", alt: "Online store checkout on a laptop" },
+  { src: "/why/02-in-house.webp", alt: "A team joining hands over a desk" },
+  { src: "/why/03-data.webp", alt: "Scales weighing decisions against data" },
+  { src: "/why/04-reporting.webp", alt: "Signing off an approved report" },
+  { src: "/why/05-multilingual.webp", alt: "A globe labelled English, Français and العربية" },
+  { src: "/why/06-support.webp", alt: "A handshake in front of a rising growth chart" },
+];
 
 /**
  * Icons for the six "why" cards, keyed by position. Safe because `whyItems`
@@ -320,17 +335,30 @@ export function HomeView({ locale }: { locale: Locale }) {
                 from={i % 3 === 0 ? "left" : i % 3 === 2 ? "right" : "snap"}
                 className="h-full"
               >
-                <div className="group sheen card-lift relative flex h-full flex-col overflow-hidden rounded-3xl border border-mint bg-white p-7 hover:border-fern hover:shadow-2xl">
-                  <span className="bento-index pointer-events-none absolute end-5 top-4 font-display text-5xl font-bold text-mint/70 group-hover:text-sage/60">
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                  <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-mint text-fern transition-all duration-300 group-hover:scale-110 group-hover:bg-amber group-hover:text-white">
-                    <WhyIcon index={i} />
-                  </span>
-                  <h3 className="mt-5 font-display text-lg font-bold text-forest transition-colors duration-300 group-hover:text-fern">
-                    {title}
-                  </h3>
-                  <p className="mt-2.5 text-sm leading-relaxed text-ink/75">{desc}</p>
+                <div className="group sheen card-lift relative flex h-full flex-col overflow-hidden rounded-3xl border border-mint bg-white hover:border-fern hover:shadow-2xl">
+                  <div className="relative overflow-hidden">
+                    <Image
+                      src={whyImages[i].src}
+                      alt={whyImages[i].alt}
+                      width={800}
+                      height={500}
+                      className="aspect-8/5 w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+                    <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-forest/55 to-transparent" />
+                    <span className="pointer-events-none absolute end-4 top-3 font-display text-4xl font-bold text-white/35">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    {/* Icon straddles the image edge so the card reads as one piece. */}
+                    <span className="absolute -bottom-6 start-6 flex h-12 w-12 items-center justify-center rounded-2xl bg-white text-fern shadow-lg ring-1 ring-mint transition-all duration-300 group-hover:scale-110 group-hover:bg-amber group-hover:text-white group-hover:ring-amber">
+                      <WhyIcon index={i} />
+                    </span>
+                  </div>
+                  <div className="p-7 pt-10">
+                    <h3 className="font-display text-lg font-bold text-forest transition-colors duration-300 group-hover:text-fern">
+                      {title}
+                    </h3>
+                    <p className="mt-2.5 text-sm leading-relaxed text-ink/75">{desc}</p>
+                  </div>
                 </div>
               </Reveal>
             ))}
