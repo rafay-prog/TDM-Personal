@@ -217,7 +217,7 @@ export function Footer({ locale = "en" }: { locale?: Locale }) {
           <a
             href="#"
             className="group flex w-fit items-center gap-2 font-semibold text-white/70 transition-colors hover:text-white"
-            aria-label="Back to top"
+            aria-label={t.backToTop}
           >
             <span className="flex h-8 w-8 items-center justify-center rounded-full border border-white/20 transition-all duration-300 group-hover:-translate-y-1 group-hover:border-amber group-hover:bg-amber">
               ↑

@@ -19,6 +19,7 @@ export interface UiStrings {
   servicesSub: string;
   featuredKicker: string;
   featuredTitle: string;
+  backToTop: string;
   company: string;
   globalPresence: string;
   footerBlurb: string;
@@ -82,6 +83,7 @@ export const ui: Record<Locale, UiStrings> = {
       "Media, marketing, engineering and staffing — the whole stack, run by one team that already knows your account.",
     featuredKicker: "Trusted by",
     featuredTitle: "Brands that put their growth in our hands.",
+    backToTop: "Back to top",
     company: "Company",
     globalPresence: "Global Presence",
     footerBlurb:
@@ -167,6 +169,7 @@ export const ui: Record<Locale, UiStrings> = {
       "Média, marketing, ingénierie et renfort d’équipes — toute la chaîne, pilotée par une équipe qui connaît déjà votre compte.",
     featuredKicker: "Ils nous font confiance",
     featuredTitle: "Des marques qui nous confient leur croissance.",
+    backToTop: "Haut de page",
     company: "Entreprise",
     globalPresence: "Présence mondiale",
     footerBlurb:
@@ -253,6 +256,7 @@ export const ui: Record<Locale, UiStrings> = {
       "ميديا وتسويق وهندسة وتعزيز فرق العمل — المنظومة كاملة، يديرها فريق واحد يعرف حسابك مسبقًا.",
     featuredKicker: "يثقون بنا",
     featuredTitle: "علامات وضعت نموها بين أيدينا.",
+    backToTop: "العودة إلى الأعلى",
     company: "الشركة",
     globalPresence: "حضورنا العالمي",
     footerBlurb:

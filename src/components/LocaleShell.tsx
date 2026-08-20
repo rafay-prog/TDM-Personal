@@ -5,6 +5,8 @@ import { site } from "@/lib/site";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { JsonLd } from "@/components/JsonLd";
+import { BackToTop } from "@/components/motion/BackToTop";
+import { ui } from "@/content/ui";
 import { getContent } from "@/content";
 
 const montserrat = Montserrat({
@@ -59,6 +61,7 @@ export function LocaleShell({ locale, children }: { locale: Locale; children: Re
         <Header locale={locale} />
         <main>{children}</main>
         <Footer locale={locale} />
+        <BackToTop label={ui[locale].backToTop} />
       </body>
     </html>
   );
