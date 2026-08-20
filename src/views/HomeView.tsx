@@ -240,11 +240,13 @@ export function HomeView({ locale }: { locale: Locale }) {
               {featured.map((cs, i) => (
                 <Reveal key={cs.slug} delay={i * 0.08} from="right">
                   <li className="border-b border-mint">
+                    {/* The whole row is the link, so the affordance is an arrow
+                        rather than a second "learn more" target beside it. */}
                     <Link
                       href={href(locale, `/case-studies/${cs.slug}/`)}
-                      className="group grid grid-cols-[auto_1fr] items-center gap-5 py-6 md:grid-cols-[auto_1fr_auto] md:gap-8"
+                      className="card-lift group -mx-4 grid grid-cols-[auto_1fr] items-center gap-5 rounded-2xl px-4 py-6 hover:bg-white hover:shadow-xl md:grid-cols-[auto_1fr_auto] md:gap-8 md:px-6"
                     >
-                      <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-fern/40 font-display text-sm font-bold text-fern transition-all duration-300 group-hover:border-amber group-hover:bg-amber group-hover:text-white">
+                      <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-fern/40 font-display text-sm font-bold text-fern transition-all duration-300 group-hover:scale-110 group-hover:border-amber group-hover:bg-amber group-hover:text-white">
                         {i + 1}
                       </span>
                       <div>
@@ -254,14 +256,20 @@ export function HomeView({ locale }: { locale: Locale }) {
                         </h3>
                         <div className="mt-3 flex flex-wrap gap-2">
                           {cs.results.slice(0, 2).map((r) => (
-                            <span key={r.label} className="rounded-full bg-mint px-3 py-1 text-xs font-semibold text-forest">
+                            <span
+                              key={r.label}
+                              className="rounded-full bg-mint px-3 py-1 text-xs font-semibold text-forest transition-colors duration-300 group-hover:bg-amber/15 group-hover:text-forest"
+                            >
                               {r.value} {r.label.split("(")[0].trim()}
                             </span>
                           ))}
                         </div>
                       </div>
-                      <span className="hidden whitespace-nowrap text-xs font-bold uppercase tracking-wider text-forest md:block">
-                        {t.learnMore}
+                      <span
+                        aria-hidden
+                        className="hidden h-11 w-11 shrink-0 items-center justify-center rounded-full border border-mint text-forest transition-all duration-300 group-hover:border-amber group-hover:bg-amber group-hover:text-white md:flex"
+                      >
+                        <span className="arrow-nudge text-lg leading-none">{isRtl(locale) ? "←" : "→"}</span>
                       </span>
                     </Link>
                   </li>
