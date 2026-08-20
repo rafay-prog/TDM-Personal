@@ -5,6 +5,7 @@ import { href } from "@/lib/i18n";
 import { site } from "@/lib/site";
 import { ui } from "@/content/ui";
 import { getContent } from "@/content";
+import { LocaleSwitch } from "@/components/LocaleSwitch";
 
 const servicePaths = [
   "/media/ugc-ads/",
@@ -15,12 +16,6 @@ const servicePaths = [
   "/development/wordpress/",
   "/development/crm-erp/",
   "/staff-augmentation/",
-];
-
-const languageSwitch: { locale: Locale; label: string }[] = [
-  { locale: "en", label: "English" },
-  { locale: "fr", label: "Français" },
-  { locale: "ar", label: "العربية" },
 ];
 
 function FooterLink({ to, children }: { to: string; children: React.ReactNode }) {
@@ -128,22 +123,7 @@ export function Footer({ locale = "en" }: { locale?: Locale }) {
               </a>
             </div>
 
-            {/* Language switcher */}
-            <div className="mt-6 flex flex-wrap items-center gap-2 text-xs font-semibold">
-              {languageSwitch.map((l) => (
-                <Link
-                  key={l.locale}
-                  href={l.locale === "en" ? "/" : `/${l.locale}/`}
-                  className={`btn-fluid btn-fluid-sm rounded-full px-3.5 py-1.5 ${
-                    l.locale === locale
-                      ? "bg-white text-forest"
-                      : "border border-white/20 text-white/70 hover:border-white/50 hover:text-white"
-                  }`}
-                >
-                  {l.label}
-                </Link>
-              ))}
-            </div>
+            <LocaleSwitch locale={locale} variant="footer" />
           </div>
 
           {/* Services */}

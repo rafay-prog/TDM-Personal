@@ -8,6 +8,7 @@ import { href, isRtl } from "@/lib/i18n";
 import { site } from "@/lib/site";
 import { ui } from "@/content/ui";
 import { ServiceIcon } from "@/components/Sections";
+import { LocaleSwitch } from "@/components/LocaleSwitch";
 
 interface NavChild {
   label: string;
@@ -134,12 +135,6 @@ const navByLocale: Record<Locale, NavItem[]> = {
   ],
 };
 
-const languageSwitch: { locale: Locale; label: string }[] = [
-  { locale: "en", label: "EN" },
-  { locale: "fr", label: "FR" },
-  { locale: "ar", label: "AR" },
-];
-
 function ChevronIcon({ className = "" }: { className?: string }) {
   return (
     <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden>
@@ -161,15 +156,6 @@ function PhoneIcon() {
   return (
     <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
       <path d="M6.6 3h-.9A2.7 2.7 0 0 0 3 5.8C3 14.7 9.3 21 18.2 21a2.7 2.7 0 0 0 2.8-2.7v-.9a1.4 1.4 0 0 0-1-1.3l-3-.9a1.4 1.4 0 0 0-1.5.5l-.8 1a13.6 13.6 0 0 1-5.4-5.4l1-.8a1.4 1.4 0 0 0 .5-1.5l-.9-3a1.4 1.4 0 0 0-1.3-1Z" />
-    </svg>
-  );
-}
-
-function GlobeIcon() {
-  return (
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" aria-hidden>
-      <circle cx="12" cy="12" r="9.5" />
-      <path d="M2.5 12h19M12 2.5c2.5 2.6 3.8 6 3.8 9.5s-1.3 6.9-3.8 9.5c-2.5-2.6-3.8-6-3.8-9.5S9.5 5.1 12 2.5Z" />
     </svg>
   );
 }
@@ -286,24 +272,9 @@ export function Header({
           </nav>
 
           <div className="hidden items-center gap-2.5 xl:flex">
-            {/* Segmented language switcher */}
-            <div className="flex items-center gap-0.5 rounded-full border border-white/20 bg-white/5 p-1 ps-2.5 text-white/60 backdrop-blur-sm">
-              <GlobeIcon />
-              {languageSwitch.map((l) => (
-                <Link
-                  key={l.locale}
-                  href={l.locale === "en" ? "/" : `/${l.locale}/`}
-                  aria-current={l.locale === locale ? "true" : undefined}
-                  className={`btn-fluid btn-fluid-sm rounded-full px-2 py-1 text-[11px] font-bold tracking-wide ${
-                    l.locale === locale ? "bg-white text-forest" : "hover:text-white"
-                  }`}
-                >
-                  {l.label}
-                </Link>
-              ))}
-            </div>
+            <LocaleSwitch locale={locale} />
 
-            <a
+                        <a
               href={`mailto:${site.email}`}
               aria-label={site.email}
               title={site.email}
@@ -466,22 +437,9 @@ export function Header({
             );
           })}
 
-          <div className="mt-7 flex items-center gap-1 rounded-full border border-white/20 bg-white/5 p-1 ps-3 text-white/60">
-            <GlobeIcon />
-            {languageSwitch.map((l) => (
-              <Link
-                key={l.locale}
-                href={l.locale === "en" ? "/" : `/${l.locale}/`}
-                className={`btn-fluid btn-fluid-sm rounded-full px-3 py-1.5 text-xs font-bold ${
-                  l.locale === locale ? "bg-white text-forest" : ""
-                }`}
-                onClick={closeDrawer}
-              >
-                {l.label}
-              </Link>
-            ))}
-          </div>
+          <LocaleSwitch locale={locale} variant="drawer" onNavigate={closeDrawer} />
 
+          
           <Link
             href={href(locale, "/contact/")}
             className="btn-fluid btn-shine mt-4 block rounded-full bg-amber px-5 py-4 text-center font-bold text-white shadow-lg shadow-amber/25"
