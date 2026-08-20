@@ -15,6 +15,7 @@ import {
   LogoWall,
   PageHero,
   Prose,
+  ShatterDefs,
   ShatterSurface,
   StatBand,
   TestimonialCard,
@@ -264,6 +265,8 @@ export function PortfolioView({ locale }: { locale: Locale }) {
           { label: t.portfolio, href: href(locale, "/portfolio/") },
         ]}
       />
+
+      <ShatterDefs />
 
       {/* Headline numbers behind the work */}
       <section className="mx-auto max-w-7xl px-4 pt-10 sm:px-6">

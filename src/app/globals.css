@@ -563,18 +563,23 @@ details[open] .faq-answer {
 
 /* Cards that sit in pieces until you point at them.
    The card's own background is transparent — the white surface is these shards,
-   each clipped to one polygon of a partition of the rectangle. At rest they are
-   nudged apart, so the section background shows through the seams and the card
-   reads as broken up. On hover every shard returns to its true place and the
-   pieces close into one continuous surface.
+   each clipped to one curved piece of a partition of the card. At rest they are
+   nudged out of place, so the section background shows through the seams and
+   the card reads as broken. On hover every shard returns and the pieces close
+   into one continuous surface.
+
+   Each shard carries its own drop-shadow, which follows the clip-path outline
+   rather than the element box. That is what makes a seam legible: without it
+   two white pieces meeting over a pale section background have almost nothing
+   separating them. The shadow lifts as the card assembles, so the finished card
+   is clean rather than criss-crossed with internal edges.
 
    Shards live at z-index -1 inside .sheen's stacking context, which puts them
-   over nothing and under the card's own text.
+   under the card's own text.
 
    The assembled state is scale(1.004) rather than none: adjacent clip-path
    edges antialias against each other and leave hairline seams when they meet
-   exactly, and a fraction of a percent of overlap hides them without being
-   visible itself. */
+   exactly, and a fraction of a percent of overlap hides that invisibly. */
 .shatter {
   position: absolute;
   inset: 0;
@@ -588,12 +593,15 @@ details[open] .faq-answer {
   inset: 0;
   display: block;
   background: #fff;
-  clip-path: var(--clip);
   transform: translate(var(--tx), var(--ty)) rotate(var(--r));
-  transition: transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+  filter: drop-shadow(0 1px 3px rgba(16, 36, 28, 0.22));
+  transition:
+    transform 0.55s cubic-bezier(0.16, 1, 0.3, 1),
+    filter 0.45s ease;
 }
 .group:hover .shatter i {
   transform: scale(1.004);
+  filter: drop-shadow(0 0 0 rgba(16, 36, 28, 0));
 }
 
 /* Numerals sitting behind bento card content. */

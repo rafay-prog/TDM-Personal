@@ -75,46 +75,141 @@ export function ArrowPill({
 }
 
 /**
- * The white surface of a card, cut into shards that sit apart until hover.
+ * The white surface of a card, cut into curved shards that sit apart until
+ * hover.
  *
- * Each variant is a true partition of the rectangle — the polygons tile it with
- * no overlap and no gap — so once every shard is back in place the surface is
- * continuous. The interior vertices are shared between neighbouring shards,
- * which is what makes the pieces read as one card that broke rather than as
- * shapes that happen to be near each other.
+ * The cuts have to be genuinely shared: whatever curve separates two shards is
+ * the same curve on both sides, traced forward by one and backward by the
+ * other. Eyeballing two near-identical Béziers would leave a sliver of gap or
+ * overlap along every seam, so the boundaries are defined once and the shards
+ * are derived from them — split with de Casteljau where a third curve crosses,
+ * which yields the exact sub-curves rather than an approximation of them.
  *
- * Three variants, picked by card index, so a grid does not repeat one break.
+ * Coordinates are fractions of the card, emitted into clipPath elements with
+ * clipPathUnits="objectBoundingBox", so one set of definitions fits every card
+ * whatever its size. CSS clip-path: path() would have been simpler but takes
+ * absolute pixels, which cannot follow a responsive card.
  */
-type Shard = { clip: string; tx: string; ty: string; r: string };
+type Pt = [number, number];
+type Cubic = [Pt, Pt, Pt, Pt];
 
-const SHATTER: Shard[][] = [
-  [
-    { clip: "polygon(0% 0%, 100% 0%, 100% 20%, 0% 30%)", tx: "-4px", ty: "-6px", r: "-0.6deg" },
-    { clip: "polygon(0% 30%, 44% 25.6%, 50% 62%, 0% 66%)", tx: "-7px", ty: "2px", r: "0.7deg" },
-    { clip: "polygon(44% 25.6%, 100% 20%, 100% 58%, 50% 62%)", tx: "6px", ty: "-3px", r: "0.5deg" },
-    { clip: "polygon(0% 66%, 50% 62%, 100% 58%, 100% 100%, 0% 100%)", tx: "2px", ty: "7px", r: "-0.5deg" },
-  ],
-  [
-    { clip: "polygon(0% 0%, 100% 0%, 100% 34%, 0% 22%)", tx: "5px", ty: "-6px", r: "0.5deg" },
-    { clip: "polygon(0% 22%, 56% 28.7%, 48% 65.2%, 0% 70%)", tx: "-6px", ty: "-2px", r: "-0.7deg" },
-    { clip: "polygon(56% 28.7%, 100% 34%, 100% 60%, 48% 65.2%)", tx: "7px", ty: "3px", r: "0.6deg" },
-    { clip: "polygon(0% 70%, 48% 65.2%, 100% 60%, 100% 100%, 0% 100%)", tx: "-3px", ty: "7px", r: "-0.4deg" },
-  ],
-  [
-    { clip: "polygon(0% 0%, 38% 0%, 46% 37.6%, 0% 44%)", tx: "-6px", ty: "-5px", r: "-0.7deg" },
-    { clip: "polygon(38% 0%, 100% 0%, 100% 30%, 46% 37.6%)", tx: "6px", ty: "-6px", r: "0.6deg" },
-    { clip: "polygon(0% 44%, 46% 37.6%, 100% 30%, 100% 80%, 0% 74%)", tx: "-4px", ty: "3px", r: "0.45deg" },
-    { clip: "polygon(0% 74%, 100% 80%, 100% 100%, 0% 100%)", tx: "3px", ty: "7px", r: "-0.6deg" },
-  ],
+const mid = (a: Pt, b: Pt): Pt => [(a[0] + b[0]) / 2, (a[1] + b[1]) / 2];
+
+/** de Casteljau at the midpoint: the two halves of a cubic, exactly. */
+function halve([p0, c1, c2, p3]: Cubic): [Cubic, Cubic] {
+  const a = mid(p0, c1);
+  const b = mid(c1, c2);
+  const c = mid(c2, p3);
+  const d = mid(a, b);
+  const e = mid(b, c);
+  const f = mid(d, e);
+  return [
+    [p0, a, d, f],
+    [f, e, c, p3],
+  ];
+}
+
+const n = (v: number) => Number(v.toFixed(4));
+const pt = (p: Pt) => `${n(p[0])},${n(p[1])}`;
+/** Curve continuation from the current point. */
+const to = ([, c1, c2, p3]: Cubic) => `C${pt(c1)} ${pt(c2)} ${pt(p3)}`;
+/** The same curve walked the other way — control points swap. */
+const back = ([p0, c1, c2]: Cubic) => `C${pt(c2)} ${pt(c1)} ${pt(p0)}`;
+
+/**
+ * Four shards from two horizontal boundaries and one cut across the band
+ * between them. `cut` is built from the midpoints of the two boundaries, so it
+ * always meets them exactly where they were split.
+ */
+function partition(top: Cubic, bottom: Cubic, bow: [Pt, Pt]): string[] {
+  const [topL, topR] = halve(top);
+  const [botL, botR] = halve(bottom);
+  const from = topL[3];
+  const till = botL[3];
+  const cut: Cubic = [from, bow[0], bow[1], till];
+
+  return [
+    `M0,0 L1,0 L${pt(top[3])} ${back(top)} Z`,
+    `M${pt(top[0])} ${to(topL)} ${to(cut)} ${back(botL)} Z`,
+    `M${pt(from)} ${to(topR)} L${pt(bottom[3])} ${back(botR)} ${back(cut)} Z`,
+    `M${pt(bottom[0])} ${to(botL)} ${to(botR)} L1,1 L0,1 Z`,
+  ];
+}
+
+const VARIANTS: { shards: string[]; drift: { tx: string; ty: string; r: string }[] }[] = [
+  {
+    shards: partition(
+      [[0, 0.3], [0.3, 0.4], [0.62, 0.12], [1, 0.22]],
+      [[0, 0.7], [0.26, 0.6], [0.72, 0.78], [1, 0.6]],
+      [[0.58, 0.38], [0.4, 0.55]]
+    ),
+    drift: [
+      { tx: "-6px", ty: "-9px", r: "-0.9deg" },
+      { tx: "-11px", ty: "3px", r: "1deg" },
+      { tx: "9px", ty: "-5px", r: "0.8deg" },
+      { tx: "3px", ty: "10px", r: "-0.7deg" },
+    ],
+  },
+  {
+    shards: partition(
+      [[0, 0.22], [0.34, 0.12], [0.68, 0.42], [1, 0.32]],
+      [[0, 0.64], [0.3, 0.76], [0.66, 0.56], [1, 0.72]],
+      [[0.4, 0.36], [0.62, 0.56]]
+    ),
+    drift: [
+      { tx: "8px", ty: "-8px", r: "0.8deg" },
+      { tx: "-9px", ty: "-4px", r: "-1deg" },
+      { tx: "10px", ty: "5px", r: "0.9deg" },
+      { tx: "-4px", ty: "10px", r: "-0.6deg" },
+    ],
+  },
+  {
+    shards: partition(
+      [[0, 0.38], [0.28, 0.22], [0.7, 0.44], [1, 0.26]],
+      [[0, 0.72], [0.32, 0.64], [0.64, 0.84], [1, 0.68]],
+      [[0.36, 0.5], [0.6, 0.6]]
+    ),
+    drift: [
+      { tx: "-9px", ty: "-7px", r: "-1deg" },
+      { tx: "7px", ty: "-3px", r: "0.9deg" },
+      { tx: "-6px", ty: "6px", r: "0.7deg" },
+      { tx: "5px", ty: "10px", r: "-0.9deg" },
+    ],
+  },
 ];
 
+/** Rendered once per page; the shards reference these by id. */
+export function ShatterDefs() {
+  return (
+    <svg width="0" height="0" aria-hidden focusable="false" className="absolute">
+      <defs>
+        {VARIANTS.map((v, vi) =>
+          v.shards.map((d, si) => (
+            <clipPath key={`${vi}-${si}`} id={`shard-${vi}-${si}`} clipPathUnits="objectBoundingBox">
+              <path d={d} />
+            </clipPath>
+          ))
+        )}
+      </defs>
+    </svg>
+  );
+}
+
 export function ShatterSurface({ index = 0 }: { index?: number }) {
+  const vi = index % VARIANTS.length;
   return (
     <span className="shatter" aria-hidden>
-      {SHATTER[index % SHATTER.length].map((sh, n) => (
+      {VARIANTS[vi].drift.map((d, si) => (
         <i
-          key={n}
-          style={{ "--clip": sh.clip, "--tx": sh.tx, "--ty": sh.ty, "--r": sh.r } as React.CSSProperties}
+          key={si}
+          style={
+            {
+              clipPath: `url(#shard-${vi}-${si})`,
+              "--tx": d.tx,
+              "--ty": d.ty,
+              "--r": d.r,
+            } as React.CSSProperties
+          }
         />
       ))}
     </span>
