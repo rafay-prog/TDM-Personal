@@ -58,6 +58,54 @@ export function AuroraField() {
   );
 }
 
+/**
+ * Rotating wireframe globe with orbit rings, for the testimonials band.
+ * Every spinning element is wrapped in a positioning div, because the spin
+ * animation's transform would otherwise overwrite Tailwind's centring translate.
+ */
+export function GlobeField() {
+  return (
+    <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
+      <div className="absolute start-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+        <div className="h-[34rem] w-[34rem] rounded-full bg-fern/25 blur-[130px]" />
+      </div>
+
+      <div className="absolute start-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+        <div className="spin-slow h-[52rem] w-[52rem] rounded-full border border-white/[0.06]" />
+      </div>
+      <div className="absolute start-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+        <div className="h-[40rem] w-[40rem] rounded-full border border-white/[0.08]" />
+      </div>
+
+      <div className="absolute start-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+        <svg
+          className="spin-slow h-[30rem] w-[30rem] opacity-[0.16]"
+          viewBox="0 0 200 200"
+          fill="none"
+          stroke="white"
+          strokeWidth="0.7"
+          style={{ animationDuration: "60s" }}
+        >
+          <circle cx="100" cy="100" r="92" />
+          <ellipse cx="100" cy="100" rx="92" ry="30" />
+          <ellipse cx="100" cy="100" rx="92" ry="62" />
+          <ellipse cx="100" cy="100" rx="30" ry="92" />
+          <ellipse cx="100" cy="100" rx="62" ry="92" />
+          <path d="M8 100h184M100 8v184" />
+        </svg>
+      </div>
+
+      <div
+        className="grid-creep absolute inset-0 opacity-[0.18]"
+        style={{
+          backgroundImage: "radial-gradient(rgba(255,255,255,0.09) 1px, transparent 1px)",
+          backgroundSize: "28px 28px",
+        }}
+      />
+    </div>
+  );
+}
+
 export function PageHero({
   kicker,
   headline,
@@ -371,18 +419,28 @@ export function FaqSection({
   );
 }
 
-export function TestimonialCard({ t }: { t: Testimonial }) {
+export function TestimonialCard({ t, dark = false }: { t: Testimonial; dark?: boolean }) {
   return (
-    <figure className="card-lift flex h-full flex-col justify-between rounded-2xl border border-mint bg-white p-6 hover:border-fern hover:shadow-lg">
+    <figure
+      className={`card-lift flex h-full flex-col justify-between rounded-2xl p-6 ${
+        dark
+          ? "glass hover:border-white/35 hover:shadow-2xl hover:shadow-black/30"
+          : "border border-mint bg-white hover:border-fern hover:shadow-lg"
+      }`}
+    >
       <div>
-        <span aria-hidden className="font-display text-4xl leading-none text-sage">
+        <span aria-hidden className={`font-display text-4xl leading-none ${dark ? "text-amber" : "text-sage"}`}>
           &ldquo;
         </span>
-        <blockquote className="mt-1 text-sm leading-relaxed text-ink/85">{t.quote}</blockquote>
+        <blockquote className={`mt-1 text-sm leading-relaxed ${dark ? "text-white/80" : "text-ink/85"}`}>
+          {t.quote}
+        </blockquote>
       </div>
-      <figcaption className="mt-4 text-sm font-semibold text-forest">
+      <figcaption className={`mt-4 text-sm font-semibold ${dark ? "text-white" : "text-forest"}`}>
         {t.author}
-        {t.source && <span className="font-normal text-ink/60"> · {t.source}</span>}
+        {t.source && (
+          <span className={`font-normal ${dark ? "text-white/55" : "text-ink/60"}`}> · {t.source}</span>
+        )}
       </figcaption>
     </figure>
   );

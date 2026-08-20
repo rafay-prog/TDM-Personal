@@ -9,6 +9,7 @@ import {
   CtaBand,
   FaqSection,
   FeaturedClients,
+  GlobeField,
   HeroBlobs,
   Kicker,
   LogoWall,
@@ -377,22 +378,44 @@ export function HomeView({ locale }: { locale: Locale }) {
 
       <LogoWall logos={c.clientLogos} title={p.logosTitle} locale={locale} marquee />
 
-      <section className="bg-mint/50">
-        <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6">
+      {/* Quotes drifting in orbit around a slowly turning globe. */}
+      <section className="relative overflow-hidden bg-forest text-white">
+        <GlobeField />
+        <div className="relative mx-auto max-w-7xl px-4 py-16 sm:px-6 md:py-24">
           <Reveal>
-            <Kicker>{t.clientFeedback}</Kicker>
-            <h2 className="mt-3 text-3xl font-bold text-forest">{t.whatOurClientsSay}</h2>
+            <div className="text-center">
+              <p className="kicker flex items-center justify-center gap-2.5 text-sage">
+                <span className="relative flex h-2 w-2 shrink-0">
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-amber opacity-75" />
+                  <span className="relative inline-flex h-2 w-2 rounded-full bg-amber" />
+                </span>
+                {t.clientFeedback}
+              </p>
+              <h2 className="mt-3 font-display text-3xl font-bold md:text-4xl">{t.whatOurClientsSay}</h2>
+              <div className="mx-auto mt-5 h-1 w-14 rounded-full bg-amber" />
+            </div>
           </Reveal>
-          {/* Diagonal stagger so the three quotes don't sit on one flat line. */}
-          <div className="mt-10 grid items-start gap-6 md:grid-cols-2 lg:grid-cols-3">
+
+          <div className="mt-14 grid items-start gap-6 md:grid-cols-2 lg:grid-cols-3">
             {c.testimonials.slice(0, 3).map((tm, i) => (
               <Reveal
                 key={tm.quote}
                 delay={(i % 3) * 0.09}
                 from="snap"
-                className={i === 1 ? "lg:mt-10" : i === 2 ? "lg:mt-20" : ""}
+                className={i === 1 ? "lg:mt-16" : i === 2 ? "lg:mt-8" : ""}
               >
-                <TestimonialCard t={tm} />
+                <div
+                  className="float-card"
+                  style={
+                    {
+                      "--tilt": ["-2.5deg", "2deg", "-1.5deg"][i],
+                      "--float-dur": ["8s", "10.5s", "9.2s"][i],
+                      "--float-delay": ["0s", "-3.4s", "-6.1s"][i],
+                    } as React.CSSProperties
+                  }
+                >
+                  <TestimonialCard t={tm} dark />
+                </div>
               </Reveal>
             ))}
           </div>
