@@ -1,0 +1,64 @@
+import type { BlogPost } from "@/lib/types";
+
+export const whenYourBusinessNeedsCrmErp: BlogPost = {
+  slug: "when-your-business-needs-crm-erp",
+  title: "Spreadsheets Are Costing You: When to Move to a CRM or ERP",
+  metaTitle: "When to Move From Spreadsheets to a CRM or ERP",
+  metaDescription:
+    "The signs you've outgrown spreadsheets, CRM vs ERP explained plainly, build vs buy economics over 3 years, and how to roll out without breaking operations.",
+  date: "2026-04-20",
+  category: "Development",
+  excerpt:
+    "Spreadsheets don't fail loudly — they fail through silent double entry, stale data and deals that slip through the cracks. Here's how to tell when you've outgrown them, and what to move to.",
+  body: [
+    "Every growing business runs on spreadsheets at some point, and rightly so: they're free, flexible and everyone knows how to use them. The problem is that spreadsheets never announce when they've become the most expensive tool in your company. There's no error message for a deal that went cold because nobody was reminded to follow up, or for the four hours a week your operations manager spends reconciling the orders sheet against the inventory sheet.",
+    "This article covers the signs you've outgrown spreadsheets, what CRMs and ERPs actually do in plain terms, whether to buy software or build your own, and how to make the move without breaking day-to-day operations.",
+    "## The signs you've outgrown spreadsheets",
+    "You don't need all of these — two or three are enough to justify acting:",
+    "The same data lives in more than one place. Customer details in the sales sheet, again in the invoicing sheet, again in the delivery tracker — and they disagree. Once reconciling versions is a recurring task, you're paying salaries to do what software does automatically.",
+    "Work depends on memory. Follow-ups happen if someone remembers. Reorders happen when someone notices stock looks low. Any process whose trigger is 'someone notices' will fail exactly when you're busiest — which is when it costs the most.",
+    "Nobody trusts the numbers. When a manager asks for this month's sales and the answer starts with 'let me clean up the sheet first,' reporting has already failed. Decisions get delayed or made on stale data.",
+    "Concurrency breaks things. Two people editing the same sheet, formula cells overwritten, someone sorting a range and silently scrambling rows against their neighbors. Shared spreadsheets have no guardrails, and one bad paste can corrupt months of records without anyone noticing for weeks.",
+    "You can't answer history questions. What did this customer buy last year? Which supplier was late most often? Spreadsheets record the present; systems record the past in a queryable way.",
+    "There's a rough scale threshold too: past a few hundred active customers, a handful of employees touching the same data, or order volumes where a missed line item costs real money, the spreadsheet's flexibility becomes fragility.",
+    "## CRM vs ERP, in plain language",
+    "A CRM (customer relationship management system) manages everything about your relationship with customers: contacts, conversation history, deals in the pipeline, follow-up tasks, quotes, and marketing touchpoints. Its job is to make sure no lead is forgotten and every salesperson sees the full history before they pick up the phone. If your pain is 'we lose track of leads and customers,' you need a CRM.",
+    "An ERP (enterprise resource planning system) manages the operations of the business itself: inventory, purchasing, orders, invoicing, accounting, and often HR and manufacturing. Its job is to be the single source of truth for what the business owns, owes, sells and ships. If your pain is 'our stock, orders and accounts don't line up,' you need an ERP — or at least the inventory-and-orders core of one.",
+    "The two overlap at the order: a CRM tracks the deal until it closes; an ERP takes over to fulfill and invoice it. Small businesses usually start with a CRM because revenue leaks hurt first; product businesses with physical stock often need the ERP side sooner. Plenty of mid-sized companies run one of each, integrated — which is fine, as long as the integration is real and not a human retyping data between them.",
+    "## Build vs buy",
+    "The honest default is buy. Mature SaaS CRMs and ERPs are well-tested, hosted, and cheap to try. Start there if your processes are close to standard.",
+    "Custom builds earn their place in three situations. First, when your workflow genuinely is your competitive advantage and SaaS forces you to flatten it into someone else's process — common in niche logistics, multi-country service businesses and unusual fulfillment models. Second, when per-seat pricing turns hostile at your scale: SaaS that's cheap for 5 users can become a heavy annual line item at 40. Third, when you need deep integration — your store, warehouse, courier APIs, local payment providers and reporting in one system — and you find yourself buying six add-ons and paying integrators to duct-tape them together.",
+    "The three-year math is worth doing explicitly. A mid-tier SaaS CRM at, say, $50–90 per user per month for 30 users runs $54,000–97,000 over three years — before paid add-ons, implementation consultants and the recurring cost of workarounds. A focused custom CRM or lightweight ERP built on a modern web stack typically lands in the $25,000–80,000 range up front depending on scope, plus modest hosting and maintenance, with no per-seat meter running. Below roughly ten users, SaaS almost always wins. Past twenty-five to thirty users with stable, well-understood processes, custom frequently costs less over three years and fits better — but only if your processes are actually stable; custom-building a workflow you haven't finished figuring out is how projects fail.",
+    "A pragmatic middle path many of our clients take: run SaaS for a year or two, let it teach you what your real process is, then build custom around the workflows the SaaS handles worst.",
+    "## Integration is where the value is",
+    "A CRM or ERP that doesn't talk to your other systems just becomes another place to retype data. For e-commerce businesses the integrations that matter most: your storefront (Shopify, WooCommerce, Magento) pushing orders and customers in automatically; inventory syncing back to the store so you never sell stock you don't have; your email and marketing tools reading segments from the CRM so campaigns target actual purchase behavior; and accounting receiving invoices without manual export-import cycles.",
+    "This is also the strongest argument for involving developers early, whichever route you choose. At TDM we build CRM and ERP systems as well as the Shopify and WordPress stores they connect to, and the projects that succeed are the ones where integration is designed on day one — not discovered as a limitation after go-live.",
+    "## Roll it out in phases",
+    "The classic failure mode is the big bang: six months configuring every module, then a Monday morning where everyone must switch at once. It collapses under its own weight. Do this instead:",
+    "### Phase 1: One painful workflow",
+    "Pick the single most painful process — usually lead follow-up or order tracking — and move only that into the new system. Migrate the data behind it, train the people who touch it, and run it for a few weeks. Small scope, visible win, real feedback.",
+    "### Phase 2: Kill the parallel spreadsheet",
+    "Retire the old sheet for that workflow completely. If people keep a shadow spreadsheet 'just in case,' the system has already failed — data splits again and trust never forms. Make the system the only place the work can be done, and fix whatever friction tempts people back to Excel.",
+    "### Phase 3: Expand module by module",
+    "Add the next workflow — quoting, inventory, invoicing — one at a time, integrating each with your store and tools as it lands. Each phase should pay for itself in saved hours or recovered revenue before the next begins. A phased rollout takes longer on the calendar and dramatically less time in practice, because it never puts the whole company through a cliff-edge change.",
+    "The spreadsheet era of a business is nothing to be embarrassed about — but it has an expiry date, and the costs after that date are real even though they never appear on an invoice. Count the hours of double entry, the deals that slipped, the decisions made on stale numbers. That total is what you're already paying; the only question is whether you'd rather pay it for a system instead.",
+  ],
+  faqs: [
+    {
+      q: "What is the difference between a CRM and an ERP?",
+      a: "A CRM manages customer relationships — leads, contacts, deal pipelines, follow-ups and communication history — so sales and marketing never lose track of anyone. An ERP manages business operations — inventory, orders, purchasing, invoicing and accounting — as a single source of truth. They meet at the order: the CRM closes it, the ERP fulfills and bills it.",
+    },
+    {
+      q: "When should a business move from spreadsheets to a CRM?",
+      a: "When the same data is maintained in multiple sheets that disagree, follow-ups depend on someone remembering, reporting requires manual cleanup before anyone trusts the numbers, or multiple people editing shared files keep breaking them. Two or more of these signs, or a few hundred active customers, generally means the spreadsheet is already costing more than software would.",
+    },
+    {
+      q: "Is it cheaper to build a custom CRM or pay for SaaS?",
+      a: "Over three years it depends mostly on team size. SaaS at $50–90 per user per month costs $54,000–97,000 for 30 users over three years, while a focused custom build typically runs $25,000–80,000 up front plus modest hosting, with no per-seat fees. Under about ten users, SaaS is almost always cheaper; past twenty-five to thirty users with stable processes, custom often wins on both cost and fit.",
+    },
+    {
+      q: "How long does a CRM or ERP rollout take?",
+      a: "A phased rollout — one workflow first, then module by module — typically gets the first process live within four to eight weeks, with full adoption over three to nine months depending on scope. Phased rollouts outperform big-bang launches because each stage is small enough to train, test and trust before the next begins.",
+    },
+  ],
+};

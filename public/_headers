@@ -1,0 +1,20 @@
+# Mirrors the [[headers]] blocks in netlify.toml. Both exist because netlify.toml
+# is only read on repo-connected builds, while this file ships inside out/ and so
+# also applies to manual folder deploys.
+
+/_next/static/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/sectors/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/clients/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.html
+  Cache-Control: public, max-age=0, must-revalidate
+
+/*
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: SAMEORIGIN
+  Referrer-Policy: strict-origin-when-cross-origin

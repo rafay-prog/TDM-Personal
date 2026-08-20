@@ -1,0 +1,65 @@
+import { Montserrat, Noto_Sans_Arabic } from "next/font/google";
+import type { Locale } from "@/lib/types";
+import { isRtl } from "@/lib/i18n";
+import { site } from "@/lib/site";
+import { Header } from "@/components/Header";
+import { Footer } from "@/components/Footer";
+import { JsonLd } from "@/components/JsonLd";
+import { getContent } from "@/content";
+
+const montserrat = Montserrat({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800"],
+  variable: "--font-montserrat",
+});
+const notoArabic = Noto_Sans_Arabic({
+  subsets: ["arabic"],
+  weight: ["400", "500", "600", "700", "800"],
+  variable: "--font-noto-ar",
+});
+
+export function LocaleShell({ locale, children }: { locale: Locale; children: React.ReactNode }) {
+  const offices = getContent(locale).offices;
+
+  const organizationSchema = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: site.name,
+    alternateName: "TDM Services",
+    url: site.url,
+    logo: `${site.url}/logo.png`,
+    email: site.email,
+    telephone: site.phone,
+    slogan: site.tagline,
+    description: site.description,
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "17 12 A Street, Al Qusais Industrial Area 1",
+      addressLocality: "Dubai",
+      addressCountry: "AE",
+      postOfficeBoxNumber: "231578",
+    },
+    location: offices
+      .filter((o) => o.address)
+      .map((o) => ({
+        "@type": "Place",
+        name: `TDM ${o.city ?? o.country}`,
+        address: { "@type": "PostalAddress", streetAddress: o.address, addressCountry: o.country },
+      })),
+    knowsLanguage: ["en", "fr", "ar"],
+  };
+
+  return (
+    <html lang={locale} dir={isRtl(locale) ? "rtl" : "ltr"} className={`${montserrat.variable} ${notoArabic.variable}`}>
+      <body>
+        <noscript>
+          <style>{`.reveal{opacity:1 !important;transform:none !important}`}</style>
+        </noscript>
+        <JsonLd data={organizationSchema} />
+        <Header locale={locale} />
+        <main>{children}</main>
+        <Footer locale={locale} />
+      </body>
+    </html>
+  );
+}

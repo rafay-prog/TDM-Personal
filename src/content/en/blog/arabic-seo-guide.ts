@@ -1,0 +1,59 @@
+import type { BlogPost } from "@/lib/types";
+
+export const arabicSeoGuide: BlogPost = {
+  slug: "arabic-seo-guide",
+  title: "Arabic SEO: How to Rank in the Gulf's Fastest-Growing E-commerce Market",
+  metaTitle: "Arabic SEO Guide: Ranking in Gulf E-commerce Markets",
+  metaDescription:
+    "Arabic search is high-demand and low-competition. A practical guide to Arabic keyword research, RTL and hreflang setup, and content that ranks in the Gulf.",
+  date: "2026-06-05",
+  category: "Marketing",
+  excerpt:
+    "Most Gulf e-commerce brands compete fiercely for English keywords while the Arabic side of the market sits nearly uncontested. Here is how to take it — from dialect-aware keyword research to RTL technical setup.",
+  body: [
+    "Gulf e-commerce is one of the fastest-growing online retail markets in the world, and the majority of its consumers are Arabic speakers. Yet open any competitive analysis for a UAE or Saudi retail niche and you'll find the same pattern: dozens of brands fighting over English keywords, and a fraction of that competition on the Arabic equivalents — often with two to three times the combined search volume.",
+    "That gap exists because Arabic SEO is genuinely harder to do well. Automated translation produces content that ranks poorly and reads worse, most international SEO teams can't evaluate Arabic output, and the technical setup punishes shortcuts. But hard-and-neglected is exactly where SEO returns are best. This guide covers what actually works.",
+    "## Why Arabic search is underserved",
+    "Three forces created the gap. First, most Gulf e-commerce sites were built English-first by international teams, with Arabic bolted on later as a machine-translated mirror — content Google can detect as low-value and users bounce from. Second, keyword tools have historically had thinner Arabic data, so teams optimizing by the numbers systematically underestimated Arabic demand. Third, Arabic content production requires native judgment that most agencies simply don't have in-house.",
+    "The result: in many product categories, ranking on page one in English takes eighteen months of link building, while the same position in Arabic is attainable in a few months with properly executed on-page work. Meanwhile, Arabic-preferring shoppers in Saudi Arabia — the region's largest market — convert at higher rates on Arabic pages because trust signals land in their language.",
+    "## Arabic keyword research: dialects vs Modern Standard Arabic",
+    "This is where most Arabic SEO fails before it starts. Written Arabic exists on a spectrum: Modern Standard Arabic (MSA, or fusha) is the formal register used in news and official writing, while everyday speech happens in regional dialects — Gulf, Egyptian, Levantine — that differ substantially in vocabulary.",
+    "Search behavior mixes both. Product and category queries lean toward MSA and common commercial terms, but plenty of high-intent queries use dialect words: an Emirati shopper might search for perfume using either the MSA عطر or the Gulf colloquial term, and the volumes differ by country. Shoppers also search in Arabizi (Arabic transliterated into Latin characters) and mix English brand names into Arabic queries — 'ايفون 17 برو' is a normal Saudi search.",
+    "Practical process: start from your English keyword set, but never translate it one-to-one. Have a native speaker generate the variants — MSA, relevant dialect terms, transliterations, mixed-script versions — then validate volumes per country in your keyword tools and Google's own autocomplete and 'related searches' inside each target market. Cluster by intent, not by literal meaning, and note that spelling variations (hamza placement, taa marbuta vs haa) can split volume across variants Google only partially reconciles.",
+    "## Technical setup: RTL, hreflang and site structure",
+    "Arabic pages render right-to-left, and the technical bar is binary — done properly or broken. The essentials:",
+    "### Directionality and encoding",
+    "Set dir=\"rtl\" and lang=\"ar\" on the html element of Arabic pages, and build layouts with CSS logical properties (margin-inline-start rather than margin-left) so the same components mirror correctly in both directions. Watch mixed-direction strings: prices, SKUs and Latin brand names inside Arabic sentences need correct bidirectional handling or they garble — a credibility killer on product pages.",
+    "### URL structure and hreflang",
+    "Give Arabic content its own crawlable URLs — subdirectories like /ar/ are the most maintainable pattern — never a cookie or JavaScript toggle that serves both languages on one URL. Then pair every English and Arabic equivalent page with reciprocal hreflang annotations: ar for generic Arabic, or targeted pairs like ar-AE and ar-SA if you localize per country, with x-default pointing at your fallback. Broken hreflang reciprocity is the single most common technical fault we find auditing Gulf e-commerce sites — and it quietly sends Saudi searchers to English pages.",
+    "### Performance and rendering",
+    "Arabic web fonts are heavier than Latin ones; subset them and preload the primary weight, or Core Web Vitals will lag your English pages. Make sure Arabic metadata — titles, descriptions, structured data — is served in the HTML, not injected client-side.",
+    "## Arabic content that actually ranks",
+    "Google's systems reward the same things in Arabic as in English: content that satisfies the query, demonstrates real expertise and earns engagement. Machine-translated pages fail all three. What works:",
+    "Write product and category copy natively in Arabic, or have a translator with e-commerce experience rewrite — not translate — the English source, matching the register your keyword research found. Commercial pages generally read best in clean, simple MSA with dialect terms woven in where the data shows people search with them. Build out Arabic informational content too: buying guides and comparison pages face even less competition than product terms and feed internal links to your money pages. And localize the substance, not just the language — sizing conventions, occasion-based framing (Ramadan, Eid, National Day gifting), and examples that belong to the Gulf, not to a translated American blog post.",
+    "## Local signals: pricing, payments and trust",
+    "Ranking is only half the job; Arabic pages must also convert, and the same signals influence both. Show prices in AED or SAR natively — not via a currency-conversion widget bolted onto a USD store. Support the payment methods Gulf shoppers expect: Mada in Saudi Arabia, Tabby or Tamara installments, cash on delivery where it still dominates. Publish Arabic-language delivery, return and warranty pages; list a local phone number and address with consistent NAP details if you have physical operations; and collect Arabic reviews — review snippets in the searcher's language measurably lift click-through from Arabic results.",
+    "These pages also strengthen topical completeness: a store with an Arabic returns policy, Arabic FAQs and Arabic support content looks like a business that genuinely serves Arabic customers, to users and to search engines alike.",
+    "## What results look like",
+    "Executed together — dialect-aware keyword research, clean RTL and hreflang implementation, natively written commercial content and local trust signals — Arabic SEO moves faster than almost any mature English niche. When TDM rebuilt the Arabic side of a Gulf e-commerce client's store using exactly this playbook, Arabic product pages reached page one for their primary commercial keywords within three months, and the Arabic segment grew into a compounding revenue channel with acquisition costs far below the brand's paid channels.",
+    "The window won't stay open forever. Regional brands are waking up to the gap, and every quarter of delay makes the Arabic SERPs a little more contested. If your store serves the Gulf and your Arabic pages are an afterthought, they are the highest-leverage SEO project on your roadmap — and building them properly is exactly the kind of combined technical, content and e-commerce SEO work TDM's marketing team runs end to end.",
+  ],
+  faqs: [
+    {
+      q: "Should Arabic SEO content use Modern Standard Arabic or dialect?",
+      a: "Use Modern Standard Arabic (MSA) as the base for commercial pages — it is the register most shoppers write in and reads as credible across all Gulf countries — then incorporate dialect terms, transliterations and mixed Arabic-English phrases where keyword research shows real search volume for them. The mix varies by country and category, so validate per market rather than assuming.",
+    },
+    {
+      q: "Is machine translation good enough for Arabic e-commerce SEO?",
+      a: "No. Machine-translated Arabic typically misses the terms people actually search, reads unnaturally to native speakers, and performs poorly in both rankings and conversion. Arabic pages should be written natively or rewritten by a translator with e-commerce experience, using Arabic keyword research rather than translated English keywords.",
+    },
+    {
+      q: "How should hreflang be set up for an English-Arabic Gulf store?",
+      a: "Give each language its own URLs (for example /en/ and /ar/ subdirectories), then add reciprocal hreflang tags pairing every English page with its Arabic equivalent — using ar for generic Arabic or country-targeted codes like ar-AE and ar-SA — plus an x-default pointing to your fallback version. Both pages in each pair must reference each other, or the annotations are ignored.",
+    },
+    {
+      q: "How long does it take to rank for Arabic keywords in the Gulf?",
+      a: "Faster than equivalent English keywords, because competition is much thinner. With sound technical setup and natively written content, page-one rankings for commercial Arabic keywords are realistic within three to six months in many product categories — TDM has achieved page-one Arabic product rankings for a Gulf e-commerce client within three months.",
+    },
+  ],
+};

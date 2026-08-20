@@ -1,0 +1,70 @@
+# TDM static site — Apache config (used if hosted on cPanel/Apache).
+# On Vercel/Netlify this file is ignored; use deploy/vercel.json instead.
+
+Options -Indexes
+ErrorDocument 404 /404.html
+
+# ---------- 301 redirects from the old WordPress site ----------
+Redirect 301 /search-engine-optimization-services/ /marketing/seo/
+Redirect 301 /technical-seo-services/ /marketing/seo/
+Redirect 301 /on-page-seo/ /marketing/seo/
+Redirect 301 /off-page-seo/ /marketing/seo/
+Redirect 301 /paid-ads-services/google-ads-services/ /marketing/performance-marketing/
+Redirect 301 /paid-ads-services/meta-ads-services/ /marketing/performance-marketing/
+Redirect 301 /paid-ads-services/ /marketing/performance-marketing/
+Redirect 301 /social-media-management-services/ /marketing/social-media/
+Redirect 301 /website-development-services/wordpress-development-services/ /development/wordpress/
+Redirect 301 /website-development-services/shopify-development-services/ /development/shopify/
+Redirect 301 /website-development-services/custom-website-development-services/ /development/custom-development/
+Redirect 301 /website-development-services/ /development/
+Redirect 301 /mobile-app-development-services/android-app-development-services/ /development/mobile-apps/
+Redirect 301 /mobile-app-development-services/ios-app-development-services/ /development/mobile-apps/
+Redirect 301 /mobile-app-development-services/ /development/mobile-apps/
+Redirect 301 /media-and-designing-services/video-editing-services/ /media/video-editing/
+Redirect 301 /media-and-designing-services/motion-graphics-services/ /media/video-editing/
+Redirect 301 /media-and-designing-services/graphic-designing-services/ /media/ad-creatives/
+Redirect 301 /media-and-designing-services/logo-designing-services/ /media/ad-creatives/
+Redirect 301 /media-and-designing-services/ /media/
+Redirect 301 /portfolios/ /portfolio/
+Redirect 301 /blogs/ /blog/
+Redirect 301 /home-main/ /
+Redirect 301 /shop/ /
+Redirect 301 /cart/ /
+Redirect 301 /checkout/ /
+Redirect 301 /my-account/ /
+
+# Old blog posts → closest new page
+Redirect 301 /importance-of-backlinks-in-seo/ /blog/ecommerce-seo-checklist/
+Redirect 301 /advanced-seo-techniques-unlock-next-level-organic-growth/ /blog/ecommerce-seo-checklist/
+Redirect 301 /what-is-seo-and-ppc-marketing/ /marketing/seo/
+Redirect 301 /how-to-optimize-meta-ads/ /blog/measuring-roas-properly/
+Redirect 301 /how-to-run-google-ads/ /marketing/performance-marketing/
+Redirect 301 /grow-your-business-through-google-ads/ /marketing/performance-marketing/
+Redirect 301 /social-media-planning-and-content-creation/ /marketing/social-media/
+Redirect 301 /social-media-marketing-strategy/ /marketing/social-media/
+Redirect 301 /how-to-grow-social-media-followers-for-your-business/ /marketing/social-media/
+Redirect 301 /how-to-build-a-shopify-store-a-comprehensive-guide-for-global-brand-builders/ /blog/shopify-vs-custom-ecommerce/
+Redirect 301 /how-to-develop-a-mobile-application/ /development/mobile-apps/
+Redirect 301 /important-factors-to-follow-for-professional-video-editing/ /media/video-editing/
+Redirect 301 /how-to-design-a-logo-in-adobe-illustrator/ /media/ad-creatives/
+Redirect 301 /how-to-create-a-graphic-design-portfolio/ /media/ad-creatives/
+Redirect 301 /creative-web-design-development-that-defines-your-brand/ /development/
+Redirect 301 /what-is-google-ai/ /blog/
+Redirect 301 /top-trends-in-digital-marketing/ /blog/
+Redirect 301 /how-to-become-a-freelance-digital-marketer/ /blog/
+Redirect 301 /classic-post-building-trust-secure-transactions-best-practices/ /blog/
+Redirect 301 /how-page-load-times-affect-conversions-deep-dive/ /blog/
+Redirect 301 /responsive-design-tricks-mobile-friendly-pages/ /blog/
+Redirect 301 /the-power-of-visuals-infographics-in-sales-pages/ /blog/
+Redirect 301 /crafting-compelling-calls-to-action-ctas-for-higher-conversions/ /blog/
+Redirect 301 /the-ultimate-guide-to-a-b-testing-your-sales-page/ /blog/
+
+# ---------- Caching ----------
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType image/png "access plus 30 days"
+  ExpiresByType image/jpeg "access plus 30 days"
+  ExpiresByType image/webp "access plus 30 days"
+  ExpiresByType text/css "access plus 7 days"
+  ExpiresByType application/javascript "access plus 7 days"
+</IfModule>

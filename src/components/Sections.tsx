@@ -1,0 +1,531 @@
+import Link from "next/link";
+import Image from "next/image";
+import type { Faq, Feature, Locale, ProcessStep, ResultStat, Testimonial } from "@/lib/types";
+import { href } from "@/lib/i18n";
+import { ui } from "@/content/ui";
+import { JsonLd } from "./JsonLd";
+import { Reveal } from "./motion/Reveal";
+import { CountUp } from "./motion/CountUp";
+
+export function Kicker({ children }: { children: React.ReactNode }) {
+  return <p className="kicker text-fern">{children}</p>;
+}
+
+/** Decorative animated blobs for dark sections. */
+export function HeroBlobs() {
+  return (
+    <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
+      <div className="blob absolute -top-24 -end-24 h-96 w-96 rounded-full bg-fern/30 blur-3xl" />
+      <div className="blob blob-slow absolute -bottom-32 start-1/4 h-80 w-80 rounded-full bg-amber/15 blur-3xl" />
+      <div className="blob blob-slow absolute top-1/3 -start-20 h-64 w-64 rounded-full bg-sage/20 blur-3xl" />
+    </div>
+  );
+}
+
+/**
+ * Layered atmosphere for the home hero: drifting aurora washes, a creeping dot
+ * lattice, a slow conic ring and a vignette that keeps the headline legible.
+ */
+export function AuroraField() {
+  return (
+    <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
+      <div className="aurora aurora-a absolute -top-1/3 -end-1/4 h-[46rem] w-[46rem] rounded-full bg-fern/55 blur-[110px]" />
+      <div className="aurora aurora-b absolute -bottom-1/2 start-0 h-[38rem] w-[38rem] rounded-full bg-amber/25 blur-[120px]" />
+      <div className="aurora aurora-c absolute top-1/4 start-1/3 h-[32rem] w-[32rem] rounded-full bg-sage/35 blur-[130px]" />
+
+      <div
+        className="grid-creep absolute inset-0 opacity-[0.28]"
+        style={{
+          backgroundImage: "radial-gradient(rgba(255,255,255,0.10) 1px, transparent 1px)",
+          backgroundSize: "28px 28px",
+        }}
+      />
+
+      <div className="absolute -top-40 end-[-12rem] hidden h-[34rem] w-[34rem] lg:block">
+        <div
+          className="spin-slow h-full w-full rounded-full opacity-[0.24]"
+          style={{
+            background:
+              "conic-gradient(from 0deg, transparent 0deg, rgba(107,165,140,0.95) 90deg, transparent 200deg, rgba(232,134,45,0.8) 300deg, transparent 360deg)",
+            maskImage: "radial-gradient(circle, transparent 61%, #000 62%, #000 66%, transparent 67%)",
+            WebkitMaskImage: "radial-gradient(circle, transparent 61%, #000 62%, #000 66%, transparent 67%)",
+          }}
+        />
+      </div>
+
+      <div className="absolute inset-0 bg-gradient-to-b from-forest/25 via-transparent to-forest/60" />
+    </div>
+  );
+}
+
+export function PageHero({
+  kicker,
+  headline,
+  sub,
+  dark = false,
+  image,
+  imageAlt,
+}: {
+  kicker: string;
+  headline: string;
+  sub?: string;
+  dark?: boolean;
+  /** Optional artwork; when present the hero splits into copy + image. */
+  image?: string;
+  imageAlt?: string;
+}) {
+  const copy = (
+    <div>
+      <p className={`kicker hero-enter ${dark ? "text-sage" : "text-fern"}`}>{kicker}</p>
+      <h1
+        className="hero-enter mt-4 max-w-3xl text-4xl font-bold leading-tight md:text-5xl"
+        style={{ "--enter-delay": "0.12s" } as React.CSSProperties}
+      >
+        {headline}
+      </h1>
+      {sub && (
+        <p
+          className={`hero-enter mt-5 max-w-2xl text-lg leading-relaxed ${dark ? "text-white/80" : "text-ink/75"}`}
+          style={{ "--enter-delay": "0.24s" } as React.CSSProperties}
+        >
+          {sub}
+        </p>
+      )}
+    </div>
+  );
+
+  return (
+    <section className={`relative ${dark ? "bg-forest text-white" : "bg-cream ribbon-bg"}`}>
+      {dark && <HeroBlobs />}
+      <div className="relative mx-auto max-w-7xl px-4 py-16 sm:px-6 md:py-24">
+        {image ? (
+          <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
+            {copy}
+            <div
+              className="hero-enter overflow-hidden rounded-3xl shadow-2xl shadow-black/40"
+              style={{ "--enter-delay": "0.36s" } as React.CSSProperties}
+            >
+              {/* Fixed ratio so sector heroes stay the same shape whatever the
+                  source image's dimensions are. */}
+              <Image
+                src={image}
+                alt={imageAlt ?? ""}
+                width={1600}
+                height={1067}
+                priority
+                className="aspect-3/2 w-full object-cover"
+              />
+            </div>
+          </div>
+        ) : (
+          copy
+        )}
+      </div>
+    </section>
+  );
+}
+
+export function Prose({ paragraphs }: { paragraphs: string[] }) {
+  return (
+    <div className="max-w-3xl space-y-5 text-base leading-relaxed text-ink/85 md:text-lg">
+      {paragraphs.map((p, i) => (
+        <Reveal key={i} delay={i * 0.08}>
+          <p>{p}</p>
+        </Reveal>
+      ))}
+    </div>
+  );
+}
+
+export function FeatureGrid({ features }: { features: Feature[] }) {
+  return (
+    <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {features.map((f, i) => (
+        <Reveal key={f.title} delay={(i % 3) * 0.08} from={i % 2 === 0 ? "left" : "right"}>
+          <div className="card-lift h-full rounded-2xl border border-mint bg-white p-6 hover:border-fern hover:shadow-lg">
+            <span className="font-display text-sm font-bold text-sage">
+              {String(i + 1).padStart(2, "0")}
+            </span>
+            <h3 className="mt-2 font-display text-lg font-semibold text-forest">{f.title}</h3>
+            <p className="mt-2 text-sm leading-relaxed text-ink/75">{f.desc}</p>
+          </div>
+        </Reveal>
+      ))}
+    </div>
+  );
+}
+
+export function ProcessList({ steps }: { steps: ProcessStep[] }) {
+  return (
+    <ol className="relative space-y-8 before:absolute before:start-5 before:top-4 before:bottom-4 before:w-px before:bg-mint">
+      {steps.map((s, i) => (
+        <Reveal key={s.title} delay={i * 0.1} from="left">
+          <li className="relative flex gap-5">
+            <span className="z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-forest font-display text-sm font-bold text-white ring-4 ring-cream">
+              {String(i + 1).padStart(2, "0")}
+            </span>
+            <div>
+              <h3 className="font-display text-lg font-semibold text-forest">{s.title}</h3>
+              <p className="mt-1 text-sm leading-relaxed text-ink/75">{s.desc}</p>
+            </div>
+          </li>
+        </Reveal>
+      ))}
+    </ol>
+  );
+}
+
+export function StatBand({ stats, dark = true }: { stats: ResultStat[]; dark?: boolean }) {
+  return (
+    <div className={`grid gap-px overflow-hidden rounded-2xl sm:grid-cols-2 lg:grid-cols-4 ${dark ? "bg-white/10" : "bg-mint"}`}>
+      {stats.map((s, i) => (
+        <Reveal key={s.label} delay={i * 0.09} from="snap" className="h-full">
+          <div className={`h-full p-6 ${dark ? "bg-forest text-white" : "bg-white"}`}>
+            <p className={`font-display text-3xl font-bold md:text-4xl ${dark ? "text-amber" : "text-fern"}`}>
+              <CountUp value={s.value} />
+            </p>
+            <p className={`mt-1 text-sm ${dark ? "text-white/75" : "text-ink/70"}`}>{s.label}</p>
+          </div>
+        </Reveal>
+      ))}
+    </div>
+  );
+}
+
+/**
+ * Everything we do, as three vertical loops. Each column is the same service
+ * list rotated to a different starting point and given its own duration, with
+ * the middle one running upward — so no two columns ever read as the same belt.
+ */
+export function ServiceLoops({
+  services,
+  kicker,
+  title,
+  sub,
+  locale = "en",
+}: {
+  services: { slug: string; name: string; sector: string }[];
+  kicker: string;
+  title: string;
+  sub?: string;
+  locale?: Locale;
+}) {
+  if (services.length === 0) return null;
+  const t = ui[locale];
+  const step = Math.max(1, Math.floor(services.length / 3));
+  const columns = [0, 1, 2].map((col) => {
+    const start = (col * step) % services.length;
+    return [...services.slice(start), ...services.slice(0, start)];
+  });
+
+  return (
+    <section className="relative overflow-hidden bg-forest text-white">
+      <HeroBlobs />
+      <div className="relative mx-auto max-w-7xl px-4 py-16 sm:px-6 md:py-20">
+        <div className="grid gap-10 lg:grid-cols-[minmax(0,22rem)_1fr] lg:gap-16">
+          <Reveal from="left" className="lg:sticky lg:top-28 lg:self-start">
+            <p className="kicker text-sage">{kicker}</p>
+            <h2 className="mt-3 text-3xl font-bold md:text-4xl">{title}</h2>
+            {sub && <p className="mt-4 text-white/70">{sub}</p>}
+            <Link
+              href={href(locale, "/contact/")}
+              className="btn-fluid btn-shine mt-7 inline-block rounded-full bg-amber px-6 py-3 text-sm font-bold text-white shadow-lg shadow-amber/25"
+            >
+              {t.cta}
+            </Link>
+          </Reveal>
+
+          <div
+            className="loop-wrap -mx-3 grid h-[26rem] grid-cols-2 gap-3 overflow-hidden px-3 sm:grid-cols-3 md:h-[32rem] md:gap-4"
+            style={{
+              maskImage: "linear-gradient(to bottom, transparent, #000 14%, #000 86%, transparent)",
+              WebkitMaskImage: "linear-gradient(to bottom, transparent, #000 14%, #000 86%, transparent)",
+            }}
+            aria-hidden
+          >
+            {columns.map((col, i) => (
+              <div
+                key={i}
+                className={`loop-col space-y-3 md:space-y-4 ${i === 1 ? "loop-col-rev" : ""} ${
+                  i === 2 ? "hidden sm:block" : ""
+                }`}
+                style={{ "--loop-dur": `${30 + i * 9}s` } as React.CSSProperties}
+              >
+                {[...col, ...col].map((sv, j) => (
+                  <div
+                    key={`${sv.slug}-${j}`}
+                    className="btn-fluid rounded-2xl border border-white/12 bg-white/[0.06] p-4 backdrop-blur-sm hover:border-amber/60 hover:bg-white/[0.12] md:p-5"
+                  >
+                    <p className="text-[11px] font-semibold uppercase tracking-wider text-sage">{sv.sector}</p>
+                    <p className="mt-1.5 font-display text-sm font-bold leading-snug md:text-base">{sv.name}</p>
+                  </div>
+                ))}
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* The loops are decorative; keep the real links crawlable and reachable. */}
+        <ul className="sr-only">
+          {services.map((sv) => (
+            <li key={sv.slug}>
+              <Link href={href(locale, `/${sv.sector}/${sv.slug}/`)}>{sv.name}</Link>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  );
+}
+
+export function FaqSection({
+  faqs,
+  title,
+  locale = "en",
+}: {
+  faqs: Faq[];
+  title?: string;
+  locale?: Locale;
+}) {
+  if (faqs.length === 0) return null;
+  const t = ui[locale];
+  return (
+    <section className="mx-auto max-w-7xl px-4 py-14 sm:px-6">
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          mainEntity: faqs.map((f) => ({
+            "@type": "Question",
+            name: f.q,
+            acceptedAnswer: { "@type": "Answer", text: f.a },
+          })),
+        }}
+      />
+      {/* Split: the intro stays pinned on the left while the answers scroll past. */}
+      <div className="grid gap-10 lg:grid-cols-[minmax(0,20rem)_1fr] lg:gap-16">
+        <Reveal from="left" className="lg:sticky lg:top-28 lg:self-start">
+          <Kicker>{t.faqKicker}</Kicker>
+          <h2 className="mt-3 text-3xl font-bold text-forest md:text-4xl">{title ?? t.faqTitle}</h2>
+          <div className="mt-5 h-1 w-14 rounded-full bg-amber" />
+        </Reveal>
+
+        <div className="space-y-3">
+          {faqs.map((f, i) => (
+            <Reveal key={f.q} delay={i * 0.05} from="right">
+              <details className="group rounded-2xl border border-mint bg-white px-5 transition-colors duration-300 open:border-fern hover:border-fern">
+                <summary className="flex cursor-pointer list-none items-center justify-between gap-4 py-5 font-display font-semibold text-ink transition-colors group-hover:text-forest">
+                  {f.q}
+                  <span
+                    className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-mint text-lg text-fern transition-all duration-300 group-open:rotate-45 group-open:bg-amber group-open:text-white"
+                    aria-hidden
+                  >
+                    +
+                  </span>
+                </summary>
+                <p className="faq-answer pb-5 text-sm leading-relaxed text-ink/75">{f.a}</p>
+              </details>
+            </Reveal>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+export function TestimonialCard({ t }: { t: Testimonial }) {
+  return (
+    <figure className="card-lift flex h-full flex-col justify-between rounded-2xl border border-mint bg-white p-6 hover:border-fern hover:shadow-lg">
+      <div>
+        <span aria-hidden className="font-display text-4xl leading-none text-sage">
+          &ldquo;
+        </span>
+        <blockquote className="mt-1 text-sm leading-relaxed text-ink/85">{t.quote}</blockquote>
+      </div>
+      <figcaption className="mt-4 text-sm font-semibold text-forest">
+        {t.author}
+        {t.source && <span className="font-normal text-ink/60"> · {t.source}</span>}
+      </figcaption>
+    </figure>
+  );
+}
+
+export function CtaBand({
+  headline,
+  sub,
+  locale = "en",
+}: {
+  headline?: string;
+  sub?: string;
+  locale?: Locale;
+}) {
+  const t = ui[locale];
+  return (
+    <section className="relative overflow-hidden bg-forest">
+      <HeroBlobs />
+      <div className="relative mx-auto flex max-w-7xl flex-col items-start gap-6 px-4 py-16 sm:px-6 md:flex-row md:items-center md:justify-between">
+        <Reveal>
+          <p className="kicker text-sage">{t.letsTalk}</p>
+          <h2 className="mt-3 text-3xl font-bold text-white md:text-4xl">{headline ?? t.ctaHeadline}</h2>
+          <p className="mt-3 max-w-xl text-white/80">{sub ?? t.ctaSub}</p>
+        </Reveal>
+        <Reveal delay={0.15}>
+          <Link
+            href={href(locale, "/contact/")}
+            className="btn-fluid btn-shine inline-block shrink-0 rounded-full bg-amber px-7 py-3.5 font-semibold text-white shadow-lg shadow-amber/25 hover:brightness-110"
+          >
+            {t.cta}
+          </Link>
+        </Reveal>
+      </div>
+    </section>
+  );
+}
+
+/**
+ * Named, top-billed clients — deliberately a static grid rather than a marquee,
+ * so these read as specific claims instead of blending into the 36-logo roster
+ * further down the page.
+ */
+export function FeaturedClients({
+  clients,
+  locale = "en",
+}: {
+  clients: { name: string; file: string }[];
+  locale?: Locale;
+}) {
+  if (clients.length === 0) return null;
+  const t = ui[locale];
+
+  return (
+    <section className="border-y border-mint bg-cream">
+      <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 md:py-20">
+        <Reveal>
+          <div className="text-center">
+            <Kicker>{t.featuredKicker}</Kicker>
+            <h2 className="mx-auto mt-3 max-w-2xl text-3xl font-bold text-forest md:text-4xl">
+              {t.featuredTitle}
+            </h2>
+            <div className="mx-auto mt-5 h-1 w-14 rounded-full bg-amber" />
+          </div>
+        </Reveal>
+
+        <div className="mt-12 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
+          {clients.map((cl, i) => (
+            <Reveal key={cl.file} delay={(i % 4) * 0.07} from="snap">
+              <div className="btn-fluid group flex h-full flex-col items-center justify-center gap-4 rounded-2xl border border-mint bg-white p-6 hover:border-fern hover:shadow-xl">
+                <div className="flex h-16 items-center justify-center">
+                  <Image
+                    src={`/clients/${cl.file}`}
+                    alt={`${cl.name} logo`}
+                    width={200}
+                    height={100}
+                    className="max-h-16 w-auto object-contain opacity-75 transition-opacity duration-300 group-hover:opacity-100"
+                  />
+                </div>
+                <p className="text-center text-xs font-semibold uppercase tracking-wider text-ink/60 transition-colors duration-300 group-hover:text-forest">
+                  {cl.name}
+                </p>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+export function LogoWall({
+  logos,
+  title,
+  locale = "en",
+  marquee = false,
+}: {
+  logos: { name: string; file: string }[];
+  title?: string;
+  locale?: Locale;
+  marquee?: boolean;
+}) {
+  return (
+    <section className="mx-auto max-w-7xl px-4 py-14 sm:px-6">
+      {title && (
+        <Reveal>
+          <Kicker>{ui[locale].ourClients}</Kicker>
+          <h2 className="mt-3 text-3xl font-bold text-forest">{title}</h2>
+        </Reveal>
+      )}
+      {marquee ? (
+        <div className="marquee mt-8 overflow-hidden py-5 [mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]">
+          {/* py-5 above gives the hover scale room to grow before overflow clips it. */}
+          <div className="marquee-track flex w-max items-center gap-5">
+            {[...logos, ...logos].map((l, i) => (
+              <div
+                key={`${l.file}-${i}`}
+                className="btn-fluid group flex h-28 w-48 shrink-0 items-center justify-center rounded-2xl border border-mint bg-white p-5 hover:border-fern hover:shadow-lg"
+                title={l.name}
+              >
+                <Image
+                  src={`/clients/${l.file}`}
+                  alt={`${l.name} logo`}
+                  width={160}
+                  height={80}
+                  className="max-h-16 w-auto object-contain opacity-80 transition-opacity duration-300 group-hover:opacity-100"
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+      ) : (
+        <div className="mt-8 grid grid-cols-3 gap-4 sm:grid-cols-4 md:grid-cols-6">
+          {logos.map((l, i) => (
+            <Reveal key={l.file} delay={(i % 6) * 0.05}>
+              <div
+                className="card-lift flex items-center justify-center rounded-xl border border-mint bg-white p-4 hover:border-fern"
+                title={l.name}
+              >
+                <Image
+                  src={`/clients/${l.file}`}
+                  alt={`${l.name} logo`}
+                  width={120}
+                  height={60}
+                  className="max-h-12 w-auto object-contain opacity-80 transition-opacity hover:opacity-100"
+                />
+              </div>
+            </Reveal>
+          ))}
+        </div>
+      )}
+    </section>
+  );
+}
+
+export function Breadcrumbs({ items }: { items: { label: string; href: string }[] }) {
+  return (
+    <nav aria-label="Breadcrumb" className="mx-auto max-w-7xl px-4 pt-6 sm:px-6">
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          itemListElement: items.map((it, i) => ({
+            "@type": "ListItem",
+            position: i + 1,
+            name: it.label,
+            item: `https://thedigitalmarketing.services${it.href}`,
+          })),
+        }}
+      />
+      <ol className="flex flex-wrap gap-1 text-xs text-ink/60">
+        {items.map((it, i) => (
+          <li key={it.href} className="flex items-center gap-1">
+            {i > 0 && <span aria-hidden>/</span>}
+            {i < items.length - 1 ? (
+              <Link href={it.href} className="transition-colors hover:text-forest">{it.label}</Link>
+            ) : (
+              <span aria-current="page" className="text-ink/80">{it.label}</span>
+            )}
+          </li>
+        ))}
+      </ol>
+    </nav>
+  );
+}
