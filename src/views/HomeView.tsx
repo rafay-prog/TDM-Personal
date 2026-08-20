@@ -282,16 +282,27 @@ export function HomeView({ locale }: { locale: Locale }) {
                         rather than a second "learn more" target beside it. */}
                     <Link
                       href={href(locale, `/case-studies/${cs.slug}/`)}
-                      className="card-lift group -mx-4 grid grid-cols-[auto_1fr] items-center gap-5 rounded-2xl px-4 py-6 hover:bg-white hover:shadow-xl md:grid-cols-[auto_1fr_auto] md:gap-8 md:px-6"
+                      className="card-lift group -mx-4 grid grid-cols-[auto_1fr] items-center gap-5 rounded-2xl px-4 py-6 hover:bg-white hover:shadow-xl md:gap-7 md:px-6"
                     >
                       <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-fern/40 font-display text-sm font-bold text-fern transition-all duration-300 group-hover:scale-110 group-hover:border-amber group-hover:bg-amber group-hover:text-white">
                         {i + 1}
                       </span>
                       <div>
                         <p className="text-xs font-medium uppercase tracking-wide text-ink/50">{cs.industry}</p>
-                        <h3 className="mt-1 font-display text-lg font-bold text-forest transition-colors group-hover:text-fern md:text-xl">
-                          {displayName(cs)}
-                        </h3>
+                        {/* The arrow rides beside the title rather than in a
+                            column of its own, which stranded it a screen-width
+                            away from the text it belongs to. */}
+                        <div className="mt-1 flex items-center gap-3">
+                          <h3 className="font-display text-lg font-bold text-forest transition-colors group-hover:text-fern md:text-xl">
+                            {displayName(cs)}
+                          </h3>
+                          <span
+                            aria-hidden
+                            className="hidden h-8 w-8 shrink-0 items-center justify-center rounded-full border border-mint text-forest transition-all duration-300 group-hover:border-amber group-hover:bg-amber group-hover:text-white md:flex"
+                          >
+                            <span className="arrow-nudge text-base leading-none">{isRtl(locale) ? "←" : "→"}</span>
+                          </span>
+                        </div>
                         <div className="mt-3 flex flex-wrap gap-2">
                           {cs.results.slice(0, 2).map((r) => (
                             <span
@@ -303,12 +314,6 @@ export function HomeView({ locale }: { locale: Locale }) {
                           ))}
                         </div>
                       </div>
-                      <span
-                        aria-hidden
-                        className="hidden h-11 w-11 shrink-0 items-center justify-center rounded-full border border-mint text-forest transition-all duration-300 group-hover:border-amber group-hover:bg-amber group-hover:text-white md:flex"
-                      >
-                        <span className="arrow-nudge text-lg leading-none">{isRtl(locale) ? "←" : "→"}</span>
-                      </span>
                     </Link>
                   </li>
                 </Reveal>
