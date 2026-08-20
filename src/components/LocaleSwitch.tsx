@@ -63,10 +63,12 @@ export function LocaleSwitch({
   return (
     <div
       className={`flex items-center rounded-full border border-white/20 bg-white/5 text-white/60 ${
-        drawer ? "mt-7 gap-1 p-1 ps-3" : "gap-0.5 p-1 ps-2.5 backdrop-blur-sm"
+        drawer ? "mt-7 gap-1 p-1 ps-3" : "gap-0.5 p-1 backdrop-blur-sm"
       }`}
     >
-      <GlobeIcon />
+      {/* The globe is dropped in the header — EN/FR/AR are self-evident, and the
+          width it frees goes to the logo, which needs it more. */}
+      {drawer && <GlobeIcon />}
       {locales.map((l) => (
         <Link
           key={l.locale}

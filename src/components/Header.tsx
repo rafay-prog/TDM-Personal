@@ -227,7 +227,7 @@ export function Header({
       >
         <div
           className={`mx-auto flex max-w-[1440px] items-center justify-between gap-2.5 px-4 transition-all duration-500 sm:px-6 ${
-            solid ? "h-[68px]" : "h-20"
+            solid ? "h-[72px]" : "h-24"
           }`}
         >
           <Link href={href(locale, "/")} className="flex shrink-0 items-center pe-2" aria-label={site.name}>
@@ -241,7 +241,7 @@ export function Header({
               height={164}
               priority
               className={`w-auto transition-all duration-500 ${
-                solid ? "h-10 2xl:h-11" : "h-11 2xl:h-12"
+                solid ? "h-11 2xl:h-12" : "h-12 2xl:h-14"
               }`}
             />
           </Link>
