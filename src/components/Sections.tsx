@@ -499,15 +499,17 @@ export function LogoWall({
             {[...logos, ...logos].map((l, i) => (
               <div
                 key={`${l.file}-${i}`}
-                className="btn-fluid group flex h-28 w-48 shrink-0 items-center justify-center rounded-2xl border border-mint bg-white p-5 hover:border-fern hover:shadow-lg"
+                className="btn-fluid group flex h-32 w-64 shrink-0 items-center justify-center rounded-2xl border border-mint bg-white p-4 hover:border-fern hover:shadow-lg"
                 title={l.name}
               >
+                {/* Most client logos are wide, so tile width — not max-height —
+                    is what actually caps their size here. */}
                 <Image
                   src={`/clients/${l.file}`}
                   alt={`${l.name} logo`}
-                  width={160}
-                  height={80}
-                  className="max-h-16 w-auto object-contain opacity-80 transition-opacity duration-300 group-hover:opacity-100"
+                  width={240}
+                  height={120}
+                  className="max-h-20 w-auto object-contain"
                 />
               </div>
             ))}
