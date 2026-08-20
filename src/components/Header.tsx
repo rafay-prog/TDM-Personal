@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import type { Locale } from "@/lib/types";
 import { href, isRtl } from "@/lib/i18n";
 import { site } from "@/lib/site";
+import { ConsultationLink } from "@/components/ConsultationLink";
 import { ui } from "@/content/ui";
 import { ServiceIcon } from "@/components/Sections";
 import { LocaleSwitch } from "@/components/LocaleSwitch";
@@ -291,12 +292,12 @@ export function Header({
               <PhoneIcon />
             </a>
 
-            <Link
-              href={href(locale, "/contact/")}
+            <ConsultationLink
+              locale={locale}
               className="btn-fluid btn-shine whitespace-nowrap rounded-full bg-amber px-4 py-2.5 text-[13.5px] font-bold text-white shadow-lg shadow-amber/25 hover:bg-amber/90 hover:shadow-xl hover:shadow-amber/30"
             >
               {t.ctaShort}
-            </Link>
+            </ConsultationLink>
           </div>
 
           {/* Hamburger */}
@@ -365,12 +366,12 @@ export function Header({
                   <p className="text-xs text-ink/60">
                     {activeMega.services.length} {t.services} · EN / FR / AR
                   </p>
-                  <Link
-                    href={href(locale, "/contact/")}
+                  <ConsultationLink
+                    locale={locale}
                     className="btn-fluid btn-shine whitespace-nowrap rounded-full bg-forest px-5 py-2.5 text-xs font-bold text-white"
                   >
                     {t.cta}
-                  </Link>
+                  </ConsultationLink>
                 </div>
               </div>
             )}
@@ -440,13 +441,13 @@ export function Header({
           <LocaleSwitch locale={locale} variant="drawer" onNavigate={closeDrawer} />
 
           
-          <Link
-            href={href(locale, "/contact/")}
+          <ConsultationLink
+            locale={locale}
             className="btn-fluid btn-shine mt-4 block rounded-full bg-amber px-5 py-4 text-center font-bold text-white shadow-lg shadow-amber/25"
             onClick={closeDrawer}
           >
             {t.cta}
-          </Link>
+          </ConsultationLink>
 
           <div className="mt-6 space-y-2 text-sm text-white/65">
             <a href={`mailto:${site.email}`} className="flex min-h-[2.5rem] items-center gap-3 py-1">

@@ -4,6 +4,7 @@ import type { Faq, Feature, Locale, ProcessStep, ResultStat, Testimonial } from 
 import { href } from "@/lib/i18n";
 import { ui } from "@/content/ui";
 import { SECTOR_IMAGE } from "@/lib/sector-media";
+import { ConsultationLink } from "./ConsultationLink";
 import { JsonLd } from "./JsonLd";
 import { Reveal } from "./motion/Reveal";
 import { CountUp } from "./motion/CountUp";
@@ -345,12 +346,12 @@ export function ServiceLoops({
             )}
 
             <div className="mt-8 flex flex-wrap items-center gap-x-5 gap-y-3">
-              <Link
-                href={href(locale, "/contact/")}
+              <ConsultationLink
+                locale={locale}
                 className="btn-fluid btn-shine inline-block rounded-full bg-amber px-6 py-3 text-sm font-bold text-white shadow-lg shadow-amber/25"
               >
                 {t.cta}
-              </Link>
+              </ConsultationLink>
               <p className="text-xs font-semibold uppercase tracking-wider text-white/45">
                 {services.length} {t.services} · EN / FR / AR
               </p>
@@ -502,12 +503,12 @@ export function CtaBand({
           <p className="mt-3 max-w-xl text-white/80">{sub ?? t.ctaSub}</p>
         </Reveal>
         <Reveal delay={0.15}>
-          <Link
-            href={href(locale, "/contact/")}
+          <ConsultationLink
+            locale={locale}
             className="btn-fluid btn-shine inline-block shrink-0 rounded-full bg-amber px-7 py-3.5 font-semibold text-white shadow-lg shadow-amber/25 hover:brightness-110"
           >
             {t.cta}
-          </Link>
+          </ConsultationLink>
         </Reveal>
       </div>
     </section>

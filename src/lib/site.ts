@@ -10,6 +10,12 @@ export const site = {
   phone: "+971 58 909 4045",
   phoneHref: "+971589094045",
   phoneUk: "+44 7946 186955",
+  /**
+   * Scheduling link for every "book a consultation" CTA — a Calendly event URL
+   * such as https://calendly.com/tdm/30min. While this is empty the CTAs fall
+   * back to the contact page, so nothing is ever a dead link.
+   */
+  booking: "",
   // TODO(user): WhatsApp number + social profile URLs
   socials: [] as { label: string; href: string }[],
   stats: {

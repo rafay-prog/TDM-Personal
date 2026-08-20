@@ -3,6 +3,7 @@ import Image from "next/image";
 import type { Locale } from "@/lib/types";
 import { href, isRtl } from "@/lib/i18n";
 import { site } from "@/lib/site";
+import { ConsultationLink } from "@/components/ConsultationLink";
 import { asset } from "@/lib/asset-manifest";
 import { getContent } from "@/content";
 import { ui } from "@/content/ui";
@@ -149,12 +150,12 @@ export function HomeView({ locale }: { locale: Locale }) {
             className="hero-enter mt-9 flex flex-wrap items-center justify-center gap-4"
             style={{ "--enter-delay": `${afterHeadline + 0.3}s` } as React.CSSProperties}
           >
-            <Link
-              href={href(locale, "/contact/")}
+            <ConsultationLink
+              locale={locale}
               className="btn-fluid btn-shine rounded-full bg-amber px-8 py-4 font-bold text-white shadow-xl shadow-amber/30"
             >
               {t.cta}
-            </Link>
+            </ConsultationLink>
             <Link
               href={href(locale, "/case-studies/")}
               className="btn-fluid glass rounded-full px-8 py-4 font-bold text-white hover:border-white/40"
