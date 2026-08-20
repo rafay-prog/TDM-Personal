@@ -192,17 +192,13 @@ export function Footer({ locale = "en" }: { locale?: Locale }) {
         </div>
 
         {/* Bottom bar */}
-        <div className="mt-8 flex flex-col gap-4 border-t border-white/10 pt-6 text-xs text-white/55 sm:flex-row sm:items-center sm:justify-between">
-          <p>© {new Date().getFullYear()} TDM — The Digital Marketing Services. All rights reserved.</p>
-          <a
-            href="#"
-            className="group flex w-fit items-center gap-2 font-semibold text-white/70 transition-colors hover:text-white"
-            aria-label={t.backToTop}
-          >
-            <span className="flex h-8 w-8 items-center justify-center rounded-full border border-white/20 transition-all duration-300 group-hover:-translate-y-1 group-hover:border-amber group-hover:bg-amber">
-              ↑
-            </span>
-          </a>
+        {/* No back-to-top here — the floating button already covers it, and two
+            of them stacked up at the bottom of the page looked like a mistake. */}
+        <div className="mt-8 flex flex-col gap-3 border-t border-white/10 pt-6 text-xs text-white/55 sm:flex-row sm:items-center sm:justify-between">
+          <p>© {new Date().getFullYear()} {site.name}. All rights reserved.</p>
+          <p>
+            {site.domain} · {site.email}
+          </p>
         </div>
       </div>
     </footer>
