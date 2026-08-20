@@ -6,6 +6,7 @@ import { site } from "@/lib/site";
 import { ui } from "@/content/ui";
 import { getContent } from "@/content";
 import { LocaleSwitch } from "@/components/LocaleSwitch";
+import { partners } from "@/lib/partner-media";
 
 const servicePaths = [
   "/media/ugc-ads/",
@@ -66,9 +67,20 @@ export function Footer({ locale = "en" }: { locale?: Locale }) {
           backgroundSize: "28px 28px",
         }}
       />
+      {/* A lit top edge, so the footer reads as a lifted surface rather than a
+          slab butted against the section above it. */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-x-0 top-0 h-72"
+        style={{
+          background:
+            "radial-gradient(65% 100% at 50% 0%, rgba(107,165,140,0.22), rgba(107,165,140,0) 70%)",
+        }}
+      />
       <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
-        <div className="blob absolute -top-32 -end-32 h-96 w-96 rounded-full bg-fern/25 blur-3xl" />
-        <div className="blob blob-slow absolute -bottom-40 start-1/3 h-80 w-80 rounded-full bg-amber/10 blur-3xl" />
+        <div className="blob absolute -top-32 -end-32 h-96 w-96 rounded-full bg-fern/30 blur-3xl" />
+        <div className="blob blob-slow absolute -bottom-40 start-1/3 h-80 w-80 rounded-full bg-amber/12 blur-3xl" />
+        <div className="blob blob-slow absolute top-1/4 -start-24 h-72 w-72 rounded-full bg-sage/15 blur-3xl" />
       </div>
       {/* giant watermark */}
       <p
@@ -129,7 +141,7 @@ export function Footer({ locale = "en" }: { locale?: Locale }) {
           {/* Services */}
           <div>
             <h3 className="kicker text-sage">{t.services}</h3>
-            <div className="mt-2 h-0.5 w-8 rounded-full bg-amber" />
+            <div className="mt-2 h-0.5 w-12 rounded-full bg-gradient-to-r from-amber to-amber/0" />
             <ul className="mt-5 space-y-2.5 text-sm">
               {serviceLinks.map((l) => (
                 <li key={l.path}>
@@ -142,7 +154,7 @@ export function Footer({ locale = "en" }: { locale?: Locale }) {
           {/* Company */}
           <div>
             <h3 className="kicker text-sage">{t.company}</h3>
-            <div className="mt-2 h-0.5 w-8 rounded-full bg-amber" />
+            <div className="mt-2 h-0.5 w-12 rounded-full bg-gradient-to-r from-amber to-amber/0" />
             <ul className="mt-5 space-y-2.5 text-sm">
               {companyLinks.map((l) => (
                 <li key={l.path}>
@@ -159,7 +171,7 @@ export function Footer({ locale = "en" }: { locale?: Locale }) {
           {/* Global presence */}
           <div>
             <h3 className="kicker text-sage">{t.globalPresence}</h3>
-            <div className="mt-2 h-0.5 w-8 rounded-full bg-amber" />
+            <div className="mt-2 h-0.5 w-12 rounded-full bg-gradient-to-r from-amber to-amber/0" />
             <ul className="mt-5 space-y-2.5 text-sm">
               {c.offices.map((o) => (
                 <li key={o.slug}>
@@ -173,21 +185,37 @@ export function Footer({ locale = "en" }: { locale?: Locale }) {
           </div>
         </div>
 
-        {/* Partner badges */}
-        <div className="mt-12 flex flex-wrap items-center gap-3 border-t border-white/10 pt-8">
-          {site.partnerBadges.map((b) => (
-            <span
-              key={b}
-              className="flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-1.5 text-xs font-semibold text-white/85 transition-all duration-300 hover:border-sage hover:bg-white/10 cursor-default"
-            >
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="text-amber" aria-hidden>
-                <path d="M20 6 9 17l-5-5" />
-              </svg>
-              {b}
+        {/* Partner badges. The artwork is dark-on-transparent, so it sits on
+            white cards rather than directly on the forest, where Shopify's
+            black wordmark would have disappeared entirely. */}
+        <div className="mt-12 flex flex-col gap-6 border-t border-white/10 pt-8 md:flex-row md:items-center md:justify-between">
+          <div className="flex flex-wrap items-center gap-3">
+            {partners.map((partner) => (
+              <span
+                key={partner.name}
+                title={partner.name}
+                className="flex h-12 items-center justify-center rounded-2xl bg-white px-4 shadow-lg shadow-black/25 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-amber/25"
+              >
+                <Image
+                  src={partner.src}
+                  alt={partner.name}
+                  width={partner.width}
+                  height={partner.height}
+                  className={`${partner.box} w-auto`}
+                />
+              </span>
+            ))}
+          </div>
+
+          <span className="kicker-pill pill-shimmer inline-flex w-fit items-center gap-3 rounded-full border border-amber/50 bg-gradient-to-r from-amber/25 via-amber/12 to-amber/25 px-5 py-2.5 backdrop-blur-sm">
+            <span className="relative flex h-2.5 w-2.5 shrink-0">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-amber opacity-80" />
+              <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-amber shadow-[0_0_10px_2px_rgba(232,134,45,0.7)]" />
             </span>
-          ))}
-          <span className="ms-auto flex items-center gap-2 rounded-full bg-amber/20 px-4 py-1.5 text-xs font-bold text-amber">
-            ★ {site.stats.satisfaction} {locale === "fr" ? "satisfaction client" : locale === "ar" ? "رضا العملاء" : "client satisfaction"}
+            <span className="font-display text-lg font-bold leading-none text-amber">{site.stats.satisfaction}</span>
+            <span className="kicker text-white/85">
+              {locale === "fr" ? "satisfaction client" : locale === "ar" ? "رضا العملاء" : "client satisfaction"}
+            </span>
           </span>
         </div>
 

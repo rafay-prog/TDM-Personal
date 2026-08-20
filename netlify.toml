@@ -27,6 +27,16 @@
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
 
+[[headers]]
+  for = "/services/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/partners/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
 # Plain filenames — must revalidate so a replacement is picked up.
 [[headers]]
   for = "/clients/*"
