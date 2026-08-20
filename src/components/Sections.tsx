@@ -3,6 +3,7 @@ import Image from "next/image";
 import type { Faq, Feature, Locale, ProcessStep, ResultStat, Testimonial } from "@/lib/types";
 import { href } from "@/lib/i18n";
 import { ui } from "@/content/ui";
+import { SECTOR_IMAGE } from "@/lib/sector-media";
 import { JsonLd } from "./JsonLd";
 import { Reveal } from "./motion/Reveal";
 import { CountUp } from "./motion/CountUp";
@@ -144,7 +145,7 @@ export function PageHero({
   sub?: string;
   dark?: boolean;
   /** Optional artwork; when present the hero splits into copy + image. */
-  image?: { src: string; width: number; height: number };
+  image?: string;
   imageAlt?: string;
 }) {
   const copy = (
@@ -175,23 +176,23 @@ export function PageHero({
           <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
             {copy}
             <div
-              className="hero-enter relative mx-auto w-fit"
+              className="hero-enter relative"
               style={{ "--enter-delay": "0.36s" } as React.CSSProperties}
             >
               {/* Warm halo so the photo sits in the section rather than on it. */}
               <div aria-hidden className="absolute -inset-8 rounded-[2.5rem] bg-fern/25 blur-3xl" />
               <div aria-hidden className="absolute -bottom-5 -end-5 h-24 w-24 rounded-full bg-amber/25 blur-2xl" />
               <div className="relative overflow-hidden rounded-3xl shadow-2xl shadow-black/50 ring-1 ring-white/15">
-                {/* Each photo keeps its own ratio under a shared height cap —
-                    forcing a portrait shot into a landscape frame crops it to a ribbon. */}
+                {/* All sector photos are pre-cropped to the same 3:2, so every hero
+                    frame is identical rather than varying page to page. */}
                 <Image
-                  src={image.src}
+                  src={image}
                   alt={imageAlt ?? ""}
-                  width={image.width}
-                  height={image.height}
+                  width={SECTOR_IMAGE.width}
+                  height={SECTOR_IMAGE.height}
                   priority
-                  sizes="(min-width: 1024px) 40vw, 90vw"
-                  className="max-h-[26rem] w-auto max-w-full object-cover md:max-h-[30rem]"
+                  sizes="(min-width: 1024px) 45vw, 92vw"
+                  className="aspect-3/2 w-full object-cover"
                 />
                 <div
                   aria-hidden
