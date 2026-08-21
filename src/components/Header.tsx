@@ -1,5 +1,6 @@
 "use client";
 
+import { asset } from "@/lib/asset-manifest";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -232,13 +233,13 @@ export function Header({
         >
           <Link href={href(locale, "/")} className="flex shrink-0 items-center pe-2" aria-label={site.name}>
             {/* The lockup carries the strapline as well as the mark, so it needs
-                real height to stay legible. Each extra px of height costs 4.1px
+                real height to stay legible. Each extra px of height costs 4.4px
                 of width, which the nav has to give back — see the 2xl step. */}
             <Image
-              src="/logo-white.png"
+              src={asset("branding/logo-white.png")}
               alt={site.name}
-              width={679}
-              height={164}
+              width={776}
+              height={178}
               priority
               className={`w-auto transition-all duration-500 ${
                 solid ? "h-11 2xl:h-12" : "h-12 2xl:h-14"

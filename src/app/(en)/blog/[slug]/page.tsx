@@ -1,3 +1,4 @@
+import { asset } from "@/lib/asset-manifest";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -140,7 +141,7 @@ export default async function BlogPostPage({
           publisher: {
             "@type": "Organization",
             name: site.name,
-            logo: { "@type": "ImageObject", url: `${site.url}/logo.png` },
+            logo: { "@type": "ImageObject", url: `${site.url}${asset("branding/logo.png")}` },
           },
           mainEntityOfPage: `${site.url}/blog/${p.slug}/`,
         }}

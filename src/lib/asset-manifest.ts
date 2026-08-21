@@ -2,6 +2,8 @@
 // Run `node scripts/hash-assets.mjs` after adding or replacing an image.
 
 const manifest: Record<string, string> = {
+  "branding/logo-white.png": "/branding/logo-white.ea67ec3c.png",
+  "branding/logo.png": "/branding/logo.335108ed.png",
   "flags/ae.svg": "/flags/ae.d6dc2945.svg",
   "flags/bg.svg": "/flags/bg.4154054c.svg",
   "flags/cm.svg": "/flags/cm.83fbab09.svg",

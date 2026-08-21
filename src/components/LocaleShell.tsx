@@ -1,3 +1,4 @@
+import { asset } from "@/lib/asset-manifest";
 import { Montserrat, Noto_Sans_Arabic } from "next/font/google";
 import type { Locale } from "@/lib/types";
 import { isRtl } from "@/lib/i18n";
@@ -43,7 +44,7 @@ export function LocaleShell({ locale, children }: { locale: Locale; children: Re
     name: site.name,
     alternateName: "TDM Services",
     url: site.url,
-    logo: `${site.url}/logo.png`,
+    logo: `${site.url}${asset("branding/logo.png")}`,
     email: site.email,
     telephone: site.phone,
     slogan: site.tagline,

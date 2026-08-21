@@ -1,3 +1,4 @@
+import { asset } from "@/lib/asset-manifest";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Locale } from "@/lib/types";
@@ -195,7 +196,7 @@ export async function CaseStudyView({ locale, slug }: { locale: Locale; slug: st
           publisher: {
             "@type": "Organization",
             name: site.name,
-            logo: { "@type": "ImageObject", url: `${site.url}/logo.png` },
+            logo: { "@type": "ImageObject", url: `${site.url}${asset("branding/logo.png")}` },
           },
           mainEntityOfPage: pageUrl,
           url: pageUrl,
