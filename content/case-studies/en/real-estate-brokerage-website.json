@@ -1,0 +1,34 @@
+{
+  "order": 11,
+  "slug": "real-estate-brokerage-website",
+  "client": "Hemnet Properties",
+  "anonymous": true,
+  "publicName": "A Dubai real-estate brokerage",
+  "industry": "Real estate",
+  "country": "United Arab Emirates",
+  "sector": "development",
+  "services": [
+    "Web Development",
+    "UI/UX Design",
+    "Social Media",
+    "SEO"
+  ],
+  "summary": "A property-search website with buy/rent/commercial flows — plus ongoing social and search marketing.",
+  "challenge": "A brokerage in a fast-moving market needed property search, listing management and lead capture — then sustained visibility to feed it.",
+  "approach": [
+    "Designed and built a property-search site with buy/rent/commercial tabs and list-your-property flows.",
+    "Ran social media content and SEO as ongoing growth support."
+  ],
+  "results": [
+    {
+      "value": "Search",
+      "label": "full property-search experience shipped"
+    },
+    {
+      "value": "Multi-channel",
+      "label": "development + SEO + social from one team"
+    }
+  ],
+  "metaTitle": "Case Study: Property-Search Website for a Dubai Brokerage | TDM",
+  "metaDescription": "TDM built a property-search website and runs ongoing SEO and social for a Dubai real-estate brokerage."
+}

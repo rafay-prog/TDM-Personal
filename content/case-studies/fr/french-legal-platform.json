@@ -1,0 +1,43 @@
+{
+  "order": 1,
+  "slug": "french-legal-platform",
+  "client": "French Business Law (Petroff)",
+  "anonymous": true,
+  "publicName": "Un cabinet d'avocats d'affaires parisien",
+  "industry": "Services juridiques",
+  "country": "France",
+  "sector": "development",
+  "services": [
+    "Conception et développement de plateforme",
+    "Contenu multilingue",
+    "SEO et génération de leads"
+  ],
+  "timeline": "Partenariat en cours",
+  "summary": "Une plateforme digitale complète pour un cabinet d'avocats d'affaires parisien au service des entreprises anglophones en France — conçue, développée et développée commercialement de bout en bout par TDM.",
+  "challenge": "Le cabinet avait besoin de bien plus qu'un site web : une plateforme de connaissances consultable couvrant le droit des affaires français pour les entreprises étrangères, avec profils d'avocats, parcours de contact et production de contenu — en deux langues.",
+  "approach": [
+    "Conception et développement de l'intégralité de la plateforme, y compris une infrastructure de recherche d'entreprises couvrant plus de 26 millions de sociétés françaises.",
+    "Mise en place d'une production de contenu bilingue EN/FR qui a publié plus de 2 400 articles juridiques.",
+    "Pilotage continu du SEO et de la génération de leads en tant que partenaire de croissance attitré du cabinet."
+  ],
+  "results": [
+    {
+      "value": "2,400+",
+      "label": "articles juridiques publiés"
+    },
+    {
+      "value": "26M+",
+      "label": "entreprises françaises consultables sur la plateforme"
+    },
+    {
+      "value": "20+",
+      "label": "pays d'origine des clients"
+    },
+    {
+      "value": "EN·FR",
+      "label": "prestation entièrement bilingue"
+    }
+  ],
+  "metaTitle": "Étude de cas : plateforme juridique de 2 400 articles | TDM",
+  "metaDescription": "TDM a conçu, développé et fait croître une plateforme juridique bilingue pour un cabinet parisien — infrastructure, 2 400+ articles et génération de leads."
+}

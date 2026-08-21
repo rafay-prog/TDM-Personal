@@ -1,0 +1,32 @@
+{
+  "order": 8,
+  "slug": "uk-food-delivery-app",
+  "client": "Tasty Hasty",
+  "anonymous": true,
+  "publicName": "Une startup britannique de livraison de repas",
+  "industry": "Livraison de repas",
+  "country": "Royaume-Uni",
+  "sector": "development",
+  "services": [
+    "Développement d'applications mobiles",
+    "Design UI/UX"
+  ],
+  "summary": "Une application native Android de livraison de repas pour une startup du Yorkshire — développée avec Kotlin et Jetpack Compose.",
+  "challenge": "Une startup régionale britannique en concurrence avec les plateformes nationales de livraison avait besoin d'une application native rapide et fiable, taillée pour les restaurants locaux.",
+  "approach": [
+    "Développement natif Android en Kotlin avec Jetpack Compose pour une interface moderne et réactive.",
+    "Prestation de bout en bout : recherche UX, design system, développement, tests et publication sur les stores."
+  ],
+  "results": [
+    {
+      "value": "Natif",
+      "label": "application Android livrée (Kotlin / Jetpack Compose)"
+    },
+    {
+      "value": "Intégral",
+      "label": "design → développement → publication par une seule équipe"
+    }
+  ],
+  "metaTitle": "Étude de cas : appli Android de livraison de repas | TDM",
+  "metaDescription": "TDM a conçu et développé de bout en bout une application de livraison de repas en Kotlin/Jetpack Compose pour une startup du Yorkshire."
+}

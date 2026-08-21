@@ -1,0 +1,108 @@
+# Admin configuration for the TDM site.
+#
+# The CMS commits straight to GitHub; Vercel builds on the commit and the change
+# is live about a minute later. Nothing here talks to a database — the files
+# under /content are the content, and they stay in version control, so any edit
+# can be reviewed or reverted like any other commit.
+#
+# Publishing goes through a pull request rather than straight to main. That is
+# what `publish_mode: editorial_workflow` buys: a draft can be saved without
+# going live, and nothing reaches the site until it is approved.
+
+backend:
+  name: github
+  repo: rafay-prog/TDM-Personal
+  branch: main
+  # Token exchange endpoint. See docs/admin-setup.md — this must be your own
+  # deployment, never someone else's, since it brokers write access to the repo.
+  base_url: https://REPLACE-ME.workers.dev
+
+publish_mode: editorial_workflow
+
+media_folder: public/uploads
+public_folder: /uploads
+
+collections:
+  # ---------------------------------------------------------------------------
+  - name: blog
+    label: Blog posts
+    label_singular: Blog post
+    folder: content/blog
+    extension: json
+    format: json
+    create: true
+    slug: "{{fields.slug}}"
+    identifier_field: title
+    summary: "{{title}}"
+    sortable_fields: [order, date, title]
+    fields:
+      - { name: order, label: "Order (0 = first in 'keep reading')", widget: number, value_type: int, default: 99 }
+      - { name: slug, label: "URL slug", widget: string, hint: "Lowercase words separated by hyphens. Changing this on a published post breaks its existing links." }
+      - { name: title, label: Title, widget: string }
+      - { name: date, label: Date, widget: datetime, format: "YYYY-MM-DD", date_format: "YYYY-MM-DD", time_format: false }
+      - { name: category, label: Category, widget: select, options: [Marketing, Media, Development, "Staff Augmentation"] }
+      - { name: excerpt, label: Excerpt, widget: text, hint: "One or two sentences. Shown on the blog index and used as the social description." }
+      - { name: body, label: Body, widget: markdown, hint: "## makes a heading, ### a sub-heading, and lines starting with - make a bullet list." }
+      - { name: metaTitle, label: "SEO title", widget: string }
+      - { name: metaDescription, label: "SEO description", widget: text }
+      - name: faqs
+        label: FAQs
+        widget: list
+        required: false
+        summary: "{{fields.q}}"
+        hint: "These are published as structured data, so they can be quoted directly by search engines and AI assistants."
+        fields:
+          - { name: q, label: Question, widget: string }
+          - { name: a, label: Answer, widget: text }
+
+  # ---------------------------------------------------------------------------
+  - name: case-studies
+    label: Case studies
+    label_singular: Case study
+    folder: content/case-studies
+    extension: json
+    format: json
+    create: true
+    slug: "{{fields.slug}}"
+    identifier_field: publicName
+    summary: "{{publicName}}"
+    sortable_fields: [order, publicName, industry]
+    i18n: true
+    fields:
+      - { name: order, label: "Order (0 is featured on the home page)", widget: number, value_type: int, default: 99, i18n: duplicate }
+      - { name: slug, label: "URL slug", widget: string, i18n: duplicate }
+      - { name: sector, label: Sector, widget: select, options: [marketing, development, media, staff-augmentation], i18n: duplicate }
+      - { name: anonymous, label: "Client is anonymous", widget: boolean, default: true, i18n: duplicate, hint: "While this is on, only the public name is ever shown. Turn it off only once the client has approved being named." }
+      - { name: client, label: "Real client name", widget: string, i18n: duplicate, hint: "Never rendered while the switch above is on." }
+      - { name: publicName, label: "Public name", widget: string, hint: "e.g. 'A UAE fragrance retailer' — always safe to show." }
+      - { name: industry, label: Industry, widget: string }
+      - { name: country, label: Country, widget: string, required: false }
+      - { name: timeline, label: Timeline, widget: string, required: false }
+      - { name: services, label: Services, widget: list, field: { name: service, label: Service, widget: string } }
+      - { name: summary, label: Summary, widget: text }
+      - { name: challenge, label: Challenge, widget: text }
+      - { name: approach, label: Approach, widget: list, field: { name: step, label: Paragraph, widget: text } }
+      - name: results
+        label: Results
+        widget: list
+        summary: "{{fields.value}} {{fields.label}}"
+        hint: "The headline numbers. The first three appear on the featured card."
+        fields:
+          - { name: value, label: Value, widget: string, hint: "e.g. 16×, +250%, 3,000+" }
+          - { name: label, label: Label, widget: string }
+      - name: testimonial
+        label: Testimonial
+        widget: object
+        required: false
+        collapsed: true
+        fields:
+          - { name: quote, label: Quote, widget: text }
+          - { name: author, label: Author, widget: string }
+      - { name: metaTitle, label: "SEO title", widget: string }
+      - { name: metaDescription, label: "SEO description", widget: text }
+
+# Case studies exist in all three languages; blog posts are English only.
+i18n:
+  structure: multiple_folders
+  locales: [en, fr, ar]
+  default_locale: en

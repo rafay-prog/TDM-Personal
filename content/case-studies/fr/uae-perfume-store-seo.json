@@ -1,0 +1,43 @@
+{
+  "order": 2,
+  "slug": "uae-perfume-store-seo",
+  "client": "Sahara Perfumes",
+  "anonymous": true,
+  "publicName": "Une parfumerie en ligne aux Émirats arabes unis",
+  "industry": "E-commerce de parfums",
+  "country": "Émirats arabes unis",
+  "sector": "marketing",
+  "services": [
+    "SEO on-page",
+    "SEO technique",
+    "SEO off-page",
+    "Développement web"
+  ],
+  "timeline": "9 mois",
+  "summary": "D'un historique SEO inexistant au top 3 sur le mot-clé principal de la boutique — grâce à une campagne d'autorité de 3 000 backlinks.",
+  "challenge": "Un détaillant 100% en ligne dans l'une des niches e-commerce les plus concurrentielles du Golfe, sans aucun travail SEO préalable ni autorité de domaine.",
+  "approach": [
+    "SEO full-stack : optimisation on-page et du contenu, corrections techniques et améliorations du développement du site.",
+    "Une campagne off-page soutenue qui a construit plus de 3 000 backlinks de haute qualité."
+  ],
+  "results": [
+    {
+      "value": "Top 3",
+      "label": "sur le mot-clé principal en moins de 6 mois"
+    },
+    {
+      "value": "3,000+",
+      "label": "backlinks de haute qualité créés"
+    },
+    {
+      "value": "+70%",
+      "label": "de croissance des ventes en ligne après la mise en ligne du nouveau site"
+    }
+  ],
+  "testimonial": {
+    "quote": "Nous n'aurions pas pu rêver d'un meilleur partenaire que TDM. Leurs stratégies pointues et leurs efforts constants nous ont permis de dominer notre niche. Nos positions et nos ventes se sont améliorées de façon spectaculaire.",
+    "author": "Client e-commerce, EAU"
+  },
+  "metaTitle": "Étude de cas : top 3 et +70% pour une parfumerie | TDM",
+  "metaDescription": "Comment TDM a hissé une parfumerie en ligne des EAU dans le top 3 de Google en six mois grâce au SEO technique et à plus de 3 000 backlinks de qualité."
+}

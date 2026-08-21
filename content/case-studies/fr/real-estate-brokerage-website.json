@@ -1,0 +1,34 @@
+{
+  "order": 11,
+  "slug": "real-estate-brokerage-website",
+  "client": "Hemnet Properties",
+  "anonymous": true,
+  "publicName": "Une agence immobilière de Dubaï",
+  "industry": "Immobilier",
+  "country": "Émirats arabes unis",
+  "sector": "development",
+  "services": [
+    "Développement web",
+    "Design UI/UX",
+    "Réseaux sociaux",
+    "SEO"
+  ],
+  "summary": "Un site de recherche immobilière avec parcours achat/location/commercial — plus un marketing social et search au long cours.",
+  "challenge": "Sur un marché qui bouge vite, cette agence avait besoin de recherche de biens, de gestion d'annonces et de capture de leads — puis d'une visibilité durable pour les alimenter.",
+  "approach": [
+    "Conception et développement d'un site de recherche immobilière avec onglets achat/location/commercial et parcours de dépôt d'annonce.",
+    "Pilotage continu du contenu social et du SEO en soutien de la croissance."
+  ],
+  "results": [
+    {
+      "value": "Recherche",
+      "label": "expérience complète de recherche de biens livrée"
+    },
+    {
+      "value": "Multicanal",
+      "label": "développement + SEO + social par une seule équipe"
+    }
+  ],
+  "metaTitle": "Étude de cas : site immobilier d'une agence de Dubaï | TDM",
+  "metaDescription": "TDM a développé un site de recherche immobilière et pilote le SEO et les réseaux sociaux d'une agence immobilière de Dubaï."
+}

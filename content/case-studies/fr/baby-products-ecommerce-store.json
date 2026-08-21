@@ -1,0 +1,31 @@
+{
+  "order": 10,
+  "slug": "baby-products-ecommerce-store",
+  "client": "Le Bouquet Baby Gallery",
+  "anonymous": true,
+  "publicName": "Un détaillant premium de produits de puériculture",
+  "industry": "E-commerce de produits de puériculture",
+  "sector": "development",
+  "services": [
+    "Développement e-commerce",
+    "Design UI/UX"
+  ],
+  "summary": "Une réalisation e-commerce vitrine : catalogue complet, espaces de marque, paiement fractionné et expérience d'achat premium.",
+  "challenge": "Un détaillant premium distribuant des marques comme Inglesina, Peg Perego et Cybex avait besoin d'une boutique à la hauteur — rapide, soignée et pensée pour la conversion.",
+  "approach": [
+    "Conception et développement complets de la boutique : navigation par catégorie, pages de marque, promotions et cartes cadeaux.",
+    "Intégration du paiement fractionné (Tabby) pour le marché du Golfe."
+  ],
+  "results": [
+    {
+      "value": "Vitrine",
+      "label": "boutique e-commerce premium livrée"
+    },
+    {
+      "value": "Fractionné",
+      "label": "paiement en plusieurs fois Tabby intégré"
+    }
+  ],
+  "metaTitle": "Étude de cas : e-commerce premium de puériculture | TDM",
+  "metaDescription": "TDM a conçu et développé une boutique premium de produits de puériculture avec espaces de marque et paiement fractionné."
+}

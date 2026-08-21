@@ -1,0 +1,33 @@
+{
+  "order": 5,
+  "slug": "arabic-seo-perfume-ecommerce",
+  "client": "7 Perfumes",
+  "anonymous": true,
+  "publicName": "Une parfumerie en ligne arabophone",
+  "industry": "E-commerce de parfums",
+  "country": "Émirats arabes unis",
+  "sector": "marketing",
+  "services": [
+    "SEO en arabe",
+    "Optimisation de contenu"
+  ],
+  "timeline": "3 mois",
+  "summary": "Un SEO natif en arabe pour un e-commerce du marché local — des pages produits en première page en un trimestre.",
+  "challenge": "Positionner des pages produits en langue arabe, en partant de zéro, sur un marché e-commerce local concurrentiel — une discipline que la plupart des agences ne maîtrisent pas nativement.",
+  "approach": [
+    "Recherche de mots-clés en arabe et optimisation on-page par des locuteurs natifs.",
+    "Production de contenu en arabe alignée sur les comportements de recherche locaux."
+  ],
+  "results": [
+    {
+      "value": "Page 1",
+      "label": "de positions sur plusieurs mots-clés produits"
+    },
+    {
+      "value": "Local",
+      "label": "gain de trafic grâce à la présence sur le marché local"
+    }
+  ],
+  "metaTitle": "Étude de cas : SEO natif en arabe pour un e-commerce | TDM",
+  "metaDescription": "Comment TDM a positionné des mots-clés produits en arabe en première page en trois mois grâce à un SEO et à des contenus natifs en arabe."
+}

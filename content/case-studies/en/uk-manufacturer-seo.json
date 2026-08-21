@@ -1,0 +1,38 @@
+{
+  "order": 4,
+  "slug": "uk-manufacturer-seo",
+  "client": "Tec Gloves",
+  "anonymous": true,
+  "publicName": "A safety-products manufacturer targeting the UK",
+  "industry": "Manufacturing / safety products",
+  "country": "United Kingdom",
+  "sector": "marketing",
+  "services": [
+    "On-Page SEO",
+    "Technical SEO",
+    "WordPress Optimization"
+  ],
+  "timeline": "12 months",
+  "summary": "A Malaysian manufacturer entering the UK market — WordPress optimization and SEO that moved traffic +20% in the first two months.",
+  "challenge": "Entering the competitive UK market with an underperforming WordPress site and no local search visibility.",
+  "approach": [
+    "On-page and content optimization targeted at UK commercial keywords.",
+    "Technical SEO and WordPress performance work that significantly improved PageSpeed scores."
+  ],
+  "results": [
+    {
+      "value": "+20%",
+      "label": "organic traffic in the first 2 months"
+    },
+    {
+      "value": "~12×",
+      "label": "monthly organic traffic over the engagement (≈50 → ≈650)"
+    }
+  ],
+  "testimonial": {
+    "quote": "Working with TDM was an exceptional experience. Their team not only optimized our website but also boosted its speed, which improved user experience. We saw noticeable results in terms of traffic and lead generation.",
+    "author": "Manufacturing client, UK market"
+  },
+  "metaTitle": "Case Study: UK Market-Entry SEO for a Safety-Products Manufacturer | TDM",
+  "metaDescription": "WordPress optimization and UK-targeted SEO that grew a manufacturer's organic traffic roughly 12× over the engagement."
+}

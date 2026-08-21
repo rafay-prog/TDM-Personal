@@ -1,0 +1,33 @@
+{
+  "order": 7,
+  "slug": "travel-agency-digital-presence",
+  "client": "Tashkeel Travels",
+  "anonymous": true,
+  "publicName": "Une agence de voyages",
+  "industry": "Voyage et tourisme",
+  "sector": "marketing",
+  "services": [
+    "SEO",
+    "Développement web",
+    "Gestion des réseaux sociaux"
+  ],
+  "timeline": "3 mois",
+  "summary": "Site web, SEO et gestion des réseaux sociaux pour un voyagiste à la présence en ligne limitée — engagement en hausse de 70%.",
+  "challenge": "Un voyagiste à l'empreinte digitale minimale, qui avait besoin d'une présence en ligne complète, rapidement.",
+  "approach": [
+    "Création d'un site web responsive et intuitif.",
+    "Pilotage du SEO on-page, du contenu et de la technique, en parallèle d'une gestion active des réseaux sociaux."
+  ],
+  "results": [
+    {
+      "value": "+70%",
+      "label": "d'engagement sur les réseaux sociaux"
+    },
+    {
+      "value": "220",
+      "label": "mots-clés positionnés (6,2K de trafic mensuel estimé, valeur ≈ 22,9K $)"
+    }
+  ],
+  "metaTitle": "Étude de cas : présence digitale d'un voyagiste | TDM",
+  "metaDescription": "Création de site, SEO et gestion des réseaux sociaux : l'engagement d'une agence de voyages en hausse de 70% en trois mois."
+}

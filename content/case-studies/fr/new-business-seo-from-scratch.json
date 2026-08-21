@@ -1,0 +1,37 @@
+{
+  "order": 3,
+  "slug": "new-business-seo-from-scratch",
+  "client": "We Wash",
+  "anonymous": true,
+  "publicName": "Une nouvelle entreprise de services de blanchisserie",
+  "industry": "Services de proximité",
+  "sector": "marketing",
+  "services": [
+    "SEO",
+    "Développement web",
+    "Contenu"
+  ],
+  "timeline": "3 mois",
+  "summary": "Une entreprise toute neuve, sans aucune présence en ligne — site web, fondations SEO et 250% de croissance organique en un trimestre.",
+  "challenge": "Partir de zéro absolu : pas de site web, pas de positions, pas de contenu, pas d'autorité.",
+  "approach": [
+    "Création d'un site web entièrement optimisé, à partir de zéro.",
+    "Mise en place de fondations SEO complètes — on-page, contenu et technique — avant le lancement, puis itérations hebdomadaires."
+  ],
+  "results": [
+    {
+      "value": "+250%",
+      "label": "de trafic organique en 3 mois"
+    },
+    {
+      "value": "~8K",
+      "label": "visites organiques mensuelles atteintes"
+    }
+  ],
+  "testimonial": {
+    "quote": "TDM a joué un rôle décisif dans la mise en place de notre présence en ligne. De la conception de notre site à son optimisation pour les moteurs de recherche, ils ont tout pris en charge. Leur approche proactive et leurs points réguliers ont rendu le processus fluide.",
+    "author": "Client secteur services"
+  },
+  "metaTitle": "Étude de cas : +250% de trafic organique en 3 mois | TDM",
+  "metaDescription": "D'aucun site web à environ 8K visites organiques mensuelles : comment TDM a créé et positionné une nouvelle entreprise de services en un trimestre."
+}

@@ -1,0 +1,38 @@
+{
+  "order": 6,
+  "slug": "real-estate-platform-seo",
+  "client": "Chirag.com",
+  "anonymous": true,
+  "publicName": "A real-estate listings platform",
+  "industry": "Real estate",
+  "sector": "marketing",
+  "services": [
+    "SEO",
+    "Website Development",
+    "Social Media",
+    "Paid Advertising"
+  ],
+  "timeline": "3 months",
+  "summary": "A new property platform taken from zero visibility to top-10 rankings and qualified listing leads in three months.",
+  "challenge": "A newly launched real-estate platform needing visibility, rankings for property keywords, and lead flow from both organic and social channels.",
+  "approach": [
+    "Delivered a fully optimized platform with seamless UX.",
+    "Combined SEO with social media management and paid advertising for compounding visibility."
+  ],
+  "results": [
+    {
+      "value": "Top 10",
+      "label": "property keywords within 3 months"
+    },
+    {
+      "value": "+35%",
+      "label": "traffic growth with qualified leads"
+    }
+  ],
+  "testimonial": {
+    "quote": "TDM helped us build a strong online presence in the real estate market. From improving our site's SEO to driving traffic through social media and paid ads, they delivered exceptional results.",
+    "author": "Real-estate client"
+  },
+  "metaTitle": "Case Study: Launch SEO for a Real-Estate Platform | TDM",
+  "metaDescription": "Top-10 property rankings and +35% traffic in three months for a newly launched real-estate platform."
+}

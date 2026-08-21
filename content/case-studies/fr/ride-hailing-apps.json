@@ -1,0 +1,31 @@
+{
+  "order": 9,
+  "slug": "ride-hailing-apps",
+  "client": "London Cab Egypt / Jeeny",
+  "anonymous": true,
+  "publicName": "Des opérateurs de VTC (Égypte, Arabie saoudite et Jordanie)",
+  "industry": "Transport / VTC",
+  "sector": "development",
+  "services": [
+    "Développement d'applications mobiles (iOS)",
+    "Design UI/UX"
+  ],
+  "summary": "Des applications VTC natives iOS développées en Swift pour des opérateurs en Égypte, en Arabie saoudite et en Jordanie.",
+  "challenge": "Le VTC exige une fiabilité en temps réel : suivi en direct, répartition des courses, paiements et parcours conducteur/passager qui n'ont tout simplement pas le droit de flancher.",
+  "approach": [
+    "Développement natif en Swift pour des fonctionnalités temps réel aux performances critiques.",
+    "Recherche UX complète, wireframes et design system avant la moindre ligne de code."
+  ],
+  "results": [
+    {
+      "value": "iOS",
+      "label": "applications natives Swift livrées pour plusieurs marchés"
+    },
+    {
+      "value": "MENA",
+      "label": "opérateurs servis en Égypte, en Arabie saoudite et en Jordanie"
+    }
+  ],
+  "metaTitle": "Étude de cas : applis VTC natives iOS en région MENA | TDM",
+  "metaDescription": "Des applications VTC développées en Swift pour des opérateurs en Égypte, en Arabie saoudite et en Jordanie — conçues et réalisées par TDM."
+}

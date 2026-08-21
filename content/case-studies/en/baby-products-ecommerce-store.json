@@ -1,0 +1,31 @@
+{
+  "order": 10,
+  "slug": "baby-products-ecommerce-store",
+  "client": "Le Bouquet Baby Gallery",
+  "anonymous": true,
+  "publicName": "A premium baby-products retailer",
+  "industry": "Baby products e-commerce",
+  "sector": "development",
+  "services": [
+    "E-commerce Development",
+    "UI/UX Design"
+  ],
+  "summary": "A flagship e-commerce build: full catalogue, brand shops, installment payments and a premium shopping experience.",
+  "challenge": "A premium retailer carrying brands like Inglesina, Peg Perego and Cybex needed a storefront to match — fast, polished and conversion-focused.",
+  "approach": [
+    "Full storefront design and build with category browsing, brand pages, promos and gift cards.",
+    "Integrated installment payments (Tabby) for the Gulf market."
+  ],
+  "results": [
+    {
+      "value": "Flagship",
+      "label": "e-commerce storefront shipped"
+    },
+    {
+      "value": "Installments",
+      "label": "Tabby buy-now-pay-later integrated"
+    }
+  ],
+  "metaTitle": "Case Study: Premium Baby-Products E-commerce Store | TDM",
+  "metaDescription": "TDM designed and built a premium baby-products storefront with brand shops and installment payments."
+}

@@ -1,0 +1,33 @@
+{
+  "order": 7,
+  "slug": "travel-agency-digital-presence",
+  "client": "Tashkeel Travels",
+  "anonymous": true,
+  "publicName": "A travel agency",
+  "industry": "Travel & tourism",
+  "sector": "marketing",
+  "services": [
+    "SEO",
+    "Website Development",
+    "Social Media Management"
+  ],
+  "timeline": "3 months",
+  "summary": "Website, SEO and social management for a travel company with limited online presence — engagement up 70%.",
+  "challenge": "A travel company with minimal digital footprint needing a complete online presence, fast.",
+  "approach": [
+    "Built a responsive, user-friendly website.",
+    "Ran on-page, content and technical SEO alongside active social media management."
+  ],
+  "results": [
+    {
+      "value": "+70%",
+      "label": "social media engagement"
+    },
+    {
+      "value": "220",
+      "label": "keywords ranking (6.2K est. monthly traffic value ≈ $22.9K)"
+    }
+  ],
+  "metaTitle": "Case Study: Full Digital Presence for a Travel Agency | TDM",
+  "metaDescription": "Website build, SEO and social management that lifted a travel agency's engagement 70% in three months."
+}

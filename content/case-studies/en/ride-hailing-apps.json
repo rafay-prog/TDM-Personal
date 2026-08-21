@@ -1,0 +1,31 @@
+{
+  "order": 9,
+  "slug": "ride-hailing-apps",
+  "client": "London Cab Egypt / Jeeny",
+  "anonymous": true,
+  "publicName": "Ride-hailing operators (Egypt, KSA & Jordan)",
+  "industry": "Transport / ride-hailing",
+  "sector": "development",
+  "services": [
+    "Mobile App Development (iOS)",
+    "UI/UX Design"
+  ],
+  "summary": "Native iOS ride-hailing apps built in Swift for operators in Egypt, Saudi Arabia and Jordan.",
+  "challenge": "Ride-hailing demands real-time reliability: live tracking, dispatch, payments and driver/rider flows that simply cannot fail.",
+  "approach": [
+    "Native Swift development for performance-critical, real-time functionality.",
+    "Full UX research, wireframing and design-system work before a line of code."
+  ],
+  "results": [
+    {
+      "value": "iOS",
+      "label": "native Swift apps shipped for multiple markets"
+    },
+    {
+      "value": "MENA",
+      "label": "operators served across Egypt, KSA and Jordan"
+    }
+  ],
+  "metaTitle": "Case Study: Native iOS Ride-Hailing Apps for MENA Operators | TDM",
+  "metaDescription": "Swift-built ride-hailing apps for operators in Egypt, Saudi Arabia and Jordan — designed and developed by TDM."
+}

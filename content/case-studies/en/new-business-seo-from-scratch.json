@@ -1,0 +1,37 @@
+{
+  "order": 3,
+  "slug": "new-business-seo-from-scratch",
+  "client": "We Wash",
+  "anonymous": true,
+  "publicName": "A new laundry-services business",
+  "industry": "Local services",
+  "sector": "marketing",
+  "services": [
+    "SEO",
+    "Website Development",
+    "Content"
+  ],
+  "timeline": "3 months",
+  "summary": "A brand-new business with zero online presence — website, SEO foundation and 250% organic growth in one quarter.",
+  "challenge": "Starting from absolute zero: no website, no rankings, no content, no authority.",
+  "approach": [
+    "Built a fully optimized website from scratch.",
+    "Laid complete on-page, content and technical SEO foundations before launch, then iterated weekly."
+  ],
+  "results": [
+    {
+      "value": "+250%",
+      "label": "organic traffic in 3 months"
+    },
+    {
+      "value": "~8K",
+      "label": "monthly organic visits reached"
+    }
+  ],
+  "testimonial": {
+    "quote": "TDM was instrumental in setting up our online presence. From designing our website to optimizing it for search engines, they did it all. Their proactive approach and constant updates made the process seamless.",
+    "author": "Services client"
+  },
+  "metaTitle": "Case Study: +250% Organic Traffic in 3 Months for a New Business | TDM",
+  "metaDescription": "From no website to ~8K monthly organic visits: how TDM built and ranked a new services business in one quarter."
+}

@@ -1,0 +1,38 @@
+{
+  "order": 4,
+  "slug": "uk-manufacturer-seo",
+  "client": "Tec Gloves",
+  "anonymous": true,
+  "publicName": "Un fabricant d'équipements de sécurité visant le marché britannique",
+  "industry": "Industrie / équipements de sécurité",
+  "country": "Royaume-Uni",
+  "sector": "marketing",
+  "services": [
+    "SEO on-page",
+    "SEO technique",
+    "Optimisation WordPress"
+  ],
+  "timeline": "12 mois",
+  "summary": "Un fabricant malaisien à la conquête du marché britannique — optimisation WordPress et SEO, avec +20% de trafic dès les deux premiers mois.",
+  "challenge": "Pénétrer le marché britannique, très concurrentiel, avec un site WordPress sous-performant et aucune visibilité dans les recherches locales.",
+  "approach": [
+    "Optimisation on-page et du contenu ciblée sur les mots-clés commerciaux britanniques.",
+    "SEO technique et optimisation des performances WordPress, avec une nette amélioration des scores PageSpeed."
+  ],
+  "results": [
+    {
+      "value": "+20%",
+      "label": "de trafic organique dans les 2 premiers mois"
+    },
+    {
+      "value": "~12×",
+      "label": "de trafic organique mensuel sur la durée de la mission (≈50 → ≈650)"
+    }
+  ],
+  "testimonial": {
+    "quote": "Travailler avec TDM a été une expérience exceptionnelle. Leur équipe a non seulement optimisé notre site, mais aussi amélioré sa vitesse, ce qui a bonifié l'expérience utilisateur. Nous avons constaté des résultats tangibles en matière de trafic et de génération de leads.",
+    "author": "Client industriel, marché britannique"
+  },
+  "metaTitle": "Étude de cas : SEO d'entrée sur le marché britannique | TDM",
+  "metaDescription": "Optimisation WordPress et SEO ciblé Royaume-Uni : le trafic organique d'un fabricant multiplié par environ 12 sur la durée de la mission."
+}

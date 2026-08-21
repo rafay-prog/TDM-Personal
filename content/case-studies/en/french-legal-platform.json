@@ -1,0 +1,43 @@
+{
+  "order": 1,
+  "slug": "french-legal-platform",
+  "client": "French Business Law (Petroff)",
+  "anonymous": true,
+  "publicName": "A Paris-based business-law practice",
+  "industry": "Legal services",
+  "country": "France",
+  "sector": "development",
+  "services": [
+    "Platform Design & Build",
+    "Multilingual Content",
+    "SEO & Lead Generation"
+  ],
+  "timeline": "Ongoing partnership",
+  "summary": "A full digital platform for a Paris business-law practice serving English-speaking companies in France — designed, built and grown end-to-end by TDM.",
+  "challenge": "The practice needed more than a website: a searchable knowledge platform covering French business law for foreign companies, with attorney profiles, enquiry flows and content operations — in two languages.",
+  "approach": [
+    "Designed and engineered the entire platform, including company-search infrastructure covering 26M+ French companies.",
+    "Built a bilingual EN/FR content operation that has produced 2,400+ legal articles.",
+    "Run SEO and lead generation continuously as the practice's ongoing growth partner."
+  ],
+  "results": [
+    {
+      "value": "2,400+",
+      "label": "legal articles published"
+    },
+    {
+      "value": "26M+",
+      "label": "French companies searchable on the platform"
+    },
+    {
+      "value": "20+",
+      "label": "countries clients come from"
+    },
+    {
+      "value": "EN·FR",
+      "label": "fully bilingual delivery"
+    }
+  ],
+  "metaTitle": "Case Study: Building a 2,400-Article Legal Platform for a Paris Law Practice | TDM",
+  "metaDescription": "TDM designed, built and grew a bilingual legal-services platform for a Paris business-law practice — from infrastructure to 2,400+ articles and ongoing lead generation."
+}
