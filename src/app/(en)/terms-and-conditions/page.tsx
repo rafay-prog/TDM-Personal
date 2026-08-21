@@ -4,7 +4,7 @@ import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Terms & Conditions | TDM",
-  description: "Terms and conditions for engaging TDM — The Digital Marketing Services.",
+  description: "Terms and conditions for engaging TDM: The Digital Marketing Services.",
   alternates: { canonical: "/terms-and-conditions/" },
   robots: { index: false },
 };
@@ -18,7 +18,7 @@ export default function TermsPage() {
         <Prose
           paragraphs={[
             // TODO(user): replace with reviewed legal terms before launch.
-            "These terms govern engagements with TDM — The Digital Marketing Services. A detailed statement of work, deliverables, timelines and fees is agreed in writing before every engagement begins.",
+            "These terms govern engagements with TDM: The Digital Marketing Services. A detailed statement of work, deliverables, timelines and fees is agreed in writing before every engagement begins.",
             `For any questions regarding these terms, contact ${site.email}.`,
           ]}
         />

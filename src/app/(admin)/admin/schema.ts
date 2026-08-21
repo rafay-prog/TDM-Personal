@@ -95,7 +95,7 @@ export const CASE_SHARED_FIELDS: Field[] = [
 
 /** Everything written afresh for each language. */
 export const CASE_LOCALE_FIELDS: Field[] = [
-  { name: "public_name", label: "Public name", type: "text", required: true, hint: "e.g. “A UAE fragrance retailer” — always safe to show." },
+  { name: "public_name", label: "Public name", type: "text", required: true, hint: "e.g. “A UAE fragrance retailer”, always safe to show." },
   { name: "industry", label: "Industry", type: "text", required: true },
   { name: "country", label: "Country", type: "text" },
   { name: "timeline", label: "Timeline", type: "text" },

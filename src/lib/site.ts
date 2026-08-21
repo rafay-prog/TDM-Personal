@@ -1,5 +1,5 @@
 export const site = {
-  name: "TDM — The Digital Marketing Services",
+  name: "TDM: The Digital Marketing Services",
   shortName: "TDM",
   domain: "thedigitalmarketing.services",
   url: "https://thedigitalmarketing.services",

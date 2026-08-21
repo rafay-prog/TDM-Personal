@@ -95,7 +95,7 @@ export function Footer({ locale = "en" }: { locale?: Locale }) {
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-[1.3fr_1fr_1fr_1fr]">
           {/* Brand column */}
           <div>
-            <Image src={asset("branding/logo-white.png")} alt="TDM — The Digital Marketing Services" width={776} height={178} className="h-10 w-auto" />
+            <Image src={asset("branding/logo-white.png")} alt="TDM: The Digital Marketing Services" width={776} height={178} className="h-10 w-auto" />
             <p className="mt-5 max-w-xs text-sm leading-relaxed text-white/75">{t.footerBlurb}</p>
 
             <div className="mt-6 space-y-3 text-sm">

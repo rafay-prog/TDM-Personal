@@ -46,7 +46,7 @@ export async function SectorView({ locale, sectorSlug }: { locale: Locale; secto
         sub={s.hero.sub}
         dark
         image={sectorHeroImage[s.slug]}
-        imageAlt={`${s.name} — ${s.tagline}`}
+        imageAlt={`${s.name}: ${s.tagline}`}
       />
       <Breadcrumbs
         items={[
@@ -106,7 +106,7 @@ export async function SectorView({ locale, sectorSlug }: { locale: Locale; secto
                     <div className="relative overflow-hidden">
                       <Image
                         src={serviceImage[`${s.slug}/${sv.slug}`]}
-                        alt={`${sv.name} — ${s.name}`}
+                        alt={`${sv.name}: ${s.name}`}
                         width={SERVICE_IMAGE.width}
                         height={SERVICE_IMAGE.height}
                         sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"

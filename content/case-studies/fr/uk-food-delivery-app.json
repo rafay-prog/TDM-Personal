@@ -11,7 +11,7 @@
     "Développement d'applications mobiles",
     "Design UI/UX"
   ],
-  "summary": "Une application native Android de livraison de repas pour une startup du Yorkshire — développée avec Kotlin et Jetpack Compose.",
+  "summary": "Une application native Android de livraison de repas pour une startup du Yorkshire: développée avec Kotlin et Jetpack Compose.",
   "challenge": "Une startup régionale britannique en concurrence avec les plateformes nationales de livraison avait besoin d'une application native rapide et fiable, taillée pour les restaurants locaux.",
   "approach": [
     "Développement natif Android en Kotlin avec Jetpack Compose pour une interface moderne et réactive.",

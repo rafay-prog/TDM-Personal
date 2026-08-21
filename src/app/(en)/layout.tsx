@@ -6,7 +6,7 @@ import { site } from "@/lib/site";
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: "TDM — The Digital Marketing Services | Your In-House Marketing Agency",
+    default: "TDM: The Digital Marketing Services | Your In-House Marketing Agency",
     template: "%s",
   },
   description: site.description,

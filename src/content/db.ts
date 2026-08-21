@@ -150,7 +150,7 @@ function bridging<T>(what: string, rows: T[]): boolean {
   if (!warned) {
     warned = true;
     console.warn(
-      `[content] ${what} is empty in the database — serving /content from disk instead. ` +
+      `[content] ${what} is empty in the database: serving /content from disk instead. ` +
         `Run: node scripts/seed-content.mjs`,
     );
   }

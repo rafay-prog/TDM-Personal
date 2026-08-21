@@ -14,7 +14,7 @@ const montserrat = Montserrat({
 });
 
 export const metadata: Metadata = {
-  title: "Content admin — TDM",
+  title: "Content admin: TDM",
   robots: { index: false, follow: false },
 };
 

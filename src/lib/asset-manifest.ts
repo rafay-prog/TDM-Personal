@@ -53,6 +53,6 @@ const manifest: Record<string, string> = {
 /** Resolve a stable key like "sectors/media.webp" to its hashed public URL. */
 export function asset(key: string): string {
   const hit = manifest[key];
-  if (!hit) throw new Error(`Unknown asset "${key}" — run: node scripts/hash-assets.mjs`);
+  if (!hit) throw new Error(`Unknown asset "${key}", run: node scripts/hash-assets.mjs`);
   return hit;
 }

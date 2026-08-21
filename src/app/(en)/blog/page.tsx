@@ -6,7 +6,7 @@ import { Breadcrumbs, CtaBand, Kicker, PageHero, ShatterDefs, ShatterSurface } f
 import { Reveal } from "@/components/motion/Reveal";
 
 export const metadata: Metadata = {
-  title: "Blog — Growth Insights from TDM | TDM",
+  title: "Blog: Growth Insights from TDM | TDM",
   description:
     "Practical guides on SEO, performance marketing, e-commerce development, media production and staff augmentation from the TDM team.",
   alternates: { canonical: "/blog/" },
@@ -36,7 +36,7 @@ export default async function BlogPage() {
       <PageHero
         kicker="Blog"
         headline="What we've learned growing brands."
-        sub="Practical, no-fluff guides from the team — the same thinking we apply to client work."
+        sub="Practical, no-fluff guides from the team: the same thinking we apply to client work."
         dark
       />
       <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Blog", href: "/blog/" }]} />

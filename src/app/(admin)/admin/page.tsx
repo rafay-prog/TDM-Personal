@@ -354,7 +354,7 @@ export default function AdminPage() {
                   >
                     <span className="block truncate font-semibold">{String(r.title ?? r.public_name ?? slug)}</span>
                     <span className={`block truncate text-xs ${selected === slug ? "text-white/60" : "text-ink/45"}`}>
-                      {String(r.sort_order ?? "—")} · {slug}
+                      {String(r.sort_order ?? "-")} · {slug}
                     </span>
                   </button>
                 </li>

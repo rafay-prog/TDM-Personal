@@ -80,14 +80,14 @@ export const ui: Record<Locale, UiStrings> = {
     servicesKicker: "What we do",
     servicesTitle: "Every service, under one roof.",
     servicesSub:
-      "Media, marketing, engineering and staffing — the whole stack, run by one team that already knows your account.",
+      "Media, marketing, engineering and staffing: the whole stack, run by one team that already knows your account.",
     featuredKicker: "Trusted by",
     featuredTitle: "Brands that put their growth in our hands.",
     backToTop: "Back to top",
     company: "Company",
     globalPresence: "Global Presence",
     footerBlurb:
-      "Your in-house marketing agency. Media, marketing, development and staff augmentation — delivered worldwide in English, French and Arabic.",
+      "Your in-house marketing agency. Media, marketing, development and staff augmentation: delivered worldwide in English, French and Arabic.",
     ourClients: "Our clients",
     clientFeedback: "Client feedback",
     whatOurClientsSay: "What our clients say",
@@ -115,7 +115,7 @@ export const ui: Record<Locale, UiStrings> = {
       message: "Tell us about your project",
       send: "Send message",
       sending: "Sending…",
-      thanksTitle: "Thank you — we got your message.",
+      thanksTitle: "Thank you: we got your message.",
       thanksBody: "Our team will get back to you within one business day.",
       error: "Something went wrong. Please email us directly at",
       options: [
@@ -137,7 +137,7 @@ export const ui: Record<Locale, UiStrings> = {
         },
         {
           title: "Strategy",
-          desc: "A concrete plan with targets, channels, budgets and timelines — agreed before we spend a dirham.",
+          desc: "A concrete plan with targets, channels, budgets and timelines: agreed before we spend a dirham.",
         },
         {
           title: "Execution",
@@ -145,7 +145,7 @@ export const ui: Record<Locale, UiStrings> = {
         },
         {
           title: "Scale",
-          desc: "What works gets more budget, more content and more markets — in EN, FR and AR.",
+          desc: "What works gets more budget, more content and more markets: in EN, FR and AR.",
         },
       ],
     },
@@ -166,14 +166,14 @@ export const ui: Record<Locale, UiStrings> = {
     servicesKicker: "Ce que nous faisons",
     servicesTitle: "Tous les services, sous un même toit.",
     servicesSub:
-      "Média, marketing, ingénierie et renfort d’équipes — toute la chaîne, pilotée par une équipe qui connaît déjà votre compte.",
+      "Média, marketing, ingénierie et renfort d’équipes: toute la chaîne, pilotée par une équipe qui connaît déjà votre compte.",
     featuredKicker: "Ils nous font confiance",
     featuredTitle: "Des marques qui nous confient leur croissance.",
     backToTop: "Haut de page",
     company: "Entreprise",
     globalPresence: "Présence mondiale",
     footerBlurb:
-      "Votre agence marketing intégrée. Média, marketing, développement et renfort d'équipes — partout dans le monde, en anglais, français et arabe.",
+      "Votre agence marketing intégrée. Média, marketing, développement et renfort d'équipes: partout dans le monde, en anglais, français et arabe.",
     ourClients: "Nos clients",
     clientFeedback: "Témoignages",
     whatOurClientsSay: "Ce que disent nos clients",
@@ -201,7 +201,7 @@ export const ui: Record<Locale, UiStrings> = {
       message: "Parlez-nous de votre projet",
       send: "Envoyer",
       sending: "Envoi…",
-      thanksTitle: "Merci — nous avons bien reçu votre message.",
+      thanksTitle: "Merci: nous avons bien reçu votre message.",
       thanksBody: "Notre équipe vous répondra sous un jour ouvré.",
       error: "Une erreur est survenue. Écrivez-nous directement à",
       options: [
@@ -223,7 +223,7 @@ export const ui: Record<Locale, UiStrings> = {
         },
         {
           title: "Stratégie",
-          desc: "Un plan concret avec objectifs, canaux, budgets et échéances — validé avant de dépenser le moindre euro.",
+          desc: "Un plan concret avec objectifs, canaux, budgets et échéances: validé avant de dépenser le moindre euro.",
         },
         {
           title: "Exécution",
@@ -231,7 +231,7 @@ export const ui: Record<Locale, UiStrings> = {
         },
         {
           title: "Passage à l'échelle",
-          desc: "Ce qui fonctionne reçoit plus de budget, plus de contenu et plus de marchés — en EN, FR et AR.",
+          desc: "Ce qui fonctionne reçoit plus de budget, plus de contenu et plus de marchés: en EN, FR et AR.",
         },
       ],
     },
@@ -253,14 +253,14 @@ export const ui: Record<Locale, UiStrings> = {
     servicesKicker: "ماذا نقدم",
     servicesTitle: "كل الخدمات تحت سقف واحد.",
     servicesSub:
-      "ميديا وتسويق وهندسة وتعزيز فرق العمل — المنظومة كاملة، يديرها فريق واحد يعرف حسابك مسبقًا.",
+      "ميديا وتسويق وهندسة وتعزيز فرق العمل: المنظومة كاملة، يديرها فريق واحد يعرف حسابك مسبقًا.",
     featuredKicker: "يثقون بنا",
     featuredTitle: "علامات وضعت نموها بين أيدينا.",
     backToTop: "العودة إلى الأعلى",
     company: "الشركة",
     globalPresence: "حضورنا العالمي",
     footerBlurb:
-      "وكالة التسويق الداخلية لعلامتك. ميديا وتسويق وتطوير وتعزيز فرق العمل — نخدم العالم بالإنجليزية والفرنسية والعربية.",
+      "وكالة التسويق الداخلية لعلامتك. ميديا وتسويق وتطوير وتعزيز فرق العمل: نخدم العالم بالإنجليزية والفرنسية والعربية.",
     ourClients: "عملاؤنا",
     clientFeedback: "آراء العملاء",
     whatOurClientsSay: "ماذا يقول عملاؤنا",
@@ -288,7 +288,7 @@ export const ui: Record<Locale, UiStrings> = {
       message: "أخبرنا عن مشروعك",
       send: "إرسال الرسالة",
       sending: "جارٍ الإرسال…",
-      thanksTitle: "شكرًا لك — وصلتنا رسالتك.",
+      thanksTitle: "شكرًا لك: وصلتنا رسالتك.",
       thanksBody: "سيتواصل معك فريقنا خلال يوم عمل واحد.",
       error: "حدث خطأ ما. راسلنا مباشرة على",
       options: [
@@ -310,7 +310,7 @@ export const ui: Record<Locale, UiStrings> = {
         },
         {
           title: "الاستراتيجية",
-          desc: "خطة واضحة بأهداف وقنوات وميزانيات وجداول زمنية — نتفق عليها قبل إنفاق أي درهم.",
+          desc: "خطة واضحة بأهداف وقنوات وميزانيات وجداول زمنية: نتفق عليها قبل إنفاق أي درهم.",
         },
         {
           title: "التنفيذ",
@@ -318,7 +318,7 @@ export const ui: Record<Locale, UiStrings> = {
         },
         {
           title: "التوسع",
-          desc: "ما ينجح يحصل على ميزانية أكبر ومحتوى أكثر وأسواق جديدة — بالإنجليزية والفرنسية والعربية.",
+          desc: "ما ينجح يحصل على ميزانية أكبر ومحتوى أكثر وأسواق جديدة: بالإنجليزية والفرنسية والعربية.",
         },
       ],
     },

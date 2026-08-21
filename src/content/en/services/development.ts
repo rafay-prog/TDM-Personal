@@ -7,23 +7,23 @@ export const developmentServices: Service[] = [
     name: "WordPress Development",
     navLabel: "WordPress",
     shortDesc:
-      "Custom WordPress and WooCommerce sites built for speed, SEO and easy content management — from corporate sites to content platforms with thousands of pages.",
+      "Custom WordPress and WooCommerce sites built for speed, SEO and easy content management: from corporate sites to content platforms with thousands of pages.",
     metaTitle: "WordPress Development Services | TDM",
     metaDescription:
-      "TDM builds custom WordPress and WooCommerce websites — fast, secure, SEO-optimized and easy to manage. Corporate sites, content platforms and online stores.",
+      "TDM builds custom WordPress and WooCommerce websites: fast, secure, SEO-optimized and easy to manage. Corporate sites, content platforms and online stores.",
     hero: {
       headline: "WordPress sites built to rank, load fast and grow.",
-      sub: "Custom themes, WooCommerce stores and content platforms — engineered by TDM with clean code, tight security and SEO baked in from the first commit.",
+      sub: "Custom themes, WooCommerce stores and content platforms: engineered by TDM with clean code, tight security and SEO baked in from the first commit.",
     },
     intro: [
-      "TDM's WordPress development service designs and builds custom WordPress websites for businesses that need a fast, secure, easy-to-manage site — corporate websites, service businesses, content publishers and WooCommerce stores. Every site we ship is SEO-optimized, secure and scalable, built on a custom theme rather than a bloated template.",
-      "WordPress powers a huge share of the web precisely because it can do almost anything — which is also why so many WordPress sites end up slow, hacked or impossible to edit. We build the opposite: lean custom themes, only the plugins a site actually needs, hardened security, and an admin experience your team can use without calling a developer.",
-      "We have used WordPress to ship everything from brochure sites for Dubai service companies to a bilingual legal-content platform with 2,400+ articles serving clients in more than 20 countries. Because TDM also runs SEO and paid campaigns, our builds are structured for marketing from day one — clean URLs, fast Core Web Vitals, schema markup and analytics wired in before launch.",
+      "TDM's WordPress development service designs and builds custom WordPress websites for businesses that need a fast, secure, easy-to-manage site: corporate websites, service businesses, content publishers and WooCommerce stores. Every site we ship is SEO-optimized, secure and scalable, built on a custom theme rather than a bloated template.",
+      "WordPress powers a huge share of the web precisely because it can do almost anything, which is also why so many WordPress sites end up slow, hacked or impossible to edit. We build the opposite: lean custom themes, only the plugins a site actually needs, hardened security, and an admin experience your team can use without calling a developer.",
+      "We have used WordPress to ship everything from brochure sites for Dubai service companies to a bilingual legal-content platform with 2,400+ articles serving clients in more than 20 countries. Because TDM also runs SEO and paid campaigns, our builds are structured for marketing from day one: clean URLs, fast Core Web Vitals, schema markup and analytics wired in before launch.",
     ],
     features: [
       {
         title: "Custom theme development",
-        desc: "Hand-built themes designed around your brand and content — no page-builder bloat, no template lock-in, and load times that off-the-shelf themes can't match.",
+        desc: "Hand-built themes designed around your brand and content: no page-builder bloat, no template lock-in, and load times that off-the-shelf themes can't match.",
       },
       {
         title: "WooCommerce stores",
@@ -31,11 +31,11 @@ export const developmentServices: Service[] = [
       },
       {
         title: "Content platforms at scale",
-        desc: "Architecture for sites with hundreds or thousands of pages — custom post types, taxonomies, multilingual setups and editorial workflows that keep large libraries manageable.",
+        desc: "Architecture for sites with hundreds or thousands of pages: custom post types, taxonomies, multilingual setups and editorial workflows that keep large libraries manageable.",
       },
       {
         title: "SEO-first engineering",
-        desc: "Semantic markup, schema, clean URL structures, image optimization and Core Web Vitals tuning built into the theme itself — not bolted on with plugins afterwards.",
+        desc: "Semantic markup, schema, clean URL structures, image optimization and Core Web Vitals tuning built into the theme itself: not bolted on with plugins afterwards.",
       },
       {
         title: "Security hardening & maintenance",
@@ -75,7 +75,7 @@ export const developmentServices: Service[] = [
       },
       {
         q: "Can TDM handle large, content-heavy WordPress sites?",
-        a: "Yes — that's a specialty. We built and maintain a bilingual legal-services platform on this stack with more than 2,400 articles serving clients in over 20 countries. Custom post types, structured taxonomies and a tuned hosting setup keep sites that size fast and manageable.",
+        a: "Yes, that's a specialty. We built and maintain a bilingual legal-services platform on this stack with more than 2,400 articles serving clients in over 20 countries. Custom post types, structured taxonomies and a tuned hosting setup keep sites that size fast and manageable.",
       },
       {
         q: "Will my WordPress site be SEO-friendly?",
@@ -106,23 +106,23 @@ export const developmentServices: Service[] = [
     name: "Shopify Development",
     navLabel: "Shopify",
     shortDesc:
-      "Shopify and Shopify Plus stores designed and built to convert — custom themes, app integrations, and migrations handled without losing sales or rankings.",
+      "Shopify and Shopify Plus stores designed and built to convert: custom themes, app integrations, and migrations handled without losing sales or rankings.",
     metaTitle: "Shopify Development Services | TDM",
     metaDescription:
-      "TDM designs and builds Shopify stores that convert — custom themes, app integrations, migrations and CRO. One client grew online sales 70% after relaunch.",
+      "TDM designs and builds Shopify stores that convert: custom themes, app integrations, migrations and CRO. One client grew online sales 70% after relaunch.",
     hero: {
       headline: "Shopify stores engineered to sell.",
-      sub: "Custom theme design, conversion-focused build-outs and clean migrations — from the agency that also runs the ads and SEO that fill your store with buyers.",
+      sub: "Custom theme design, conversion-focused build-outs and clean migrations: from the agency that also runs the ads and SEO that fill your store with buyers.",
     },
     intro: [
-      "TDM's Shopify development service builds and relaunches Shopify stores for brands that want an online store that actually converts — direct-to-consumer brands, retailers moving online, and merchants outgrowing their current setup. As with everything TDM ships, each store is SEO-optimized, secure and scalable from day one.",
+      "TDM's Shopify development service builds and relaunches Shopify stores for brands that want an online store that actually converts: direct-to-consumer brands, retailers moving online, and merchants outgrowing their current setup. As with everything TDM ships, each store is SEO-optimized, secure and scalable from day one.",
       "Shopify handles hosting, checkout and PCI compliance, so the difference between an average store and a great one comes down to what's built on top: theme speed, product page persuasion, navigation, and the app stack. We design custom themes around your catalog and customer, integrate the tools you need, and cut the ones silently slowing your store down.",
-      "The results are measurable. After we rebuilt and relaunched one retailer's store, their online sales grew 70%. Because our developers sit next to our performance-marketing and SEO teams, every build decision — from collection structure to page speed — is made with traffic and conversion in mind, not just aesthetics.",
+      "The results are measurable. After we rebuilt and relaunched one retailer's store, their online sales grew 70%. Because our developers sit next to our performance-marketing and SEO teams, every build decision (from collection structure to page speed) is made with traffic and conversion in mind, not just aesthetics.",
     ],
     features: [
       {
         title: "Custom Shopify theme design & build",
-        desc: "Bespoke storefronts built on Shopify's Online Store 2.0 architecture — fast, on-brand and structured around how your customers actually shop.",
+        desc: "Bespoke storefronts built on Shopify's Online Store 2.0 architecture: fast, on-brand and structured around how your customers actually shop.",
       },
       {
         title: "Conversion-focused product & checkout flows",
@@ -130,7 +130,7 @@ export const developmentServices: Service[] = [
       },
       {
         title: "App integration & custom functionality",
-        desc: "Reviews, subscriptions, loyalty, bundles, ERP and shipping integrations — implemented cleanly, with the app stack audited so it never drags down page speed.",
+        desc: "Reviews, subscriptions, loyalty, bundles, ERP and shipping integrations: implemented cleanly, with the app stack audited so it never drags down page speed.",
       },
       {
         title: "Platform migrations",
@@ -138,11 +138,11 @@ export const developmentServices: Service[] = [
       },
       {
         title: "SEO & speed optimization",
-        desc: "Structured data, collection and product SEO architecture, image optimization and Core Web Vitals tuning — built in, because TDM's SEO team holds our builds to its own standards.",
+        desc: "Structured data, collection and product SEO architecture, image optimization and Core Web Vitals tuning: built in, because TDM's SEO team holds our builds to its own standards.",
       },
       {
         title: "Localization & regional payments",
-        desc: "Multi-currency, multi-language storefronts and regional payment options — including installment providers popular in Gulf markets — for brands selling across borders.",
+        desc: "Multi-currency, multi-language storefronts and regional payment options (including installment providers popular in Gulf markets) for brands selling across borders.",
       },
     ],
     process: [
@@ -152,7 +152,7 @@ export const developmentServices: Service[] = [
       },
       {
         title: "Design & Prototyping",
-        desc: "High-fidelity designs of your key templates — home, collection, product, cart — so you see and approve the store before a line of theme code is written.",
+        desc: "High-fidelity designs of your key templates (home, collection, product, cart) so you see and approve the store before a line of theme code is written.",
       },
       {
         title: "Development",
@@ -160,7 +160,7 @@ export const developmentServices: Service[] = [
       },
       {
         title: "Testing & QA",
-        desc: "Full purchase-path testing on real devices — browsing, search, cart, discount codes, checkout and transactional emails — plus speed and SEO checks.",
+        desc: "Full purchase-path testing on real devices (browsing, search, cart, discount codes, checkout and transactional emails) plus speed and SEO checks.",
       },
       {
         title: "Deployment & Support",
@@ -170,11 +170,11 @@ export const developmentServices: Service[] = [
     faqs: [
       {
         q: "Should I use a Shopify theme or a custom-built store?",
-        a: "It depends on stage. For a new brand validating demand, a well-configured premium theme is often the right call — and we do that too. Once you have steady traffic, a custom theme pays for itself through better speed and conversion. We'll tell you honestly which side of that line you're on.",
+        a: "It depends on stage. For a new brand validating demand, a well-configured premium theme is often the right call, and we do that too. Once you have steady traffic, a custom theme pays for itself through better speed and conversion. We'll tell you honestly which side of that line you're on.",
       },
       {
         q: "What results can a Shopify rebuild actually deliver?",
-        a: "One retailer we work with saw online sales grow 70% after we relaunched their store — same products, same brand, but a faster site, clearer navigation and product pages built to convert. Results vary by starting point, which is why every project begins with an audit of your current store's data.",
+        a: "One retailer we work with saw online sales grow 70% after we relaunched their store: same products, same brand, but a faster site, clearer navigation and product pages built to convert. Results vary by starting point, which is why every project begins with an audit of your current store's data.",
       },
       {
         q: "Can TDM migrate my store to Shopify without losing SEO?",
@@ -186,11 +186,11 @@ export const developmentServices: Service[] = [
       },
       {
         q: "Can you also market the store after launch?",
-        a: "That's TDM's core advantage. The same agency that builds your store can run its SEO, Google and Meta ads, email flows and social content. Our marketing team has delivered results like 16x organic traffic growth and sustained 10x ROAS for e-commerce clients — and stores we build are engineered for those campaigns from the start.",
+        a: "That's TDM's core advantage. The same agency that builds your store can run its SEO, Google and Meta ads, email flows and social content. Our marketing team has delivered results like 16x organic traffic growth and sustained 10x ROAS for e-commerce clients, and stores we build are engineered for those campaigns from the start.",
       },
       {
         q: "How much does a Shopify store cost to build?",
-        a: "A theme-based setup starts at a few thousand dollars; fully custom builds and Plus projects scale with complexity. After a discovery call we provide a fixed, itemized quote — no open-ended hourly billing, and no surprise line items at launch.",
+        a: "A theme-based setup starts at a few thousand dollars; fully custom builds and Plus projects scale with complexity. After a discovery call we provide a fixed, itemized quote: no open-ended hourly billing, and no surprise line items at launch.",
       },
     ],
     relatedCaseStudies: [
@@ -205,23 +205,23 @@ export const developmentServices: Service[] = [
     name: "Magento Development",
     navLabel: "Magento",
     shortDesc:
-      "Magento (Adobe Commerce) development for complex catalogs and B2B commerce — custom modules, integrations, performance tuning and version upgrades.",
+      "Magento (Adobe Commerce) development for complex catalogs and B2B commerce: custom modules, integrations, performance tuning and version upgrades.",
     metaTitle: "Magento Development Services | TDM",
     metaDescription:
-      "TDM builds and maintains Magento / Adobe Commerce stores — custom modules, ERP integrations, performance optimization, upgrades and migrations.",
+      "TDM builds and maintains Magento / Adobe Commerce stores: custom modules, ERP integrations, performance optimization, upgrades and migrations.",
     hero: {
       headline: "Magento development for serious commerce.",
-      sub: "Complex catalogs, B2B pricing, multi-store setups and deep integrations — engineered by TDM to stay fast, secure and maintainable.",
+      sub: "Complex catalogs, B2B pricing, multi-store setups and deep integrations: engineered by TDM to stay fast, secure and maintainable.",
     },
     intro: [
-      "TDM's Magento development service builds, extends and maintains Magento Open Source and Adobe Commerce stores for merchants whose requirements outgrow simpler platforms — large or complex catalogs, B2B price lists, multi-store and multi-currency operations, and deep ERP or warehouse integrations. Like every TDM build, each store is SEO-optimized, secure and scalable.",
-      "Magento's power is also its risk: in inexperienced hands it becomes slow, fragile and expensive to change. Our engineers work with Magento the way it's meant to be used — proper module development instead of core hacks, sensible extension choices, and a caching and hosting architecture tuned for the platform — so your store stays fast as the catalog and traffic grow.",
+      "TDM's Magento development service builds, extends and maintains Magento Open Source and Adobe Commerce stores for merchants whose requirements outgrow simpler platforms: large or complex catalogs, B2B price lists, multi-store and multi-currency operations, and deep ERP or warehouse integrations. Like every TDM build, each store is SEO-optimized, secure and scalable.",
+      "Magento's power is also its risk: in inexperienced hands it becomes slow, fragile and expensive to change. Our engineers work with Magento the way it's meant to be used (proper module development instead of core hacks, sensible extension choices, and a caching and hosting architecture tuned for the platform) so your store stays fast as the catalog and traffic grow.",
       "We also rescue existing Magento stores: performance audits, security patching, upgrades from end-of-life versions, and full re-platforms when Magento is genuinely the wrong fit. Because we build on Shopify, WordPress and custom stacks too, our recommendation is based on your business, not on the only platform we know.",
     ],
     features: [
       {
         title: "Custom module development",
-        desc: "Bespoke Magento modules built to platform standards — custom pricing logic, checkout steps, product types and admin tooling that survive upgrades.",
+        desc: "Bespoke Magento modules built to platform standards: custom pricing logic, checkout steps, product types and admin tooling that survive upgrades.",
       },
       {
         title: "B2B & complex catalog builds",
@@ -237,7 +237,7 @@ export const developmentServices: Service[] = [
       },
       {
         title: "Upgrades, patches & security",
-        desc: "Version upgrades from end-of-life releases, timely security patching and hardening — keeping your store compliant, supported and safe.",
+        desc: "Version upgrades from end-of-life releases, timely security patching and hardening: keeping your store compliant, supported and safe.",
       },
       {
         title: "Multi-store & international setups",
@@ -247,7 +247,7 @@ export const developmentServices: Service[] = [
     process: [
       {
         title: "Discovery & Planning",
-        desc: "We audit your catalog complexity, integrations, traffic and business rules to scope the right Magento architecture — or advise a different platform if it fits better.",
+        desc: "We audit your catalog complexity, integrations, traffic and business rules to scope the right Magento architecture, or advise a different platform if it fits better.",
       },
       {
         title: "Design & Prototyping",
@@ -269,19 +269,19 @@ export const developmentServices: Service[] = [
     faqs: [
       {
         q: "Is Magento the right platform for my store?",
-        a: "Magento earns its complexity when you have a large or highly configurable catalog, B2B pricing rules, multiple storefronts or deep back-office integrations. If your requirements are simpler, Shopify or WooCommerce will be cheaper to run — and since TDM builds on all of these platforms, we'll recommend what fits rather than what we happen to sell.",
+        a: "Magento earns its complexity when you have a large or highly configurable catalog, B2B pricing rules, multiple storefronts or deep back-office integrations. If your requirements are simpler, Shopify or WooCommerce will be cheaper to run, and since TDM builds on all of these platforms, we'll recommend what fits rather than what we happen to sell.",
       },
       {
         q: "My Magento store is slow. Can you fix it?",
-        a: "Usually, yes — and without a rebuild. Most slow Magento stores suffer from misconfigured caching, poorly coded third-party extensions or undersized hosting. We run a performance audit, fix the highest-impact issues first, and give you before/after numbers on page speed and Core Web Vitals.",
+        a: "Usually, yes, and without a rebuild. Most slow Magento stores suffer from misconfigured caching, poorly coded third-party extensions or undersized hosting. We run a performance audit, fix the highest-impact issues first, and give you before/after numbers on page speed and Core Web Vitals.",
       },
       {
         q: "We're on an old Magento version. What are our options?",
-        a: "Running an end-of-life version means no security patches, which is a real commercial risk. We handle upgrades to current Magento releases, including extension compatibility and theme migration. Where an upgrade doesn't make business sense, we plan and execute a re-platform to Shopify or a custom stack — with SEO preserved through full redirect mapping.",
+        a: "Running an end-of-life version means no security patches, which is a real commercial risk. We handle upgrades to current Magento releases, including extension compatibility and theme migration. Where an upgrade doesn't make business sense, we plan and execute a re-platform to Shopify or a custom stack: with SEO preserved through full redirect mapping.",
       },
       {
         q: "Can Magento connect to our ERP or warehouse system?",
-        a: "Yes — that's one of the main reasons merchants choose it. We build integrations that sync stock, pricing, orders and customer data both ways, whether through native APIs, middleware or custom connectors. We've delivered similar operational integrations across our CRM/ERP practice as well.",
+        a: "Yes, that's one of the main reasons merchants choose it. We build integrations that sync stock, pricing, orders and customer data both ways, whether through native APIs, middleware or custom connectors. We've delivered similar operational integrations across our CRM/ERP practice as well.",
       },
       {
         q: "Do you provide ongoing Magento support?",
@@ -299,23 +299,23 @@ export const developmentServices: Service[] = [
     name: "Custom Web Development",
     navLabel: "Custom Development",
     shortDesc:
-      "Custom platforms and web applications in Next.js, Laravel and other modern stacks — for products and workflows no off-the-shelf platform can handle.",
-    metaTitle: "Custom Web Development — Next.js & Laravel | TDM",
+      "Custom platforms and web applications in Next.js, Laravel and other modern stacks: for products and workflows no off-the-shelf platform can handle.",
+    metaTitle: "Custom Web Development: Next.js & Laravel | TDM",
     metaDescription:
-      "TDM builds custom web platforms and applications with Next.js, Laravel and modern stacks — secure, scalable, SEO-ready software designed around your business.",
+      "TDM builds custom web platforms and applications with Next.js, Laravel and modern stacks: secure, scalable, SEO-ready software designed around your business.",
     hero: {
       headline: "Custom software for businesses that outgrow templates.",
-      sub: "Web platforms, portals and applications built with Next.js, Laravel and other modern stacks — architected by TDM to scale with your business, not against it.",
+      sub: "Web platforms, portals and applications built with Next.js, Laravel and other modern stacks: architected by TDM to scale with your business, not against it.",
     },
     intro: [
-      "TDM's custom development service designs and builds web platforms and applications from scratch — for businesses whose product, workflow or scale doesn't fit any off-the-shelf platform. Marketplaces, booking systems, client portals, content platforms and internal tools: if you can define it, our engineers can architect and build it, SEO-optimized, secure and scalable from the first release.",
-      "We work in modern, proven stacks — Next.js and React on the frontend, Laravel and Node.js on the backend, with the databases, APIs and cloud infrastructure each project calls for. We also build on PrestaShop and other established platforms when a hybrid approach gets you to market faster. The stack is chosen for your requirements and your future hiring pool, never for our convenience.",
+      "TDM's custom development service designs and builds web platforms and applications from scratch: for businesses whose product, workflow or scale doesn't fit any off-the-shelf platform. Marketplaces, booking systems, client portals, content platforms and internal tools: if you can define it, our engineers can architect and build it, SEO-optimized, secure and scalable from the first release.",
+      "We work in modern, proven stacks: Next.js and React on the frontend, Laravel and Node.js on the backend, with the databases, APIs and cloud infrastructure each project calls for. We also build on PrestaShop and other established platforms when a hybrid approach gets you to market faster. The stack is chosen for your requirements and your future hiring pool, never for our convenience.",
       "This is the practice behind some of our most ambitious work, including a bilingual legal-services platform with more than 2,400 structured articles serving clients in 20+ countries, and custom booking and portal systems for real-estate and service businesses. Custom doesn't have to mean risky: our five-step process keeps scope, budget and timeline visible at every stage.",
     ],
     features: [
       {
         title: "Next.js & React applications",
-        desc: "Fast, SEO-friendly frontends with server-side rendering and modern React — the same stack this website runs on — for platforms where speed and search visibility both matter.",
+        desc: "Fast, SEO-friendly frontends with server-side rendering and modern React (the same stack this website runs on) for platforms where speed and search visibility both matter.",
       },
       {
         title: "Laravel & API backend development",
@@ -323,7 +323,7 @@ export const developmentServices: Service[] = [
       },
       {
         title: "Portals, marketplaces & booking systems",
-        desc: "Multi-sided platforms with user dashboards, listings, search, scheduling, payments and messaging — the product categories templates can't reach.",
+        desc: "Multi-sided platforms with user dashboards, listings, search, scheduling, payments and messaging: the product categories templates can't reach.",
       },
       {
         title: "Third-party integrations",
@@ -331,7 +331,7 @@ export const developmentServices: Service[] = [
       },
       {
         title: "Platform-plus-custom builds",
-        desc: "When it's smarter than starting from zero, we extend WordPress, PrestaShop or Shopify with custom modules — platform economics with custom capability.",
+        desc: "When it's smarter than starting from zero, we extend WordPress, PrestaShop or Shopify with custom modules: platform economics with custom capability.",
       },
       {
         title: "Scalable, secure architecture",
@@ -349,7 +349,7 @@ export const developmentServices: Service[] = [
       },
       {
         title: "Development",
-        desc: "Iterative development in short cycles with staging previews, so you see working software early and steer it — no six-month silence before a big reveal.",
+        desc: "Iterative development in short cycles with staging previews, so you see working software early and steer it: no six-month silence before a big reveal.",
       },
       {
         title: "Testing & QA",
@@ -363,11 +363,11 @@ export const developmentServices: Service[] = [
     faqs: [
       {
         q: "When does custom development make more sense than Shopify or WordPress?",
-        a: "When the platform starts fighting you: workflows that plugins can't model, unique business logic, multi-sided marketplaces, or performance and scale needs a template stack can't meet. If a platform genuinely fits, we'll say so — TDM builds on Shopify, WordPress, Magento and PrestaShop too, so we have no incentive to oversell custom work.",
+        a: "When the platform starts fighting you: workflows that plugins can't model, unique business logic, multi-sided marketplaces, or performance and scale needs a template stack can't meet. If a platform genuinely fits, we'll say so: TDM builds on Shopify, WordPress, Magento and PrestaShop too, so we have no incentive to oversell custom work.",
       },
       {
         q: "What technologies does TDM use for custom builds?",
-        a: "Primarily Next.js and React on the frontend and Laravel or Node.js on the backend, with PostgreSQL or MySQL and modern cloud hosting. We choose per project based on requirements, integrations and who will maintain the system long-term — and we document our choices so you're never locked in.",
+        a: "Primarily Next.js and React on the frontend and Laravel or Node.js on the backend, with PostgreSQL or MySQL and modern cloud hosting. We choose per project based on requirements, integrations and who will maintain the system long-term, and we document our choices so you're never locked in.",
       },
       {
         q: "How do you keep custom projects on budget and on time?",
@@ -375,15 +375,15 @@ export const developmentServices: Service[] = [
       },
       {
         q: "Who owns the code when the project is done?",
-        a: "You do. On final payment you receive the full source code, repository access, infrastructure credentials and documentation. Any developer can pick up the project — though most clients keep TDM on for continued development because we know the system best.",
+        a: "You do. On final payment you receive the full source code, repository access, infrastructure credentials and documentation. Any developer can pick up the project: though most clients keep TDM on for continued development because we know the system best.",
       },
       {
         q: "Can you take over a half-built or legacy custom project?",
-        a: "Yes, and we do it often. We start with a code and infrastructure audit, give you an honest report on what's salvageable, then either stabilize and continue the existing codebase or plan a phased rebuild — whichever costs less over the life of the product.",
+        a: "Yes, and we do it often. We start with a code and infrastructure audit, give you an honest report on what's salvageable, then either stabilize and continue the existing codebase or plan a phased rebuild: whichever costs less over the life of the product.",
       },
       {
         q: "Will a custom platform be SEO-friendly?",
-        a: "Yes — this is a place custom builds can beat platforms. With Next.js server-side rendering we control markup, speed, structured data and URL architecture completely. Every platform TDM ships is built to the same SEO standards our own search team audits against.",
+        a: "Yes: this is a place custom builds can beat platforms. With Next.js server-side rendering we control markup, speed, structured data and URL architecture completely. Every platform TDM ships is built to the same SEO standards our own search team audits against.",
       },
     ],
     relatedCaseStudies: [
@@ -398,27 +398,27 @@ export const developmentServices: Service[] = [
     name: "CRM & ERP Development",
     navLabel: "CRM / ERP",
     shortDesc:
-      "Custom CRM and ERP systems — sales pipelines, inventory, HR, finance and operations modules, integrations and dashboards built around how your business actually runs.",
+      "Custom CRM and ERP systems: sales pipelines, inventory, HR, finance and operations modules, integrations and dashboards built around how your business actually runs.",
     metaTitle: "CRM & ERP Development Services | TDM",
     metaDescription:
-      "TDM builds custom CRM and ERP systems — sales, inventory, HR, finance and operations modules with integrations, dashboards and clean data migrations.",
+      "TDM builds custom CRM and ERP systems: sales, inventory, HR, finance and operations modules with integrations, dashboards and clean data migrations.",
     hero: {
       headline: "Business systems built around your business.",
-      sub: "Custom CRM and ERP software — sales, inventory, HR, finance and operations in one system, with dashboards that show you the whole company at a glance.",
+      sub: "Custom CRM and ERP software: sales, inventory, HR, finance and operations in one system, with dashboards that show you the whole company at a glance.",
     },
     intro: [
-      "TDM's CRM and ERP development service builds custom business-management systems for companies that have outgrown spreadsheets and off-the-shelf tools — a CRM shaped around your actual sales process, and ERP modules covering inventory, HR, finance and operations. It's for businesses whose workflows are their competitive edge, and who are tired of bending those workflows to fit generic software.",
-      "Off-the-shelf CRMs and ERPs charge per seat forever and still make you work their way. A custom system inverts that: it models your pipeline stages, your approval chains, your stock locations and your reporting lines exactly — with no license fees multiplying as you hire. We build only the modules you need now, on an architecture that lets the next module slot in later.",
-      "Every system ships secure, scalable and integrated: connected to your website, store, accounting tools and communication channels, with role-based access and dashboards that turn operational data into decisions. And when you're moving off legacy tools, we migrate your historical data carefully — cleaned, deduplicated and verified, not just dumped.",
+      "TDM's CRM and ERP development service builds custom business-management systems for companies that have outgrown spreadsheets and off-the-shelf tools: a CRM shaped around your actual sales process, and ERP modules covering inventory, HR, finance and operations. It's for businesses whose workflows are their competitive edge, and who are tired of bending those workflows to fit generic software.",
+      "Off-the-shelf CRMs and ERPs charge per seat forever and still make you work their way. A custom system inverts that: it models your pipeline stages, your approval chains, your stock locations and your reporting lines exactly, with no license fees multiplying as you hire. We build only the modules you need now, on an architecture that lets the next module slot in later.",
+      "Every system ships secure, scalable and integrated: connected to your website, store, accounting tools and communication channels, with role-based access and dashboards that turn operational data into decisions. And when you're moving off legacy tools, we migrate your historical data carefully: cleaned, deduplicated and verified, not just dumped.",
     ],
     features: [
       {
         title: "Custom CRM development",
-        desc: "Lead capture, pipeline stages, contact histories, task automation and follow-up workflows modeled on how your team actually sells — not on a vendor's template.",
+        desc: "Lead capture, pipeline stages, contact histories, task automation and follow-up workflows modeled on how your team actually sells: not on a vendor's template.",
       },
       {
         title: "ERP modules: inventory, HR, finance & operations",
-        desc: "Stock and warehouse management, purchasing, payroll and attendance, invoicing and expenses, and operations workflows — built as connected modules, adopted one at a time.",
+        desc: "Stock and warehouse management, purchasing, payroll and attendance, invoicing and expenses, and operations workflows: built as connected modules, adopted one at a time.",
       },
       {
         title: "Integrations with your existing tools",
@@ -426,7 +426,7 @@ export const developmentServices: Service[] = [
       },
       {
         title: "Dashboards & reporting",
-        desc: "Real-time role-based dashboards — sales performance, stock levels, cash position, team productivity — replacing the monthly spreadsheet scramble with live numbers.",
+        desc: "Real-time role-based dashboards (sales performance, stock levels, cash position, team productivity) replacing the monthly spreadsheet scramble with live numbers.",
       },
       {
         title: "Data migration from legacy systems",
@@ -434,17 +434,17 @@ export const developmentServices: Service[] = [
       },
       {
         title: "Role-based access & security",
-        desc: "Granular permissions, audit trails, encrypted data and reliable backups — so sensitive HR and finance data is exactly as visible as it should be, and no more.",
+        desc: "Granular permissions, audit trails, encrypted data and reliable backups, so sensitive HR and finance data is exactly as visible as it should be, and no more.",
       },
     ],
     process: [
       {
         title: "Discovery & Planning",
-        desc: "We sit with the people who do the work — sales, warehouse, HR, finance — to map real workflows, then define modules, data model and rollout order.",
+        desc: "We sit with the people who do the work (sales, warehouse, HR, finance) to map real workflows, then define modules, data model and rollout order.",
       },
       {
         title: "Design & Prototyping",
-        desc: "Clickable prototypes of the core screens your team will live in daily, refined with their feedback before development begins — the cheapest time to change anything.",
+        desc: "Clickable prototypes of the core screens your team will live in daily, refined with their feedback before development begins: the cheapest time to change anything.",
       },
       {
         title: "Development",
@@ -456,25 +456,25 @@ export const developmentServices: Service[] = [
       },
       {
         title: "Deployment & Support",
-        desc: "Phased rollout with training and documentation, a hypercare period after launch, and ongoing support as your processes — and the system — evolve.",
+        desc: "Phased rollout with training and documentation, a hypercare period after launch, and ongoing support as your processes (and the system) evolve.",
       },
     ],
     faqs: [
       {
         q: "Why build a custom CRM or ERP instead of buying one?",
-        a: "Buy when a standard tool covers 90% of what you do. Build when your workflows are genuinely specific — regional operations, unusual approval chains, industry quirks — or when per-seat licensing across a growing team costs more over three years than a system you own outright. We'll help you run that comparison honestly before any commitment.",
+        a: "Buy when a standard tool covers 90% of what you do. Build when your workflows are genuinely specific (regional operations, unusual approval chains, industry quirks) or when per-seat licensing across a growing team costs more over three years than a system you own outright. We'll help you run that comparison honestly before any commitment.",
       },
       {
         q: "What modules can TDM build into an ERP?",
-        a: "Inventory and warehouse management, purchasing and suppliers, sales and invoicing, HR (attendance, leave, payroll), finance and expense tracking, and operations or project workflows. Most clients start with the one or two modules causing the most pain and add others on the same platform — the architecture is designed for that from day one.",
+        a: "Inventory and warehouse management, purchasing and suppliers, sales and invoicing, HR (attendance, leave, payroll), finance and expense tracking, and operations or project workflows. Most clients start with the one or two modules causing the most pain and add others on the same platform: the architecture is designed for that from day one.",
       },
       {
         q: "Can the system integrate with our website and other software?",
-        a: "Yes — integration is usually the main reason to go custom. Website leads flow straight into the CRM, store orders update inventory in real time, invoices sync with your accounting software, and notifications reach your team by email or WhatsApp. One connected system instead of five disconnected tools.",
+        a: "Yes: integration is usually the main reason to go custom. Website leads flow straight into the CRM, store orders update inventory in real time, invoices sync with your accounting software, and notifications reach your team by email or WhatsApp. One connected system instead of five disconnected tools.",
       },
       {
         q: "How do you migrate our existing data safely?",
-        a: "We export from your current tools, map every field to the new structure, clean and deduplicate the records, and run trial migrations on staging that your team verifies against the source. Only after sign-off does the final migration run — and the legacy system stays available read-only until you're confident.",
+        a: "We export from your current tools, map every field to the new structure, clean and deduplicate the records, and run trial migrations on staging that your team verifies against the source. Only after sign-off does the final migration run, and the legacy system stays available read-only until you're confident.",
       },
       {
         q: "How long does a custom CRM or ERP project take?",
@@ -482,7 +482,7 @@ export const developmentServices: Service[] = [
       },
       {
         q: "What happens after launch?",
-        a: "You own the source code and data outright. Most clients keep TDM on a support arrangement covering maintenance, user requests and new modules — but you're never locked in, and full documentation means any competent team can take over.",
+        a: "You own the source code and data outright. Most clients keep TDM on a support arrangement covering maintenance, user requests and new modules, but you're never locked in, and full documentation means any competent team can take over.",
       },
     ],
     relatedCaseStudies: [
@@ -496,23 +496,23 @@ export const developmentServices: Service[] = [
     name: "Mobile App Development",
     navLabel: "Mobile Apps",
     shortDesc:
-      "Native iOS (Swift), native Android (Kotlin & Jetpack Compose) and cross-platform (Flutter, React Native) apps — from UX research to App Store and Play Store release.",
-    metaTitle: "Mobile App Development — iOS & Android | TDM",
+      "Native iOS (Swift), native Android (Kotlin & Jetpack Compose) and cross-platform (Flutter, React Native) apps: from UX research to App Store and Play Store release.",
+    metaTitle: "Mobile App Development: iOS & Android | TDM",
     metaDescription:
-      "TDM builds native iOS (Swift), Android (Kotlin/Jetpack Compose) and cross-platform (Flutter, React Native) apps — from UX research to store release and beyond.",
+      "TDM builds native iOS (Swift), Android (Kotlin/Jetpack Compose) and cross-platform (Flutter, React Native) apps: from UX research to store release and beyond.",
     hero: {
       headline: "Mobile apps users keep, not delete.",
-      sub: "Native iOS and Android, and cross-platform builds in Flutter and React Native — designed from UX research and shipped through the App Store and Google Play by TDM.",
+      sub: "Native iOS and Android, and cross-platform builds in Flutter and React Native: designed from UX research and shipped through the App Store and Google Play by TDM.",
     },
     intro: [
-      "TDM's mobile app development service designs and builds iOS and Android apps for startups and established businesses — native apps in Swift and Kotlin when performance and platform feel matter most, and cross-platform apps in Flutter or React Native when speed to market and budget lead. Every app we ship is user-friendly, feature-rich, secure and scalable, and we carry it all the way through App Store and Play Store release.",
-      "Our portfolio spans demanding, real-world categories: ride-hailing apps built in Swift for operators across the MENA region — with live GPS tracking, booking flows and driver-passenger coordination — and a native Kotlin and Jetpack Compose food-delivery marketplace for a UK startup, connecting diners, restaurants and delivery drivers with live order tracking.",
-      "What separates apps that get used from apps that get deleted is decided before the first line of code. That's why every project starts with UX research — user personas, journey mapping, wireframes and a design system — so by the time our engineers build, we're building something users have already validated.",
+      "TDM's mobile app development service designs and builds iOS and Android apps for startups and established businesses: native apps in Swift and Kotlin when performance and platform feel matter most, and cross-platform apps in Flutter or React Native when speed to market and budget lead. Every app we ship is user-friendly, feature-rich, secure and scalable, and we carry it all the way through App Store and Play Store release.",
+      "Our portfolio spans demanding, real-world categories: ride-hailing apps built in Swift for operators across the MENA region (with live GPS tracking, booking flows and driver-passenger coordination) and a native Kotlin and Jetpack Compose food-delivery marketplace for a UK startup, connecting diners, restaurants and delivery drivers with live order tracking.",
+      "What separates apps that get used from apps that get deleted is decided before the first line of code. That's why every project starts with UX research (user personas, journey mapping, wireframes and a design system) so by the time our engineers build, we're building something users have already validated.",
     ],
     features: [
       {
         title: "Native iOS development (Swift)",
-        desc: "High-performance iPhone and iPad apps in Swift with clean architecture, push notifications, real-time features and full App Store submission handled — the stack behind our MENA ride-hailing work.",
+        desc: "High-performance iPhone and iPad apps in Swift with clean architecture, push notifications, real-time features and full App Store submission handled: the stack behind our MENA ride-hailing work.",
       },
       {
         title: "Native Android development (Kotlin & Jetpack Compose)",
@@ -520,11 +520,11 @@ export const developmentServices: Service[] = [
       },
       {
         title: "Cross-platform apps (Flutter & React Native)",
-        desc: "One codebase serving both iOS and Android — the right economics for MVPs and content or commerce apps, without the compromised feel cross-platform used to imply.",
+        desc: "One codebase serving both iOS and Android: the right economics for MVPs and content or commerce apps, without the compromised feel cross-platform used to imply.",
       },
       {
         title: "UX research → design → build → release",
-        desc: "User personas, journey maps, wireframes, a design system and high-fidelity UI before development — then iterative builds, QA on real devices and managed store release.",
+        desc: "User personas, journey maps, wireframes, a design system and high-fidelity UI before development, then iterative builds, QA on real devices and managed store release.",
       },
       {
         title: "Backend, APIs & real-time features",
@@ -532,13 +532,13 @@ export const developmentServices: Service[] = [
       },
       {
         title: "Post-launch support & iteration",
-        desc: "Crash and analytics monitoring, OS-update compatibility, store listing optimization and a data-informed feature roadmap after release — launch is the start, not the finish.",
+        desc: "Crash and analytics monitoring, OS-update compatibility, store listing optimization and a data-informed feature roadmap after release: launch is the start, not the finish.",
       },
     ],
     process: [
       {
         title: "Discovery & Planning",
-        desc: "We define the app's core job, users and success metrics, run UX research and personas, and scope an MVP worth shipping — not a feature list that delays it.",
+        desc: "We define the app's core job, users and success metrics, run UX research and personas, and scope an MVP worth shipping: not a feature list that delays it.",
       },
       {
         title: "Design & Prototyping",
@@ -546,7 +546,7 @@ export const developmentServices: Service[] = [
       },
       {
         title: "Development",
-        desc: "Native or cross-platform builds in agile sprints — Swift, Kotlin/Jetpack Compose, Flutter or React Native — with regular test builds on your own device throughout.",
+        desc: "Native or cross-platform builds in agile sprints (Swift, Kotlin/Jetpack Compose, Flutter or React Native) with regular test builds on your own device throughout.",
       },
       {
         title: "Testing & QA",
@@ -560,7 +560,7 @@ export const developmentServices: Service[] = [
     faqs: [
       {
         q: "Should I build native or cross-platform?",
-        a: "Native (Swift for iOS, Kotlin for Android) wins when you need maximum performance, heavy device integration or a flawless platform feel — it's what we used for ride-hailing apps with live GPS tracking. Flutter or React Native wins when budget and time-to-market lead and the app is primarily content, commerce or workflow. We recommend per project, and we build both, so the advice is unbiased.",
+        a: "Native (Swift for iOS, Kotlin for Android) wins when you need maximum performance, heavy device integration or a flawless platform feel: it's what we used for ride-hailing apps with live GPS tracking. Flutter or React Native wins when budget and time-to-market lead and the app is primarily content, commerce or workflow. We recommend per project, and we build both, so the advice is unbiased.",
       },
       {
         q: "What kinds of apps has TDM built?",
@@ -568,7 +568,7 @@ export const developmentServices: Service[] = [
       },
       {
         q: "How much does a mobile app cost?",
-        a: "A focused MVP typically starts around the cost of a serious website project; apps with real-time features, payments and multi-sided users cost more. Cross-platform builds reduce cost when both stores matter from day one. After discovery you get a fixed, milestone-based quote — never an open-ended hourly estimate.",
+        a: "A focused MVP typically starts around the cost of a serious website project; apps with real-time features, payments and multi-sided users cost more. Cross-platform builds reduce cost when both stores matter from day one. After discovery you get a fixed, milestone-based quote: never an open-ended hourly estimate.",
       },
       {
         q: "How long does it take to launch an app?",

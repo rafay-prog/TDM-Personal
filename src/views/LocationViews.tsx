@@ -88,7 +88,7 @@ export function LocationView({ locale, slug }: { locale: Locale; slug: string })
           data={{
             "@context": "https://schema.org",
             "@type": "LocalBusiness",
-            name: `TDM — The Digital Marketing Services (${o.city ?? o.country})`,
+            name: `TDM: The Digital Marketing Services (${o.city ?? o.country})`,
             url: `${site.url}${localePrefix(locale)}/locations/${o.slug}/`,
             email: site.email,
             telephone: o.slug === "uk" ? site.phoneUk : site.phone,
