@@ -1,152 +1,83 @@
-# Setting up the content admin
+# The content admin
 
-The admin lives at **/admin** on the live site. The owner signs in with their
-**email address** — no GitHub account, no repository access — writes a post, and
-hits save. The change is committed to GitHub, Vercel builds from that commit,
-and it is live about a minute later.
+The admin is a page of this site, at **/admin**. It edits the JSON files under
+`/content` — blog posts and case studies — directly in your checkout.
 
-Every edit stays an ordinary commit, so anything can be reviewed or reverted
-like any other change.
+Nothing is uploaded and nothing is deployed. A save is a file change on your
+machine, exactly as if you had edited the JSON by hand, so it shows up in
+`git status` and goes live the same way everything else does: commit and push.
 
-## How the sign-in works
+## Using it
 
-A browser cannot be trusted to hold a credential that can write to your repo,
-so there is a small service in between — `admin-auth/worker.js`, a Cloudflare
-Worker:
+1. Open `/admin` — locally at <http://localhost:3000/admin>, or on the deployed
+   site once it is pushed.
+2. Click **Open project folder** and choose the repository root.
+3. Grant edit permission when the browser asks.
 
-1. The CMS opens a popup at the worker.
-2. The owner types their email. If it is on the allowlist, the worker emails a
-   six-digit code.
-3. They type the code back into the popup.
-4. The worker mints a **one-hour GitHub App token** and hands it to the CMS,
-   which uses it to commit.
+You get two collections in the header:
 
-The token expires by itself, is scoped to this one repository, and the commits
-are attributed to the app rather than to a person. Nothing is stored anywhere:
-the pending code travels as a signed challenge inside the form, so there is no
-session store to leak and nothing to clean up.
+- **Blog posts** — English only.
+- **Case studies** — English, French and Arabic, on tabs. A language with no
+  translation yet shows an amber dot, and is left untouched on save rather than
+  written blank, so you can add the translations whenever.
 
-A magic link would have been friendlier, but it cannot work — it opens in a new
-tab, and the popup that the CMS is listening to would never hear back. Hence the
-code.
+Then **Save to disk**. Afterwards, `git diff` shows exactly what changed.
 
-## What you need to set up
+### Things worth knowing
 
-Four accounts, all free, once. Roughly half an hour.
-
-### 1. GitHub App
-
-1. <https://github.com/settings/apps> → **New GitHub App**.
-   - **Name**: `TDM site admin`
-   - **Homepage URL**: your site
-   - **Webhook**: untick **Active** — this app never receives webhooks
-   - **Permissions → Repository → Contents**: **Read and write**
-     (that alone is enough; leave everything else)
-   - **Where can this app be installed**: only this account
-2. Create it, then note the **App ID**.
-3. **Generate a private key** — a `.pem` downloads. Keep it out of the repo.
-4. **Install App** → install it on **`rafay-prog/TDM-Personal` only**.
-   After installing, the URL ends in a number, e.g.
-   `/settings/installations/12345678` — that is the **Installation ID**.
-
-The private key is PKCS#1, and the Worker runtime needs PKCS#8. Convert it once:
-
-```bash
-openssl pkcs8 -topk8 -inform PEM -outform PEM -nocrypt -in your-key.pem -out key-pkcs8.pem
-```
-
-Then take the base64 body — everything between the `BEGIN`/`END` lines, newlines
-stripped — as the value for `GITHUB_PRIVATE_KEY`.
-
-### 2. Resend, to send the code
-
-1. Sign up at <https://resend.com> (free tier is ample — one email per sign-in).
-2. Verify the sending domain, or use their sandbox sender while testing.
-3. Create an API key.
-
-### 3. Deploy the worker
-
-```bash
-cd admin-auth
-npx wrangler deploy
-```
-
-Then set the secrets:
-
-```bash
-npx wrangler secret put SIGNING_SECRET          # any long random string
-npx wrangler secret put ALLOWED_EMAILS          # owner@company.com,you@example.com
-npx wrangler secret put ALLOWED_ORIGINS         # https://your-site.vercel.app
-npx wrangler secret put RESEND_API_KEY
-npx wrangler secret put MAIL_FROM               # TDM <admin@thedigitalmarketing.services>
-npx wrangler secret put GITHUB_APP_ID
-npx wrangler secret put GITHUB_INSTALLATION_ID
-npx wrangler secret put GITHUB_PRIVATE_KEY      # the PKCS#8 base64 body
-```
-
-`ALLOWED_EMAILS` is the whole access list. To let someone else publish, add
-their address; to remove them, take it out. Nobody needs a GitHub account and
-nobody gets repository access.
-
-`ALLOWED_ORIGINS` is what stops another site pointing its own admin at your
-worker and getting a token out of it. Keep it tight.
-
-### 4. Point the admin at the worker
-
-In `public/admin/config.yml`:
-
-```yaml
-backend:
-  base_url: https://tdm-admin-auth.YOUR-SUBDOMAIN.workers.dev   # no trailing slash
-```
-
-Commit and push. Open `/admin`, sign in with email, and you are in.
-
-## Checking it without deploying
-
-```bash
-node admin-auth/worker.test.mjs
-```
-
-Sixteen checks covering the origin allowlist, the email allowlist, code
-generation and expiry, the rejection paths, and — most importantly — the exact
-message shape the CMS parses. No mail is sent and GitHub is never called.
-
-## Using the admin
-
-- **Blog posts** are English only.
-- **Case studies** exist in English, French and Arabic, shown side by side. You
-  can save with translations empty and fill them in later.
 - **Order** decides sequence. Case study `0` is featured on the home page and
   heads the case-studies index; blog `order` decides the "keep reading" set at
-  the foot of a post.
-- **Anonymous** on a case study is a safety switch: while it is on, only the
-  public name is rendered and the real client name never reaches the page. Leave
-  it on until the client has approved being named.
-- Saving creates a **pull request**. Nothing reaches the live site until
-  **Publish** is pressed in the admin.
+  the foot of a post. The blog index itself sorts by date.
+- **Shared fields on a case study** — order, slug, sector, anonymous, and the
+  real client name — are written into all three language files at once, so the
+  translations cannot drift apart on the things that must match.
+- **Anonymous** is a safety switch. While it is on, only the public name is
+  rendered and the real client name never reaches the page. Leave it on until
+  the client has approved being named.
+- **Renaming a slug** moves the file. The old one is deleted, so a post is never
+  published twice under two names — but any existing links to the old URL break,
+  so avoid it once something is live.
+- Required fields are checked on save, and only **English** is required for a
+  case study.
 
-## Editing locally, with no sign-in at all
+### Browser support
 
-The admin's **Work with Local Repository** button opens the content straight
-from a folder on your machine — no token, no worker, no internet. Good for
-drafting, and the only sensible way to try the editor on `localhost`, because
-the CMS reports `cms.netlify.com` as its site id there, which the worker will
-correctly refuse.
+The admin writes to local files through the File System Access API, which only
+Chromium browsers have: **Chrome and Edge**. Firefox and Safari show a notice
+instead. This is the main reason it is a developer tool for now.
 
-## If a build fails after publishing
+## Publishing
 
-Content is typed on the way in, so a missing required field fails the Vercel
-build rather than shipping a broken page — and the previous version stays live
-in the meantime. The deploy log names the file. Fix it in the admin and save
-again.
+```bash
+git add content
+git commit -m "Add <post>"
+git push
+```
 
-## If sign-in stops working
+Vercel builds from the push, and the change is live about a minute later.
 
-- **"Not configured"** — the site's origin is not in `ALLOWED_ORIGINS`.
-- **"If that address can publish…" and no email** — the address is not in
-  `ALLOWED_EMAILS`. This message is deliberately the same whether or not the
-  address is on the list, so nobody can use the form to discover who can publish.
-- **"Code accepted, but GitHub refused"** — the code was right, so the problem is
-  the App credentials: check the App ID, the Installation ID, and that the
-  private key was converted to PKCS#8.
+Content is typed on the way in, so a malformed file fails the build rather than
+shipping a broken page — and the previous version stays live in the meantime.
+The deploy log names the file.
+
+## Later: letting the owner publish without a checkout
+
+As it stands, editing needs the repository on the machine, which means you.
+When the owner should publish for themselves, the piece that makes that possible
+is already written and tested: `admin-auth/worker.js`.
+
+It is a Cloudflare Worker that signs someone in **by email** — they type their
+address, get a six-digit code, and the worker mints a one-hour GitHub App token
+so the browser can commit. The owner never needs a GitHub account and never gets
+access to the repository. Its guardrails are an origin allowlist, an email
+allowlist that cannot be used to discover who is on it, and a constant-time code
+comparison.
+
+`node admin-auth/worker.test.mjs` runs sixteen checks over it without sending
+mail or calling GitHub.
+
+Turning it on means deploying the worker, creating a GitHub App installed on
+this repository alone, converting its private key to PKCS#8, and adding a Resend
+account to send the code — then teaching the admin page to commit through the
+worker instead of writing to disk. The worker half is done; the admin half is
+not.
