@@ -4,6 +4,42 @@
 const manifest: Record<string, string> = {
   "branding/logo-white.png": "/branding/logo-white.ea67ec3c.png",
   "branding/logo.png": "/branding/logo.335108ed.png",
+  "clients/7-perfumes.png": "/clients/7-perfumes.447b6c67.png",
+  "clients/aleid.png": "/clients/aleid.674c3e45.png",
+  "clients/alla-shakra.png": "/clients/alla-shakra.23b3394b.png",
+  "clients/american-red-cross.png": "/clients/american-red-cross.f65532e9.png",
+  "clients/baby-foot.png": "/clients/baby-foot.008609a8.png",
+  "clients/by-cloud-fragrance.png": "/clients/by-cloud-fragrance.f4d5e6f5.png",
+  "clients/calvo-home.png": "/clients/calvo-home.97aac157.png",
+  "clients/cheez-wala.png": "/clients/cheez-wala.1183b7cf.png",
+  "clients/debt-collection-france.png": "/clients/debt-collection-france.718d83f9.png",
+  "clients/exotic.png": "/clients/exotic.20f35f9d.png",
+  "clients/filter-to-fork.png": "/clients/filter-to-fork.cf3864b3.png",
+  "clients/french-business-law.png": "/clients/french-business-law.8e0a2862.png",
+  "clients/french-chateau-for-sale.png": "/clients/french-chateau-for-sale.b7ca20c4.png",
+  "clients/frenchco.png": "/clients/frenchco.36cb8b85.png",
+  "clients/futuregen-labs.png": "/clients/futuregen-labs.c03a284d.png",
+  "clients/hemnet-properties.png": "/clients/hemnet-properties.69215ad3.png",
+  "clients/lj-hooker.png": "/clients/lj-hooker.802f386b.png",
+  "clients/magnify.png": "/clients/magnify.9e100921.png",
+  "clients/mark-des-vince.png": "/clients/mark-des-vince.8b19a45e.png",
+  "clients/meticulous-blinds.png": "/clients/meticulous-blinds.69a8422b.png",
+  "clients/multiwood.png": "/clients/multiwood.44a1a6d1.png",
+  "clients/nb-sons.png": "/clients/nb-sons.cde5a769.png",
+  "clients/nyc-pest-control.png": "/clients/nyc-pest-control.91244e5a.png",
+  "clients/olfactory.png": "/clients/olfactory.dcbd33c6.png",
+  "clients/petroff.png": "/clients/petroff.5b94b9c5.png",
+  "clients/portland-lux-car.png": "/clients/portland-lux-car.e89e41ef.png",
+  "clients/puissant-technologies.png": "/clients/puissant-technologies.d473d56e.png",
+  "clients/sahara-perfumes.png": "/clients/sahara-perfumes.5c9bfabd.png",
+  "clients/samsung.png": "/clients/samsung.22e9dec4.png",
+  "clients/sapphire.png": "/clients/sapphire.0f6f2914.png",
+  "clients/smartshifts.png": "/clients/smartshifts.fa5901a9.png",
+  "clients/swift-launch.png": "/clients/swift-launch.63f4213a.png",
+  "clients/tashkeel-travels.png": "/clients/tashkeel-travels.67c48ef8.png",
+  "clients/tec-gloves.png": "/clients/tec-gloves.1e4f15d9.png",
+  "clients/v-perfumes.png": "/clients/v-perfumes.2d4ab96c.png",
+  "clients/zaineb-elkhayat.png": "/clients/zaineb-elkhayat.625e6c70.png",
   "flags/ae.svg": "/flags/ae.d6dc2945.svg",
   "flags/bg.svg": "/flags/bg.4154054c.svg",
   "flags/cm.svg": "/flags/cm.83fbab09.svg",
@@ -53,6 +89,6 @@ const manifest: Record<string, string> = {
 /** Resolve a stable key like "sectors/media.webp" to its hashed public URL. */
 export function asset(key: string): string {
   const hit = manifest[key];
-  if (!hit) throw new Error(`Unknown asset "${key}", run: node scripts/hash-assets.mjs`);
+  if (!hit) throw new Error(`Unknown asset "${key}" — run: node scripts/hash-assets.mjs`);
   return hit;
 }

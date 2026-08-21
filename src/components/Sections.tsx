@@ -802,7 +802,7 @@ export function FeaturedClients({
               <div className="btn-fluid group flex h-full flex-col items-center justify-center gap-4 rounded-2xl border border-mint bg-white p-6 hover:border-fern hover:shadow-xl">
                 <div className="flex h-16 items-center justify-center">
                   <Image
-                    src={`/clients/${cl.file}`}
+                    src={cl.file}
                     alt={`${cl.name} logo`}
                     width={200}
                     height={100}
@@ -853,7 +853,7 @@ export function LogoWall({
                 {/* Most client logos are wide, so tile width — not max-height —
                     is what actually caps their size here. */}
                 <Image
-                  src={`/clients/${l.file}`}
+                  src={l.file}
                   alt={`${l.name} logo`}
                   width={240}
                   height={120}
@@ -872,7 +872,7 @@ export function LogoWall({
                 title={l.name}
               >
                 <Image
-                  src={`/clients/${l.file}`}
+                  src={l.file}
                   alt={`${l.name} logo`}
                   width={120}
                   height={60}
