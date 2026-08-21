@@ -5,6 +5,7 @@ import { href, isRtl } from "@/lib/i18n";
 import { site } from "@/lib/site";
 import { ConsultationLink } from "@/components/ConsultationLink";
 import { asset } from "@/lib/asset-manifest";
+import { partners } from "@/lib/partner-media";
 import { getContent } from "@/content";
 import { getCaseStudies } from "@/content/db";
 import { ui } from "@/content/ui";
@@ -167,15 +168,26 @@ export async function HomeView({ locale }: { locale: Locale }) {
           </div>
 
           <div
-            className="hero-enter mt-10 flex flex-wrap items-center justify-center gap-x-6 gap-y-3"
+            className="hero-enter mt-10 flex flex-wrap items-center justify-center gap-3"
             style={{ "--enter-delay": `${afterHeadline + 0.45}s` } as React.CSSProperties}
           >
-            {site.partnerBadges.map((badge) => (
-              <span key={badge} className="flex items-center gap-2 text-xs font-semibold tracking-wide text-white/55">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="text-sage" aria-hidden>
-                  <path d="M20 6 9 17l-5-5" />
-                </svg>
-                {badge}
+            {/* The badges are dark-on-transparent, so they need a light chip to
+                read against the forest. Kept smaller and flatter than the
+                footer's cards — this sits directly under the CTAs and should
+                not compete with them. */}
+            {partners.map((partner) => (
+              <span
+                key={partner.name}
+                title={partner.name}
+                className="flex h-9 items-center justify-center rounded-xl bg-white/90 px-3 shadow-sm backdrop-blur-sm transition-colors duration-300 hover:bg-white"
+              >
+                <Image
+                  src={partner.src}
+                  alt={partner.name}
+                  width={partner.width}
+                  height={partner.height}
+                  className={`${partner.box} w-auto`}
+                />
               </span>
             ))}
           </div>
