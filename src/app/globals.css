@@ -576,24 +576,25 @@ details[open] .faq-answer {
   transform: scaleY(1);
 }
 
-/* Cards that sit in pieces until you point at them.
-   The card's own background is transparent — the white surface is these shards,
-   each clipped to one curved piece of a partition of the card. At rest they are
-   nudged out of place, so the section background shows through the seams and
-   the card reads as broken. On hover every shard returns and the pieces close
-   into one continuous surface.
+/* Cards divided into curved facets that close up when you point at them.
+   The card's own background is transparent; the surface is a pale base with
+   white shards laid over it, each clipped to one piece of a partition.
 
-   Each shard carries its own drop-shadow, which follows the clip-path outline
-   rather than the element box. That is what makes a seam legible: without it
-   two white pieces meeting over a pale section background have almost nothing
-   separating them. The shadow lifts as the card assembles, so the finished card
-   is clean rather than criss-crossed with internal edges.
+   The base is what keeps this elegant rather than damaged. Earlier the shards
+   were the only surface, so wherever one drifted off the edge you saw straight
+   through to the section behind and the card's silhouette came apart. Now the
+   base fills the card, the outline stays a clean rounded rectangle, and a
+   drifting shard reveals only a fine pale seam along its curve.
 
-   Shards live at z-index -1 inside .sheen's stacking context, which puts them
-   under the card's own text.
+   That also means the shards only need to move a couple of pixels. The seams
+   read from the tint, not from the size of the gap, so the card looks faceted
+   rather than smashed. On hover they close and the base is covered completely,
+   leaving one uniform white surface.
 
-   The assembled state is scale(1.004) rather than none: adjacent clip-path
-   edges antialias against each other and leave hairline seams when they meet
+   Shards live at z-index -1 inside .sheen's stacking context, under the text.
+
+   The closed state is scale(1.004) rather than none: adjacent clip-path edges
+   antialias against each other and leave hairline seams where they meet
    exactly, and a fraction of a percent of overlap hides that invisibly. */
 .shatter {
   position: absolute;
@@ -601,6 +602,7 @@ details[open] .faq-answer {
   z-index: -1;
   border-radius: inherit;
   overflow: hidden;
+  background: #eef4f0;
   pointer-events: none;
 }
 .shatter i {
@@ -609,14 +611,10 @@ details[open] .faq-answer {
   display: block;
   background: #fff;
   transform: translate(var(--tx), var(--ty)) rotate(var(--r));
-  filter: drop-shadow(0 1px 3px rgba(16, 36, 28, 0.22));
-  transition:
-    transform 0.55s cubic-bezier(0.16, 1, 0.3, 1),
-    filter 0.45s ease;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .group:hover .shatter i {
   transform: scale(1.004);
-  filter: drop-shadow(0 0 0 rgba(16, 36, 28, 0));
 }
 
 /* Numerals sitting behind bento card content. */
