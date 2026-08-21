@@ -367,10 +367,9 @@ export function Header({
                   ))}
                 </div>
 
-                <div className="flex items-center justify-between gap-6 border-t border-mint bg-cream px-8 py-4">
-                  <p className="text-xs text-ink/60">
-                    {activeMega.services.length} {t.services} · EN / FR / AR
-                  </p>
+                {/* Just the call to action now — the service count and language
+                    list said nothing a visitor needed at this point. */}
+                <div className="flex items-center justify-end gap-6 border-t border-mint bg-cream px-8 py-4">
                   <ConsultationLink
                     locale={locale}
                     className="btn-fluid btn-shine whitespace-nowrap rounded-full bg-forest px-5 py-2.5 text-xs font-bold text-white"

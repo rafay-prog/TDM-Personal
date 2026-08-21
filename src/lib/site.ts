@@ -13,14 +13,13 @@ export const site = {
   /**
    * Scheduling link for every "book a consultation" CTA.
    *
-   * Points straight at the one event on the TDM Calendly rather than at the
-   * profile page, which saves the visitor a click while it is the only event.
-   * If more event types are added, switch this to the profile URL
-   * (https://calendly.com/thedigitalmarketingservices) so they can choose.
+   * Points straight at the event rather than at the profile page, which saves
+   * the visitor a click. If more event types are added, switch this to the
+   * profile URL so they can choose.
    *
    * Empty falls back to the contact page, so the CTA is never a dead link.
    */
-  booking: "https://calendly.com/thedigitalmarketingservices/15minutes-intro-call",
+  booking: "https://calendly.com/tdm-services2023/30min",
   // TODO(user): WhatsApp number + social profile URLs
   socials: [] as { label: string; href: string }[],
   stats: {
