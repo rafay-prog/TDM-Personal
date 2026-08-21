@@ -358,14 +358,29 @@ details[open] .faq-answer {
 }
 
 /* Subtle diagonal brand ribbon (from the deck's "TDM ." motif) */
+/* Section texture behind the cards. Two stripe sets crossing at opposite
+   angles and different pitches, which reads as a weave rather than as the one
+   faint set of diagonals this used to be — at 6% of sage it was close enough to
+   invisible that the sections looked flat.
+
+   It only ever shows in the gutters between cards, since the cards themselves
+   are opaque, so it can afford to be legible without costing any readability. */
 .ribbon-bg {
-  background-image: repeating-linear-gradient(
-    -45deg,
-    rgba(107, 165, 140, 0.06) 0px,
-    rgba(107, 165, 140, 0.06) 2px,
-    transparent 2px,
-    transparent 22px
-  );
+  background-image:
+    repeating-linear-gradient(
+      -45deg,
+      rgba(46, 125, 91, 0.1) 0px,
+      rgba(46, 125, 91, 0.1) 2px,
+      transparent 2px,
+      transparent 16px
+    ),
+    repeating-linear-gradient(
+      45deg,
+      rgba(107, 165, 140, 0.08) 0px,
+      rgba(107, 165, 140, 0.08) 1px,
+      transparent 1px,
+      transparent 26px
+    );
 }
 
 /* ---------- Interactive controls ---------- */

@@ -300,7 +300,12 @@ export function PortfolioView({ locale }: { locale: Locale }) {
         const items = c.caseStudies.filter((cs) => cs.sector === s.slug);
         if (items.length === 0) return null;
         return (
-          <div key={s.slug} className={si % 2 === 1 ? "bg-mint/50" : "ribbon-bg"}>
+          <div
+            key={s.slug}
+            // Texture on every band, tint alternating — the tint alone carried
+            // the rhythm before, which left half the page reading as blank.
+            className={`ribbon-bg ${si % 2 === 1 ? "bg-mint/50" : ""}`}
+          >
             <section id={s.slug} className="mx-auto max-w-7xl scroll-mt-24 px-4 py-14 sm:px-6">
               <Reveal>
                 <div className="flex items-baseline gap-4">
