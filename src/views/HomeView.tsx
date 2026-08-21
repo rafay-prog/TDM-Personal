@@ -18,7 +18,6 @@ import {
   HeroBlobs,
   Kicker,
   LogoWall,
-  PartnerRail,
   ServiceLoops,
   TestimonialCard,
 } from "@/components/Sections";
@@ -165,13 +164,6 @@ export async function HomeView({ locale }: { locale: Locale }) {
             >
               {t.seeResults}
             </Link>
-          </div>
-
-          <div
-            className="hero-enter mt-10"
-            style={{ "--enter-delay": `${afterHeadline + 0.45}s` } as React.CSSProperties}
-          >
-            <PartnerRail />
           </div>
 
           {/* Below xl the stats stay in flow; from xl they float at the corners.
