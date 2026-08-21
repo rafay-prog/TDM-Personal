@@ -4,7 +4,14 @@ import { notFound } from "next/navigation";
 import { blogPosts, getPost } from "@/content/en/blog";
 import { site } from "@/lib/site";
 import { JsonLd } from "@/components/JsonLd";
-import { Breadcrumbs, CtaBand, FaqSection, PageHero } from "@/components/Sections";
+import {
+  Breadcrumbs,
+  CtaBand,
+  FaqSection,
+  PageHero,
+  ShatterDefs,
+  ShatterSurface,
+} from "@/components/Sections";
 import { Reveal } from "@/components/motion/Reveal";
 import { ReadingProgress } from "@/components/motion/ReadingProgress";
 
@@ -85,6 +92,7 @@ export default async function BlogPostPage({
 
   return (
     <>
+      <ShatterDefs />
       <ReadingProgress />
       <JsonLd
         data={{
@@ -131,8 +139,9 @@ export default async function BlogPostPage({
                 <Reveal key={o.slug} delay={i * 0.08}>
                   <Link
                     href={`/blog/${o.slug}/`}
-                    className="group card-lift flex h-full flex-col rounded-2xl border border-mint bg-white p-6 hover:border-fern hover:shadow-lg"
+                    className="group sheen card-lift relative flex h-full flex-col rounded-3xl border border-transparent p-6 transition-colors duration-300 hover:border-fern hover:shadow-2xl"
                   >
+                    <ShatterSurface index={i} />
                     <p className="text-xs font-semibold uppercase tracking-wide text-amber">{o.category}</p>
                     <h3 className="mt-2 flex-1 font-display text-base font-semibold leading-snug text-forest">
                       {o.title}

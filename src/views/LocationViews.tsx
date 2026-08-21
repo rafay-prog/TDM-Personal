@@ -8,7 +8,15 @@ import { officeFlag } from "@/lib/flags";
 import { getContent } from "@/content";
 import { ui } from "@/content/ui";
 import { JsonLd } from "@/components/JsonLd";
-import { Breadcrumbs, CtaBand, FaqSection, PageHero, Prose } from "@/components/Sections";
+import {
+  Breadcrumbs,
+  CtaBand,
+  FaqSection,
+  PageHero,
+  Prose,
+  ShatterDefs,
+  ShatterSurface,
+} from "@/components/Sections";
 import { Reveal } from "@/components/motion/Reveal";
 
 export function LocationsIndexView({ locale }: { locale: Locale }) {
@@ -26,15 +34,18 @@ export function LocationsIndexView({ locale }: { locale: Locale }) {
         ]}
       />
 
-      <section className="mx-auto max-w-7xl px-4 py-12 sm:px-6">
+      <ShatterDefs />
+
+      <section className="ribbon-bg mx-auto max-w-7xl px-4 py-12 sm:px-6">
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {c.offices.map((o, i) => (
             <Reveal key={o.slug} delay={(i % 3) * 0.08}>
               <Link
                 href={href(locale, `/locations/${o.slug}/`)}
-                className="group card-lift block h-full rounded-2xl border border-mint bg-white p-6 hover:border-fern hover:shadow-xl"
+                className="group sheen card-lift relative block h-full rounded-3xl border border-transparent p-6 transition-colors duration-300 hover:border-fern hover:shadow-2xl"
               >
-                <p className="text-xs font-semibold uppercase tracking-wide text-amber">{o.roleLabel}</p>
+                <ShatterSurface index={i} />
+                <p className="relative text-xs font-semibold uppercase tracking-wide text-amber">{o.roleLabel}</p>
                 {/* Decorative — the country is spelled out right beside it. */}
                 <div className="mt-2 flex items-start gap-3">
                   {officeFlag[o.slug] && (
@@ -95,11 +106,14 @@ export function LocationView({ locale, slug }: { locale: Locale; slug: string })
         ]}
       />
 
-      <section className="mx-auto max-w-7xl px-4 py-12 sm:px-6">
+      <ShatterDefs />
+
+      <section className="ribbon-bg mx-auto max-w-7xl px-4 py-12 sm:px-6">
         <Prose paragraphs={o.intro} />
         {o.address && (
-          <div className="card-lift mt-8 max-w-md rounded-2xl border border-mint bg-white p-6 hover:border-fern hover:shadow-lg">
-            <p className="kicker text-fern">{t.visitUs}</p>
+          <div className="group sheen card-lift relative mt-8 max-w-md rounded-3xl border border-transparent p-6 transition-colors duration-300 hover:border-fern hover:shadow-xl">
+            <ShatterSurface index={1} />
+            <p className="kicker relative text-fern">{t.visitUs}</p>
             <p className="mt-3 text-sm leading-relaxed text-ink/85">{o.address}</p>
             <p className="mt-2 text-sm text-ink/70">
               <a className="hover:text-forest" href={`mailto:${site.email}`}>{site.email}</a>

@@ -41,7 +41,9 @@ export function AboutView({ locale }: { locale: Locale }) {
         ]}
       />
 
-      <section className="mx-auto max-w-7xl px-4 py-12 sm:px-6">
+      <ShatterDefs />
+
+      <section className="ribbon-bg mx-auto max-w-7xl px-4 py-12 sm:px-6">
         <Prose paragraphs={p.intro} />
         <div className="mt-10">
           <StatBand
@@ -55,7 +57,7 @@ export function AboutView({ locale }: { locale: Locale }) {
         </div>
       </section>
 
-      <section className="bg-mint/50">
+      <section className="ribbon-bg bg-mint/50">
         <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6">
           <div className="grid gap-8 md:grid-cols-2">
             <Reveal>
@@ -74,16 +76,17 @@ export function AboutView({ locale }: { locale: Locale }) {
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-4 py-14 sm:px-6">
+      <section className="ribbon-bg mx-auto max-w-7xl px-4 py-14 sm:px-6">
         <Reveal>
-          <Kicker>{p.leadershipKicker}</Kicker>
+          <Kicker glow>{p.leadershipKicker}</Kicker>
           <h2 className="mt-3 text-3xl font-bold text-forest">{p.leadershipTitle}</h2>
           <p className="mt-4 max-w-2xl text-ink/75">{c.teamIntro}</p>
         </Reveal>
         <div className="mt-10 grid gap-6 sm:grid-cols-3">
           {c.leadership.map((m, i) => (
             <Reveal key={m.name} delay={i * 0.1}>
-              <div className="group sheen card-lift relative h-full rounded-3xl border border-mint bg-white p-6 text-center hover:border-fern hover:shadow-2xl">
+              <div className="group sheen card-lift relative h-full rounded-3xl border border-transparent p-6 text-center transition-colors duration-300 hover:border-fern hover:shadow-2xl">
+                <ShatterSurface index={i} />
                 <div className="mx-auto flex h-24 w-24 items-center justify-center rounded-full bg-mint font-display text-2xl font-bold text-forest transition-all duration-300 group-hover:scale-110 group-hover:bg-amber group-hover:text-white">
                   {m.name.split(" ").map((w) => w[0]).join("")}
                 </div>
@@ -95,10 +98,10 @@ export function AboutView({ locale }: { locale: Locale }) {
         </div>
       </section>
 
-      <section className="bg-mint/50">
+      <section className="ribbon-bg bg-mint/50">
         <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6">
           <Reveal>
-            <Kicker>{p.presenceKicker}</Kicker>
+            <Kicker glow>{p.presenceKicker}</Kicker>
             <h2 className="mt-3 text-3xl font-bold text-forest">{p.presenceTitle}</h2>
           </Reveal>
           <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -106,9 +109,10 @@ export function AboutView({ locale }: { locale: Locale }) {
               <Reveal key={o.slug} delay={(i % 4) * 0.07}>
                 <Link
                   href={href(locale, `/locations/${o.slug}/`)}
-                  className="group sheen card-lift relative block h-full rounded-2xl border border-mint bg-white p-5 hover:border-fern hover:shadow-xl"
+                  className="group sheen card-lift relative block h-full rounded-3xl border border-transparent p-5 transition-colors duration-300 hover:border-fern hover:shadow-xl"
                 >
-                  <p className="text-xs font-semibold uppercase tracking-wide text-amber">{o.roleLabel}</p>
+                  <ShatterSurface index={i} />
+                  <p className="relative text-xs font-semibold uppercase tracking-wide text-amber">{o.roleLabel}</p>
                   {/* The flag sits beside the place name rather than floating in
                       a corner, so it reads as part of the label. Decorative:
                       the country is already written next to it. */}
@@ -159,6 +163,8 @@ export function ContactView({ locale }: { locale: Locale }) {
         ]}
       />
 
+      <ShatterDefs />
+
       <section className="ribbon-bg mx-auto max-w-7xl px-4 py-12 sm:px-6">
         <div className="grid gap-12 lg:grid-cols-[1fr_360px]">
           <Reveal>
@@ -168,8 +174,9 @@ export function ContactView({ locale }: { locale: Locale }) {
           </Reveal>
           <aside className="space-y-6">
             <Reveal delay={0.12}>
-            <div className="card-lift rounded-2xl border border-mint bg-white p-6 hover:border-fern hover:shadow-lg">
-              <Kicker>{p.directLabel}</Kicker>
+            <div className="group sheen card-lift relative rounded-3xl border border-transparent p-6 transition-colors duration-300 hover:border-fern hover:shadow-xl">
+              <ShatterSurface index={0} />
+              <Kicker glow>{p.directLabel}</Kicker>
               <p className="mt-3 text-sm leading-relaxed">
                 <a className="font-semibold text-forest hover:underline" href={`mailto:${site.email}`}>
                   {site.email}
@@ -188,8 +195,9 @@ export function ContactView({ locale }: { locale: Locale }) {
             </div>
             </Reveal>
             <Reveal delay={0.24}>
-            <div className="card-lift rounded-2xl border border-mint bg-white p-6 hover:border-fern hover:shadow-lg">
-              <Kicker>{p.officesLabel}</Kicker>
+            <div className="group sheen card-lift relative rounded-3xl border border-transparent p-6 transition-colors duration-300 hover:border-fern hover:shadow-xl">
+              <ShatterSurface index={2} />
+              <Kicker glow>{p.officesLabel}</Kicker>
               <ul className="mt-3 space-y-3 text-sm text-ink/80">
                 {c.offices
                   .filter((o) => o.address)
@@ -229,18 +237,20 @@ export function ClientsView({ locale }: { locale: Locale }) {
         ]}
       />
 
+      <ShatterDefs />
+
       <LogoWall logos={c.clientLogos} locale={locale} />
 
-      <section className="bg-mint/50">
+      <section className="ribbon-bg bg-mint/50">
         <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6">
           <Reveal>
-            <Kicker>{t.clientFeedback}</Kicker>
+            <Kicker glow>{t.clientFeedback}</Kicker>
             <h2 className="mt-3 text-3xl font-bold text-forest">{p.inTheirWords}</h2>
           </Reveal>
           <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {c.testimonials.map((tm, i) => (
               <Reveal key={tm.quote} delay={(i % 3) * 0.08}>
-                <TestimonialCard t={tm} />
+                <TestimonialCard t={tm} index={i} />
               </Reveal>
             ))}
           </div>

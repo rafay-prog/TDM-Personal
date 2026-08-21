@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Locale } from "@/lib/types";
-import { href, localePrefix } from "@/lib/i18n";
+import { href, isRtl, localePrefix } from "@/lib/i18n";
 import { site } from "@/lib/site";
 import { getContent } from "@/content";
 import { ui } from "@/content/ui";
@@ -15,6 +15,8 @@ import {
   PageHero,
   ProcessList,
   Prose,
+  ShatterDefs,
+  ShatterSurface,
 } from "@/components/Sections";
 import { Reveal } from "@/components/motion/Reveal";
 
@@ -64,13 +66,15 @@ export function ServiceView({
         ]}
       />
 
-      <section className="mx-auto max-w-7xl px-4 py-12 sm:px-6">
+      <ShatterDefs />
+
+      <section className="ribbon-bg mx-auto max-w-7xl px-4 py-12 sm:px-6">
         <Prose paragraphs={sv.intro} />
       </section>
 
       {sv.videos && sv.videos.length > 0 && (
-        <section className="mx-auto max-w-7xl px-4 pb-14 sm:px-6">
-          <Kicker>{copy.showreelKicker}</Kicker>
+        <section className="ribbon-bg mx-auto max-w-7xl px-4 pb-14 sm:px-6">
+          <Kicker glow>{copy.showreelKicker}</Kicker>
           <h2 className="mt-3 text-3xl font-bold text-forest">{copy.showreelTitle}</h2>
           <div className="mt-8 grid gap-6 md:grid-cols-2">
             {sv.videos.map((v) => (
@@ -82,10 +86,10 @@ export function ServiceView({
         </section>
       )}
 
-      <section className="bg-mint/50">
+      <section className="ribbon-bg bg-mint/50">
         <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6">
           <Reveal>
-            <Kicker>{t.whatsIncluded}</Kicker>
+            <Kicker glow>{t.whatsIncluded}</Kicker>
             <h2 className="mt-3 text-3xl font-bold text-forest">{t.insideTheService}</h2>
           </Reveal>
           <div className="mt-8">
@@ -95,9 +99,9 @@ export function ServiceView({
       </section>
 
       {sv.process && sv.process.length > 0 && (
-        <section className="mx-auto max-w-7xl px-4 py-14 sm:px-6">
+        <section className="ribbon-bg mx-auto max-w-7xl px-4 py-14 sm:px-6">
           <Reveal>
-            <Kicker>{t.ourProcess}</Kicker>
+            <Kicker glow>{t.ourProcess}</Kicker>
             <h2 className="mt-3 text-3xl font-bold text-forest">{t.howWeWork}</h2>
           </Reveal>
           <div className="mt-8 max-w-3xl">
@@ -107,21 +111,37 @@ export function ServiceView({
       )}
 
       {related.length > 0 && (
-        <section className="bg-mint/50">
+        <section className="ribbon-bg bg-mint/50">
           <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6">
             <Reveal>
-              <Kicker>{t.proof}</Kicker>
+              <Kicker glow>{t.proof}</Kicker>
               <h2 className="mt-3 text-3xl font-bold text-forest">{t.relatedResults}</h2>
             </Reveal>
             <div className="mt-8 grid gap-6 lg:grid-cols-3">
               {related.map((cs, i) => (
-                <Reveal key={cs.slug} delay={(i % 3) * 0.08}>
+                <Reveal
+                  key={cs.slug}
+                  delay={(i % 3) * 0.08}
+                  from={i % 3 === 0 ? "left" : i % 3 === 2 ? "right" : "snap"}
+                  className="h-full"
+                >
                   <Link
                     href={href(locale, `/case-studies/${cs.slug}/`)}
-                    className="group card-lift block h-full rounded-2xl border border-mint bg-white p-6 hover:border-fern hover:shadow-xl"
+                    className="group sheen card-lift relative block h-full rounded-3xl border border-transparent p-6 transition-colors duration-300 hover:border-fern hover:shadow-2xl"
                   >
+                    <ShatterSurface index={i} />
                     <p className="text-xs font-medium uppercase tracking-wide text-ink/50">{cs.industry}</p>
-                    <h3 className="mt-2 font-display text-lg font-semibold text-forest">{displayName(cs)}</h3>
+                    <div className="mt-2 flex items-center gap-3">
+                      <h3 className="font-display text-lg font-semibold text-forest transition-colors group-hover:text-fern">
+                        {displayName(cs)}
+                      </h3>
+                      <span
+                        aria-hidden
+                        className="hidden h-8 w-8 shrink-0 items-center justify-center rounded-full border border-mint text-forest transition-all duration-300 group-hover:border-amber group-hover:bg-amber group-hover:text-white md:flex"
+                      >
+                        <span className="arrow-nudge text-base leading-none">{isRtl(locale) ? "←" : "→"}</span>
+                      </span>
+                    </div>
                     <p className="mt-2 text-sm leading-relaxed text-ink/75">{cs.summary}</p>
                   </Link>
                 </Reveal>

@@ -14,7 +14,7 @@ export default function TermsPage() {
     <>
       <PageHero kicker="Legal" headline="Terms & Conditions" dark />
       <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Terms & Conditions", href: "/terms-and-conditions/" }]} />
-      <section className="mx-auto max-w-7xl px-4 py-12 sm:px-6">
+      <section className="ribbon-bg mx-auto max-w-7xl px-4 py-12 sm:px-6">
         <Prose
           paragraphs={[
             // TODO(user): replace with reviewed legal terms before launch.

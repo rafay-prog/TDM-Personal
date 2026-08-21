@@ -646,15 +646,26 @@ export function FaqSection({
   );
 }
 
-export function TestimonialCard({ t, dark = false }: { t: Testimonial; dark?: boolean }) {
+export function TestimonialCard({
+  t,
+  dark = false,
+  index = 0,
+}: {
+  t: Testimonial;
+  dark?: boolean;
+  index?: number;
+}) {
   return (
     <figure
-      className={`card-lift flex h-full flex-col justify-between rounded-2xl p-6 ${
+      className={`group card-lift relative flex h-full flex-col justify-between rounded-3xl p-6 ${
         dark
           ? "glass hover:border-white/35 hover:shadow-2xl hover:shadow-black/30"
-          : "border border-mint bg-white hover:border-fern hover:shadow-lg"
+          : "sheen border border-transparent transition-colors duration-300 hover:border-fern hover:shadow-2xl"
       }`}
     >
+      {/* Light quotes get the faceted surface the card grids use. The dark
+          variant keeps its glass, which the white shards would paint over. */}
+      {!dark && <ShatterSurface index={index} />}
       <div>
         <span aria-hidden className={`font-display text-4xl leading-none ${dark ? "text-amber" : "text-sage"}`}>
           &ldquo;

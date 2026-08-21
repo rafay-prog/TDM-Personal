@@ -172,6 +172,8 @@ export function CaseStudyView({ locale, slug }: { locale: Locale; slug: string }
 
   return (
     <>
+      <ShatterDefs />
+
       {/* Answer engines cite proof. Expose the outcome numbers in machine-readable
           form, not just as rendered text. */}
       <JsonLd
@@ -231,13 +233,13 @@ export function CaseStudyView({ locale, slug }: { locale: Locale; slug: string }
 
         <div className="mt-12 grid gap-12 lg:grid-cols-2">
           <div>
-            <Kicker>{copy.challengeLabel}</Kicker>
+            <Kicker glow>{copy.challengeLabel}</Kicker>
             <div className="mt-4">
               <Prose paragraphs={[cs.challenge]} />
             </div>
           </div>
           <div>
-            <Kicker>{copy.approachLabel}</Kicker>
+            <Kicker glow>{copy.approachLabel}</Kicker>
             <ul className="mt-4 space-y-3">
               {cs.approach.map((a) => (
                 <li key={a} className="flex gap-3 text-base leading-relaxed text-ink/85">
