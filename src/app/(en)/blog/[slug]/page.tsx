@@ -198,9 +198,17 @@ export default async function BlogPostPage({
         </Reveal>
         </article>
 
-        <aside className="lg:sticky lg:top-28 lg:self-start">
+        {/* Capped to the space below the header. A sticky column taller than
+            the viewport strands whatever hangs off the bottom: the contents
+            list plus the card came to 660px in a 702px window, so the call to
+            action sat permanently out of reach. The list scrolls inside itself
+            instead, and the card stays put. */}
+        <aside className="lg:sticky lg:top-28 lg:flex lg:max-h-[calc(100vh-8rem)] lg:flex-col lg:self-start">
           {sections.length > 0 && (
-            <nav aria-label="On this page" className="rounded-3xl border border-mint bg-white p-6">
+            <nav
+              aria-label="On this page"
+              className="rounded-3xl border border-mint bg-white p-6 lg:min-h-0 lg:overflow-y-auto [scrollbar-width:thin]"
+            >
               <p className="kicker text-fern">On this page</p>
               <ol className="mt-4 space-y-2.5">
                 {sections.map((sec, i) => (
@@ -217,7 +225,7 @@ export default async function BlogPostPage({
             </nav>
           )}
 
-          <div className="relative mt-6 overflow-hidden rounded-3xl bg-forest p-6 text-white">
+          <div className="relative mt-6 shrink-0 overflow-hidden rounded-3xl bg-forest p-6 text-white">
             <div
               aria-hidden
               className="blob pointer-events-none absolute -end-12 -top-12 h-40 w-40 rounded-full bg-fern/40 blur-3xl"
