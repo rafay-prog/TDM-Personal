@@ -1,5 +1,4 @@
-import { loadCaseStudies } from "../from-files";
-import type { CaseStudy, Office, TeamMember, Testimonial } from "@/lib/types";
+import type { Office, TeamMember, Testimonial } from "@/lib/types";
 import type { PagesCopy } from "@/content/en/pages";
 
 /**
@@ -8,7 +7,6 @@ import type { PagesCopy } from "@/content/en/pages";
  * street addresses are kept identical to the English source.
  */
 
-export const frCaseStudies: CaseStudy[] = loadCaseStudies("fr");
 
 export const frOffices: Office[] = [
   {

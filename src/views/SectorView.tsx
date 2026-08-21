@@ -7,6 +7,7 @@ import { site } from "@/lib/site";
 import { sectorHeroImage } from "@/lib/sector-media";
 import { serviceImage, SERVICE_IMAGE } from "@/lib/service-media";
 import { getContent } from "@/content";
+import { getCaseStudies } from "@/content/db";
 import { ui } from "@/content/ui";
 import {
   ArrowPill,
@@ -25,14 +26,14 @@ import { Reveal } from "@/components/motion/Reveal";
 const displayName = (cs: { anonymous: boolean; publicName: string; client: string }) =>
   cs.anonymous ? cs.publicName : cs.client;
 
-export function SectorView({ locale, sectorSlug }: { locale: Locale; sectorSlug: string }) {
+export async function SectorView({ locale, sectorSlug }: { locale: Locale; sectorSlug: string }) {
   const c = getContent(locale);
   const t = ui[locale];
   const s = c.sectors.find((x) => x.slug === sectorSlug);
   if (!s) notFound();
 
   const services = c.services.filter((sv) => sv.sector === s.slug);
-  const related = c.caseStudies.filter((cs) => cs.sector === s.slug).slice(0, 3);
+  const related = (await getCaseStudies(locale)).filter((cs) => cs.sector === s.slug).slice(0, 3);
   const extras = c.pages.sectorExtras;
 
   return (

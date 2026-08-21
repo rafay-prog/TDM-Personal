@@ -2,13 +2,12 @@ import type { MetadataRoute } from "next";
 import { site } from "@/lib/site";
 import { sectors } from "@/content/en/sectors";
 import { allServices } from "@/content/en/services";
-import { caseStudies } from "@/content/en/case-studies";
+import { getBlogPosts, getCaseStudies } from "@/content/db";
 import { offices } from "@/content/en/locations";
-import { blogPosts } from "@/content/en/blog";
 
 export const dynamic = "force-static";
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const staticPaths = [
     "/",
     "/about/",
@@ -32,13 +31,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
   for (const sv of allServices) {
     urls.push({ url: `${site.url}/${sv.sector}/${sv.slug}/`, changeFrequency: "monthly", priority: 0.8 });
   }
-  for (const cs of caseStudies) {
+  for (const cs of await getCaseStudies("en")) {
     urls.push({ url: `${site.url}/case-studies/${cs.slug}/`, changeFrequency: "yearly", priority: 0.7 });
   }
   for (const o of offices) {
     urls.push({ url: `${site.url}/locations/${o.slug}/`, changeFrequency: "yearly", priority: 0.7 });
   }
-  for (const p of blogPosts) {
+  for (const p of await getBlogPosts()) {
     urls.push({ url: `${site.url}/blog/${p.slug}/`, lastModified: p.date, changeFrequency: "yearly", priority: 0.6 });
   }
 

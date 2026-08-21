@@ -6,6 +6,7 @@ import { site } from "@/lib/site";
 import { ConsultationLink } from "@/components/ConsultationLink";
 import { asset } from "@/lib/asset-manifest";
 import { getContent } from "@/content";
+import { getCaseStudies } from "@/content/db";
 import { ui } from "@/content/ui";
 import {
   ArrowPill,
@@ -60,11 +61,11 @@ function WhyIcon({ index }: { index: number }) {
   );
 }
 
-export function HomeView({ locale }: { locale: Locale }) {
+export async function HomeView({ locale }: { locale: Locale }) {
   const c = getContent(locale);
   const t = ui[locale];
   const p = c.pages.home;
-  const featured = c.caseStudies.slice(0, 3);
+  const featured = (await getCaseStudies(locale)).slice(0, 3);
 
   const heroStats = [
     { value: site.stats.satisfaction, label: p.statLabels.satisfaction },

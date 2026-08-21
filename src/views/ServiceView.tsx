@@ -4,6 +4,7 @@ import type { Locale } from "@/lib/types";
 import { href, isRtl, localePrefix } from "@/lib/i18n";
 import { site } from "@/lib/site";
 import { getContent } from "@/content";
+import { getCaseStudies } from "@/content/db";
 import { ui } from "@/content/ui";
 import { JsonLd } from "@/components/JsonLd";
 import {
@@ -23,7 +24,7 @@ import { Reveal } from "@/components/motion/Reveal";
 const displayName = (cs: { anonymous: boolean; publicName: string; client: string }) =>
   cs.anonymous ? cs.publicName : cs.client;
 
-export function ServiceView({
+export async function ServiceView({
   locale,
   sectorSlug,
   serviceSlug,
@@ -39,8 +40,9 @@ export function ServiceView({
   if (!sv || !sec) notFound();
 
   const copy = c.pages.servicePage;
+  const allCases = await getCaseStudies(locale);
   const related = (sv.relatedCaseStudies ?? [])
-    .map((slug) => c.caseStudies.find((cs) => cs.slug === slug))
+    .map((slug) => allCases.find((cs) => cs.slug === slug))
     .filter((cs): cs is NonNullable<typeof cs> => Boolean(cs));
 
   return (

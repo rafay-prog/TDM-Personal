@@ -5,6 +5,7 @@ import { href, isRtl } from "@/lib/i18n";
 import { site } from "@/lib/site";
 import { officeFlag } from "@/lib/flags";
 import { getContent } from "@/content";
+import { getCaseStudies } from "@/content/db";
 import { ui } from "@/content/ui";
 import { ContactForm } from "@/components/ContactForm";
 import {
@@ -261,10 +262,11 @@ export function ClientsView({ locale }: { locale: Locale }) {
   );
 }
 
-export function PortfolioView({ locale }: { locale: Locale }) {
+export async function PortfolioView({ locale }: { locale: Locale }) {
   const c = getContent(locale);
   const t = ui[locale];
   const p = c.pages.portfolioPage;
+  const studies = await getCaseStudies(locale);
 
   return (
     <>
@@ -292,7 +294,7 @@ export function PortfolioView({ locale }: { locale: Locale }) {
         <Reveal delay={0.15}>
           <div className="mt-8 flex flex-wrap gap-3">
             {c.sectors
-              .filter((s) => c.caseStudies.some((cs) => cs.sector === s.slug))
+              .filter((s) => studies.some((cs) => cs.sector === s.slug))
               .map((s) => (
                 <a
                   key={s.slug}
@@ -307,7 +309,7 @@ export function PortfolioView({ locale }: { locale: Locale }) {
       </section>
 
       {c.sectors.map((s, si) => {
-        const items = c.caseStudies.filter((cs) => cs.sector === s.slug);
+        const items = studies.filter((cs) => cs.sector === s.slug);
         if (items.length === 0) return null;
         return (
           <div

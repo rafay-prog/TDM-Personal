@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import type { BlogPost } from "@/lib/types";
-import { blogPosts } from "@/content/en/blog";
+import { getBlogPosts } from "@/content/db";
 import { Breadcrumbs, CtaBand, Kicker, PageHero, ShatterDefs, ShatterSurface } from "@/components/Sections";
 import { Reveal } from "@/components/motion/Reveal";
 
@@ -24,8 +24,11 @@ const categoryColor: Record<string, string> = {
   "Staff Augmentation": "bg-forest/10 text-forest",
 };
 
-export default function BlogPage() {
-  const posts = [...blogPosts].sort((a, b) => b.date.localeCompare(a.date));
+/** Cached, then refreshed within the minute, so a new post appears without a deploy. */
+export const revalidate = 60;
+
+export default async function BlogPage() {
+  const posts = [...(await getBlogPosts())].sort((a, b) => b.date.localeCompare(a.date));
   const [featured, ...rest] = posts;
 
   return (
@@ -41,7 +44,10 @@ export default function BlogPage() {
       <ShatterDefs />
 
       <section className="ribbon-bg mx-auto max-w-7xl px-4 py-12 sm:px-6">
-        {/* Featured (latest) post */}
+        {/* Featured (latest) post. Guarded because the posts come from the
+            database now — if it is briefly unreachable this renders an empty
+            page rather than a 500. */}
+        {featured && (
         <Reveal>
           <Link
             href={`/blog/${featured.slug}/`}
@@ -71,6 +77,7 @@ export default function BlogPage() {
             </div>
           </Link>
         </Reveal>
+        )}
 
         {/* Remaining posts */}
         <Reveal>

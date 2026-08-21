@@ -1,6 +1,4 @@
 import type {
-  BlogPost,
-  CaseStudy,
   ClientLogo,
   Locale,
   Office,
@@ -13,39 +11,38 @@ import type { PagesCopy } from "./en/pages";
 
 import { sectors as enSectors } from "./en/sectors";
 import { allServices as enServices } from "./en/services";
-import { caseStudies as enCaseStudies } from "./en/case-studies";
 import { offices as enOffices } from "./en/locations";
 import { testimonials as enTestimonials } from "./en/testimonials";
 import { leadership as enLeadership, teamIntro as enTeamIntro } from "./en/team";
 import { clientLogos, featuredClients } from "./en/clients";
-import { blogPosts as enBlogPosts } from "./en/blog";
 import { pages as enPages } from "./en/pages";
 
+/**
+ * Everything that lives in the codebase. Blog posts and case studies are not
+ * here — they are in Postgres and fetched per request from @/content/db, so
+ * they can be added without a deploy.
+ */
 export interface LocaleContent {
   sectors: Sector[];
   services: Service[];
-  caseStudies: CaseStudy[];
   offices: Office[];
   testimonials: Testimonial[];
   leadership: TeamMember[];
   teamIntro: string;
   clientLogos: ClientLogo[];
   featuredClients: ClientLogo[];
-  blogPosts: BlogPost[];
   pages: PagesCopy;
 }
 
 const en: LocaleContent = {
   sectors: enSectors,
   services: enServices,
-  caseStudies: enCaseStudies,
   offices: enOffices,
   testimonials: enTestimonials,
   leadership: enLeadership,
   teamIntro: enTeamIntro,
   clientLogos,
   featuredClients,
-  blogPosts: enBlogPosts,
   pages: enPages,
 };
 

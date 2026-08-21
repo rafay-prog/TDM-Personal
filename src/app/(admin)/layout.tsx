@@ -3,8 +3,8 @@ import { Montserrat } from "next/font/google";
 import "@/app/globals.css";
 
 /**
- * The admin lives in its own route group so it gets a bare shell — no site
- * header, no footer, no locale switcher. It is a tool, not a page of the site.
+ * The admin gets its own route group and a bare shell — no site header, footer
+ * or locale switcher. It is a tool, not a page of the site.
  */
 
 const montserrat = Montserrat({

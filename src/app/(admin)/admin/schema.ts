@@ -1,13 +1,13 @@
 /**
  * What the admin forms are made of.
  *
- * The two collections are described as data rather than as hand-written inputs,
- * so the form renderer stays one component and adding a field to a case study
- * is a line here instead of markup in three places.
+ * The two collections are described as data rather than hand-written inputs, so
+ * the form renderer stays one component and adding a field is a line here.
  *
- * These mirror the BlogPost and CaseStudy interfaces in src/lib/types.ts. If a
- * field is added there, add it here too — the build will not catch a mismatch,
- * because the JSON is read back with a cast.
+ * Names are the database column names, not the camelCase shape the site uses —
+ * the admin edits rows, and the translation to BlogPost / CaseStudy happens in
+ * src/content/db.ts for the public pages. Keeping the mapping in one direction,
+ * in one place, is what stops the two drifting.
  */
 
 export type Field =
@@ -19,24 +19,17 @@ export type Field =
   | {
       name: string;
       label: string;
-      type: "objectList";
-      hint?: string;
-      fields: { name: string; label: string; type: "text" | "textarea" }[];
-    }
-  | {
-      name: string;
-      label: string;
-      type: "object";
+      type: "objectList" | "object";
       hint?: string;
       fields: { name: string; label: string; type: "text" | "textarea" }[];
     };
 
 export const BLOG_FIELDS: Field[] = [
   {
-    name: "order",
+    name: "sort_order",
     label: "Order",
     type: "number",
-    hint: "Lower comes first. Decides the “keep reading” set at the foot of a post; the blog index sorts by date instead.",
+    hint: "Lower comes first. Decides the “keep reading” set at the foot of a post; the blog index itself sorts by date.",
   },
   {
     name: "slug",
@@ -46,7 +39,7 @@ export const BLOG_FIELDS: Field[] = [
     hint: "Lowercase words separated by hyphens. Changing this on a published post breaks its existing links.",
   },
   { name: "title", label: "Title", type: "text", required: true },
-  { name: "date", label: "Date", type: "date", required: true },
+  { name: "published_on", label: "Date", type: "date", required: true },
   {
     name: "category",
     label: "Category",
@@ -54,13 +47,7 @@ export const BLOG_FIELDS: Field[] = [
     required: true,
     options: ["Marketing", "Media", "Development", "Staff Augmentation"],
   },
-  {
-    name: "excerpt",
-    label: "Excerpt",
-    type: "textarea",
-    required: true,
-    hint: "One or two sentences, shown on the blog index.",
-  },
+  { name: "excerpt", label: "Excerpt", type: "textarea", required: true, hint: "One or two sentences, shown on the blog index." },
   {
     name: "body",
     label: "Body",
@@ -68,8 +55,8 @@ export const BLOG_FIELDS: Field[] = [
     required: true,
     hint: "Blank line between paragraphs. “## ” starts a heading, “### ” a sub-heading, and lines beginning “- ” become a bullet list.",
   },
-  { name: "metaTitle", label: "SEO title", type: "text", required: true },
-  { name: "metaDescription", label: "SEO description", type: "textarea", required: true },
+  { name: "meta_title", label: "SEO title", type: "text", required: true },
+  { name: "meta_description", label: "SEO description", type: "textarea", required: true },
   {
     name: "faqs",
     label: "FAQs",
@@ -83,12 +70,12 @@ export const BLOG_FIELDS: Field[] = [
 ];
 
 /**
- * Case-study fields that are the same in every language — an ordering, a slug,
- * a sector, the real client name. Editing one writes it to all three files, so
- * the translations cannot drift apart on the things that must match.
+ * Case-study fields that are the same in every language. Editing one writes it
+ * to all three rows, so the translations cannot drift apart on the things that
+ * have to match.
  */
 export const CASE_SHARED_FIELDS: Field[] = [
-  { name: "order", label: "Order", type: "number", hint: "0 is featured on the home page and heads the case-studies index." },
+  { name: "sort_order", label: "Order", type: "number", hint: "0 is featured on the home page and heads the case-studies index." },
   { name: "slug", label: "URL slug", type: "text", required: true },
   {
     name: "sector",
@@ -106,9 +93,9 @@ export const CASE_SHARED_FIELDS: Field[] = [
   { name: "client", label: "Real client name", type: "text", hint: "Never rendered while the switch above is on." },
 ];
 
-/** Everything that gets written afresh for each language. */
+/** Everything written afresh for each language. */
 export const CASE_LOCALE_FIELDS: Field[] = [
-  { name: "publicName", label: "Public name", type: "text", required: true, hint: "e.g. “A UAE fragrance retailer” — always safe to show." },
+  { name: "public_name", label: "Public name", type: "text", required: true, hint: "e.g. “A UAE fragrance retailer” — always safe to show." },
   { name: "industry", label: "Industry", type: "text", required: true },
   { name: "country", label: "Country", type: "text" },
   { name: "timeline", label: "Timeline", type: "text" },
@@ -135,8 +122,8 @@ export const CASE_LOCALE_FIELDS: Field[] = [
       { name: "author", label: "Author", type: "text" },
     ],
   },
-  { name: "metaTitle", label: "SEO title", type: "text", required: true },
-  { name: "metaDescription", label: "SEO description", type: "textarea", required: true },
+  { name: "meta_title", label: "SEO title", type: "text", required: true },
+  { name: "meta_description", label: "SEO description", type: "textarea", required: true },
 ];
 
 export const LOCALES = ["en", "fr", "ar"] as const;
@@ -148,12 +135,12 @@ export const LOCALE_LABELS: Record<AdminLocale, string> = {
   ar: "العربية",
 };
 
-/** A blank record, so “New” starts from the right shape rather than from {}. */
+/** A blank row, so “New” starts from the right shape rather than from {}. */
 export function emptyFor(fields: Field[]): Record<string, unknown> {
   const out: Record<string, unknown> = {};
   for (const f of fields) {
     if (f.type === "list" || f.type === "objectList") out[f.name] = [];
-    else if (f.type === "object") out[f.name] = undefined;
+    else if (f.type === "object") out[f.name] = null;
     else if (f.type === "boolean") out[f.name] = false;
     else if (f.type === "number") out[f.name] = 99;
     else if (f.type === "select") out[f.name] = f.options[0];

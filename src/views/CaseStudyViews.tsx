@@ -4,6 +4,7 @@ import type { Locale } from "@/lib/types";
 import { href, isRtl } from "@/lib/i18n";
 import { absoluteUrl, site } from "@/lib/site";
 import { getContent } from "@/content";
+import { getCaseStudies, getCaseStudy } from "@/content/db";
 import { ui } from "@/content/ui";
 import { JsonLd } from "@/components/JsonLd";
 import {
@@ -24,7 +25,7 @@ import { Reveal } from "@/components/motion/Reveal";
 const displayName = (cs: { anonymous: boolean; publicName: string; client: string }) =>
   cs.anonymous ? cs.publicName : cs.client;
 
-export function CaseStudiesIndexView({ locale }: { locale: Locale }) {
+export async function CaseStudiesIndexView({ locale }: { locale: Locale }) {
   const c = getContent(locale);
   const t = ui[locale];
   const p = c.pages.caseStudiesPage;
@@ -32,7 +33,8 @@ export function CaseStudiesIndexView({ locale }: { locale: Locale }) {
 
   // The first study carries the page: a wide dark card with its numbers counted
   // up, so the page opens on a result rather than on a grid of equal boxes.
-  const [featured, ...rest] = c.caseStudies;
+  const studies = await getCaseStudies(locale);
+  const [featured, ...rest] = studies;
 
   return (
     <>
@@ -49,7 +51,7 @@ export function CaseStudiesIndexView({ locale }: { locale: Locale }) {
       <section className="mx-auto max-w-7xl px-4 pt-10 sm:px-6">
         <StatBand
           stats={[
-            { value: `${c.caseStudies.length}`, label: t.caseStudiesLabel },
+            { value: `${studies.length}`, label: t.caseStudiesLabel },
             { value: site.stats.bestRoas, label: stats.roas },
             { value: site.stats.satisfaction, label: stats.satisfaction },
             { value: site.stats.countries, label: stats.countries },
@@ -162,10 +164,10 @@ export function CaseStudiesIndexView({ locale }: { locale: Locale }) {
   );
 }
 
-export function CaseStudyView({ locale, slug }: { locale: Locale; slug: string }) {
+export async function CaseStudyView({ locale, slug }: { locale: Locale; slug: string }) {
   const c = getContent(locale);
   const t = ui[locale];
-  const cs = c.caseStudies.find((x) => x.slug === slug);
+  const cs = await getCaseStudy(locale, slug);
   if (!cs) notFound();
   const copy = c.pages.caseStudyPage;
   const pageUrl = absoluteUrl(href(locale, `/case-studies/${cs.slug}/`));

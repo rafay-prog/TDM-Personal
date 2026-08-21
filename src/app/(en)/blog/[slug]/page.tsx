@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { blogPosts, getPost } from "@/content/en/blog";
+import { getBlogPost, getBlogPosts } from "@/content/db";
 import { site } from "@/lib/site";
 import { JsonLd } from "@/components/JsonLd";
 import {
@@ -15,10 +15,14 @@ import {
 import { Reveal } from "@/components/motion/Reveal";
 import { ReadingProgress } from "@/components/motion/ReadingProgress";
 
-export const dynamicParams = false;
+/**
+ * Pre-rendered at build time, but not limited to that set: a post written in
+ * the admin afterwards renders on first request and is then cached.
+ */
+export const revalidate = 60;
 
-export function generateStaticParams() {
-  return blogPosts.map((p) => ({ slug: p.slug }));
+export async function generateStaticParams() {
+  return (await getBlogPosts()).map((p) => ({ slug: p.slug }));
 }
 
 export async function generateMetadata({
@@ -27,7 +31,7 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const p = getPost(slug);
+  const p = await getBlogPost(slug);
   if (!p) return {};
   return {
     title: p.metaTitle,
@@ -83,12 +87,12 @@ export default async function BlogPostPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const p = getPost(slug);
+  const p = await getBlogPost(slug);
   if (!p) notFound();
 
   const words = p.body.join(" ").split(/\s+/).length;
   const minutes = Math.max(2, Math.round(words / 200));
-  const others = blogPosts.filter((x) => x.slug !== p.slug).slice(0, 3);
+  const others = (await getBlogPosts()).filter((x) => x.slug !== p.slug).slice(0, 3);
 
   return (
     <>
