@@ -83,13 +83,18 @@ export function Footer({ locale = "en" }: { locale?: Locale }) {
         <div className="blob blob-slow absolute -bottom-40 start-1/3 h-80 w-80 rounded-full bg-amber/12 blur-3xl" />
         <div className="blob blob-slow absolute top-1/4 -start-24 h-72 w-72 rounded-full bg-sage/15 blur-3xl" />
       </div>
-      {/* giant watermark */}
-      <p
-        aria-hidden
-        className="pointer-events-none absolute -bottom-10 end-0 select-none font-display text-[11rem] font-bold leading-none text-white/[0.04] md:text-[16rem]"
-      >
-        TDM
-      </p>
+      {/* The whole lockup as a watermark, spanning the footer rather than the
+          three letters tucked into one corner. Faint enough to sit behind the
+          columns without competing with them. */}
+      <div aria-hidden className="pointer-events-none absolute inset-0 flex items-center justify-center overflow-hidden">
+        <Image
+          src={asset("branding/logo-white.png")}
+          alt=""
+          width={776}
+          height={178}
+          className="w-[115%] max-w-none opacity-[0.045]"
+        />
+      </div>
 
       <div className="relative mx-auto max-w-7xl px-4 pb-8 pt-16 sm:px-6">
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-[1.3fr_1fr_1fr_1fr]">

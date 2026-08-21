@@ -796,9 +796,17 @@ export function FeaturedClients({
           </div>
         </Reveal>
 
-        <div className="mt-12 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
+        {/* Flex rather than grid, so a final row that does not fill centres itself
+            instead of hanging left. The basis values reproduce the 2/3/4 column
+            steps the grid had. */}
+        <div className="mt-12 flex flex-wrap justify-center gap-4">
           {clients.map((cl, i) => (
-            <Reveal key={cl.file} delay={(i % 4) * 0.07} from="snap">
+            <Reveal
+              key={cl.file}
+              delay={(i % 4) * 0.07}
+              from="snap"
+              className="basis-[calc(50%-0.5rem)] sm:basis-[calc(33.333%-0.667rem)] lg:basis-[calc(25%-0.75rem)]"
+            >
               <div className="btn-fluid group flex h-full flex-col items-center justify-center gap-4 rounded-2xl border border-mint bg-white p-6 hover:border-fern hover:shadow-xl">
                 <div className="flex h-16 items-center justify-center">
                   <Image
