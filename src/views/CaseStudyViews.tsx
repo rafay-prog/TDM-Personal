@@ -13,6 +13,8 @@ import {
   Kicker,
   PageHero,
   Prose,
+  ShatterDefs,
+  ShatterSurface,
   StatBand,
   TestimonialCard,
 } from "@/components/Sections";
@@ -41,6 +43,8 @@ export function CaseStudiesIndexView({ locale }: { locale: Locale }) {
           { label: t.caseStudiesLabel, href: href(locale, "/case-studies/") },
         ]}
       />
+
+      <ShatterDefs />
 
       <section className="mx-auto max-w-7xl px-4 pt-10 sm:px-6">
         <StatBand
@@ -109,8 +113,9 @@ export function CaseStudiesIndexView({ locale }: { locale: Locale }) {
               <Reveal key={cs.slug} delay={(i % 2) * 0.08} from={i % 2 === 0 ? "left" : "right"} className="h-full">
                 <Link
                   href={href(locale, `/case-studies/${cs.slug}/`)}
-                  className="group sheen card-lift relative flex h-full flex-col rounded-3xl border border-mint bg-white p-7 hover:border-fern hover:shadow-2xl"
+                  className="group sheen card-lift relative flex h-full flex-col rounded-3xl border border-transparent p-7 transition-colors duration-300 hover:border-fern hover:shadow-2xl"
                 >
+                  <ShatterSurface index={i} />
                   {/* Numbered from 02 — the featured study above is 01. */}
                   <span
                     aria-hidden
