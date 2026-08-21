@@ -1,3 +1,4 @@
+import { asset } from "@/lib/asset-manifest";
 import type { Office, TeamMember, Testimonial } from "@/lib/types";
 import type { PagesCopy } from "@/content/en/pages";
 
@@ -515,9 +516,9 @@ export const arTestimonials: Testimonial[] = [
 ];
 
 export const arLeadership: TeamMember[] = [
-  { name: "عبد الرحمن", title: "الرئيس التنفيذي" },
-  { name: "محمد عدنان", title: "الرئيس التنفيذي للإيرادات" },
-  { name: "إرنست إكووغي", title: "الرئيس التنفيذي للتسويق" },
+  { name: "عبد الرحمن", title: "الرئيس التنفيذي", photo: asset("team/abdul-rehman.webp") },
+  { name: "محمد عدنان", title: "الرئيس التنفيذي للإيرادات", photo: asset("team/muhammad-adnan.webp") },
+  { name: "إرنست إكووغي", title: "الرئيس التنفيذي للتسويق", photo: asset("team/ernest-ekwoge.webp") },
 ];
 
 export const arTeamIntro =

@@ -1,3 +1,4 @@
+import { asset } from "@/lib/asset-manifest";
 import type { Office, TeamMember, Testimonial } from "@/lib/types";
 import type { PagesCopy } from "@/content/en/pages";
 
@@ -516,9 +517,9 @@ export const frTestimonials: Testimonial[] = [
 
 /** Titres selon le profil d'entreprise 2026. Photos en attente. */
 export const frLeadership: TeamMember[] = [
-  { name: "Abdul Rehman", title: "Directeur général" },
-  { name: "Muhammad Adnan", title: "Directeur des revenus" },
-  { name: "Ernest Ekwoge", title: "Directeur marketing" },
+  { name: "Abdul Rehman", title: "Directeur général", photo: asset("team/abdul-rehman.webp") },
+  { name: "Muhammad Adnan", title: "Directeur des revenus", photo: asset("team/muhammad-adnan.webp") },
+  { name: "Ernest Ekwoge", title: "Directeur marketing", photo: asset("team/ernest-ekwoge.webp") },
 ];
 
 export const frTeamIntro =

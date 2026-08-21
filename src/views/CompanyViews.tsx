@@ -88,9 +88,23 @@ export function AboutView({ locale }: { locale: Locale }) {
             <Reveal key={m.name} delay={i * 0.1}>
               <div className="group sheen card-lift relative h-full rounded-3xl border border-transparent p-6 text-center transition-colors duration-300 hover:border-fern hover:shadow-2xl">
                 <ShatterSurface index={i} />
-                <div className="mx-auto flex h-24 w-24 items-center justify-center rounded-full bg-mint font-display text-2xl font-bold text-forest transition-all duration-300 group-hover:scale-110 group-hover:bg-amber group-hover:text-white">
-                  {m.name.split(" ").map((w) => w[0]).join("")}
-                </div>
+                {/* Initials remain the fallback: a colleague added without a
+                    photo gets a card that still looks deliberate. */}
+                {m.photo ? (
+                  <div className="relative mx-auto h-24 w-24 overflow-hidden rounded-full ring-2 ring-mint transition-all duration-300 group-hover:scale-110 group-hover:ring-amber">
+                    <Image
+                      src={m.photo}
+                      alt={m.name}
+                      width={560}
+                      height={560}
+                      className="h-full w-full object-cover"
+                    />
+                  </div>
+                ) : (
+                  <div className="mx-auto flex h-24 w-24 items-center justify-center rounded-full bg-mint font-display text-2xl font-bold text-forest transition-all duration-300 group-hover:scale-110 group-hover:bg-amber group-hover:text-white">
+                    {m.name.split(" ").map((w) => w[0]).join("")}
+                  </div>
+                )}
                 <h3 className="mt-4 font-display text-lg font-semibold text-forest">{m.name}</h3>
                 <p className="mt-1 text-sm text-ink/70">{m.title}</p>
               </div>
