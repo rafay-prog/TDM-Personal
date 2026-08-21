@@ -194,14 +194,14 @@ export function Footer({ locale = "en" }: { locale?: Locale }) {
               <span
                 key={partner.name}
                 title={partner.name}
-                className="flex h-12 items-center justify-center rounded-2xl bg-white px-4 shadow-lg shadow-black/25 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-amber/25"
+                className="flex h-12 w-24 items-center justify-center rounded-xl bg-white px-2 shadow-lg shadow-black/25 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-amber/25"
               >
                 <Image
                   src={partner.src}
                   alt={partner.name}
                   width={partner.width}
                   height={partner.height}
-                  className={`${partner.box} w-auto`}
+                  className="max-h-8 w-auto max-w-full object-contain"
                 />
               </span>
             ))}

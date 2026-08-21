@@ -168,25 +168,25 @@ export async function HomeView({ locale }: { locale: Locale }) {
           </div>
 
           <div
-            className="hero-enter mt-10 flex flex-wrap items-center justify-center gap-3"
+            className="hero-enter -mx-4 mt-10 flex items-center gap-2.5 overflow-x-auto px-4 pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:mx-0 sm:flex-wrap sm:justify-center sm:overflow-visible sm:px-0"
             style={{ "--enter-delay": `${afterHeadline + 0.45}s` } as React.CSSProperties}
           >
-            {/* The badges are dark-on-transparent, so they need a light chip to
-                read against the forest. Kept smaller and flatter than the
-                footer's cards — this sits directly under the CTAs and should
-                not compete with them. */}
+            {/* Ten badges of wildly different proportions, so each sits in a
+                chip of one fixed size and is contained inside it. That keeps
+                the row even; sizing by height would leave the portrait ones a
+                couple of dozen pixels wide. */}
             {partners.map((partner) => (
               <span
                 key={partner.name}
                 title={partner.name}
-                className="flex h-9 items-center justify-center rounded-xl bg-white/90 px-3 shadow-sm backdrop-blur-sm transition-colors duration-300 hover:bg-white"
+                className="flex h-10 w-[5.5rem] shrink-0 items-center justify-center rounded-lg bg-white/90 px-2 shadow-sm backdrop-blur-sm transition-colors duration-300 hover:bg-white"
               >
                 <Image
                   src={partner.src}
                   alt={partner.name}
                   width={partner.width}
                   height={partner.height}
-                  className={`${partner.box} w-auto`}
+                  className="max-h-7 w-auto max-w-full object-contain"
                 />
               </span>
             ))}
