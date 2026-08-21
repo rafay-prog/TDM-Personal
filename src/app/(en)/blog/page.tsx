@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import type { BlogPost } from "@/lib/types";
 import { blogPosts } from "@/content/en/blog";
-import { Breadcrumbs, CtaBand, Kicker, PageHero } from "@/components/Sections";
+import { Breadcrumbs, CtaBand, Kicker, PageHero, ShatterDefs, ShatterSurface } from "@/components/Sections";
 import { Reveal } from "@/components/motion/Reveal";
 
 export const metadata: Metadata = {
@@ -37,6 +37,8 @@ export default function BlogPage() {
         dark
       />
       <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Blog", href: "/blog/" }]} />
+
+      <ShatterDefs />
 
       <section className="ribbon-bg mx-auto max-w-7xl px-4 py-12 sm:px-6">
         {/* Featured (latest) post */}
@@ -90,8 +92,9 @@ export default function BlogPage() {
             >
               <Link
                 href={`/blog/${p.slug}/`}
-                className="group sheen card-lift relative flex h-full flex-col rounded-3xl border border-mint bg-white p-7 hover:border-fern hover:shadow-2xl"
+                className="group sheen card-lift relative flex h-full flex-col rounded-3xl border border-transparent p-7 transition-colors duration-300 hover:border-fern hover:shadow-2xl"
               >
+                <ShatterSurface index={i} />
                 <div className="flex items-center gap-2 text-xs font-semibold">
                   <span className={`rounded-full px-3 py-1 ${categoryColor[p.category] ?? "bg-mint text-forest"}`}>
                     {p.category}
