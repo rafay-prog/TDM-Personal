@@ -6,7 +6,7 @@ import { site } from "@/lib/site";
 import { ui } from "@/content/ui";
 import { getContent } from "@/content";
 import { LocaleSwitch } from "@/components/LocaleSwitch";
-import { partners } from "@/lib/partner-media";
+import { PartnerRail } from "@/components/Sections";
 
 const servicePaths = [
   "/media/ugc-ads/",
@@ -185,27 +185,14 @@ export function Footer({ locale = "en" }: { locale?: Locale }) {
           </div>
         </div>
 
-        {/* Partner badges. The artwork is dark-on-transparent, so it sits on
-            white cards rather than directly on the forest, where Shopify's
-            black wordmark would have disappeared entirely. */}
-        <div className="mt-12 flex flex-col gap-6 border-t border-white/10 pt-8 md:flex-row md:items-center md:justify-between">
-          <div className="flex flex-wrap items-center gap-3">
-            {partners.map((partner) => (
-              <span
-                key={partner.name}
-                title={partner.name}
-                className="flex h-12 w-24 items-center justify-center rounded-xl bg-white px-2 shadow-lg shadow-black/25 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-amber/25"
-              >
-                <Image
-                  src={partner.src}
-                  alt={partner.name}
-                  width={partner.width}
-                  height={partner.height}
-                  className="max-h-8 w-auto max-w-full object-contain"
-                />
-              </span>
-            ))}
-          </div>
+        {/* Partner and certification badges. The artwork is dark on light, so
+            each sits on a white chip — dropped straight onto the forest,
+            Shopify's black wordmark would disappear entirely. The rail gets the
+            full width; squeezed into a flex row beside the pill it had nowhere
+            to drift. */}
+        <div className="mt-12 space-y-6 border-t border-white/10 pt-8">
+          <PartnerRail size="lg" />
+          <div className="flex justify-center md:justify-end">
 
           <span className="kicker-pill pill-shimmer inline-flex w-fit items-center gap-3 rounded-full border border-amber/50 bg-gradient-to-r from-amber/25 via-amber/12 to-amber/25 px-5 py-2.5 backdrop-blur-sm">
             <span className="relative flex h-2.5 w-2.5 shrink-0">
@@ -217,6 +204,7 @@ export function Footer({ locale = "en" }: { locale?: Locale }) {
               {locale === "fr" ? "satisfaction client" : locale === "ar" ? "رضا العملاء" : "client satisfaction"}
             </span>
           </span>
+          </div>
         </div>
 
         {/* Bottom bar */}

@@ -4,6 +4,7 @@ import type { Faq, Feature, Locale, ProcessStep, ResultStat, Testimonial } from 
 import { href, isRtl } from "@/lib/i18n";
 import { ui } from "@/content/ui";
 import { SECTOR_IMAGE } from "@/lib/sector-media";
+import { partners } from "@/lib/partner-media";
 import { ConsultationLink } from "./ConsultationLink";
 import { JsonLd } from "./JsonLd";
 import { Reveal } from "./motion/Reveal";
@@ -213,6 +214,57 @@ export function ShatterSurface({ index = 0 }: { index?: number }) {
         />
       ))}
     </span>
+  );
+}
+
+/**
+ * The partner and certification badges, drifting past on a rail.
+ *
+ * A wrapped grid of eleven chips reads as a list to get through. As a slow
+ * ribbon it reads as a credential wall — and it holds one line at any width,
+ * which a wrapped row cannot: on a phone the same set stacked four deep and
+ * buried whatever came after it.
+ *
+ * The set is rendered twice so the loop has something to wrap onto; the second
+ * pass is hidden from screen readers, which would otherwise hear every badge
+ * announced twice.
+ */
+export function PartnerRail({ size = "sm" }: { size?: "sm" | "lg" }) {
+  const chip =
+    size === "lg"
+      ? "h-14 w-28 rounded-xl bg-white shadow-lg shadow-black/20"
+      : "h-11 w-24 rounded-xl bg-white/95 shadow-sm";
+  const logo = size === "lg" ? "max-h-9" : "max-h-7";
+
+  return (
+    <div
+      className="badge-rail relative overflow-hidden"
+      style={{
+        maskImage: "linear-gradient(to right, transparent, #000 6%, #000 94%, transparent)",
+        WebkitMaskImage: "linear-gradient(to right, transparent, #000 6%, #000 94%, transparent)",
+      }}
+    >
+      <div className="badge-marquee flex w-max items-center gap-3 py-1">
+        {[0, 1].map((pass) =>
+          partners.map((partner) => (
+            <span
+              key={`${pass}-${partner.name}`}
+              title={partner.name}
+              aria-hidden={pass === 1}
+              className={`flex shrink-0 items-center justify-center px-3 transition-transform duration-300 hover:scale-105 ${chip}`}
+            >
+              <Image
+                src={partner.src}
+                alt={pass === 1 ? "" : partner.name}
+                width={partner.width}
+                height={partner.height}
+                className={`${logo} w-auto max-w-full object-contain`}
+              />
+            </span>
+          )),
+        )}
+      </div>
+    </div>
   );
 }
 

@@ -5,7 +5,6 @@ import { href, isRtl } from "@/lib/i18n";
 import { site } from "@/lib/site";
 import { ConsultationLink } from "@/components/ConsultationLink";
 import { asset } from "@/lib/asset-manifest";
-import { partners } from "@/lib/partner-media";
 import { getContent } from "@/content";
 import { getCaseStudies } from "@/content/db";
 import { ui } from "@/content/ui";
@@ -19,6 +18,7 @@ import {
   HeroBlobs,
   Kicker,
   LogoWall,
+  PartnerRail,
   ServiceLoops,
   TestimonialCard,
 } from "@/components/Sections";
@@ -168,28 +168,10 @@ export async function HomeView({ locale }: { locale: Locale }) {
           </div>
 
           <div
-            className="hero-enter -mx-4 mt-10 flex items-center gap-2.5 overflow-x-auto px-4 pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:mx-0 sm:flex-wrap sm:justify-center sm:overflow-visible sm:px-0"
+            className="hero-enter mt-10"
             style={{ "--enter-delay": `${afterHeadline + 0.45}s` } as React.CSSProperties}
           >
-            {/* Ten badges of wildly different proportions, so each sits in a
-                chip of one fixed size and is contained inside it. That keeps
-                the row even; sizing by height would leave the portrait ones a
-                couple of dozen pixels wide. */}
-            {partners.map((partner) => (
-              <span
-                key={partner.name}
-                title={partner.name}
-                className="flex h-10 w-[5.5rem] shrink-0 items-center justify-center rounded-lg bg-white/90 px-2 shadow-sm backdrop-blur-sm transition-colors duration-300 hover:bg-white"
-              >
-                <Image
-                  src={partner.src}
-                  alt={partner.name}
-                  width={partner.width}
-                  height={partner.height}
-                  className="max-h-7 w-auto max-w-full object-contain"
-                />
-              </span>
-            ))}
+            <PartnerRail />
           </div>
 
           {/* Below xl the stats stay in flow; from xl they float at the corners.

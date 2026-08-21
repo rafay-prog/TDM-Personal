@@ -198,6 +198,21 @@ h1, h2 {
   animation-direction: reverse;
 }
 
+/* Credential badges as a drifting ribbon rather than a wrapped row.
+   Slower than the client marquee, because these are read rather than skimmed,
+   and paused on hover so anyone who wants to look can. The track holds the set
+   twice, which is what makes the wrap seamless. */
+.badge-marquee {
+  animation: marquee 55s linear infinite;
+  will-change: transform;
+}
+.badge-rail:hover .badge-marquee {
+  animation-play-state: paused;
+}
+[dir="rtl"] .badge-marquee {
+  animation-direction: reverse;
+}
+
 /* Hero eyebrow: a light band sweeps across every few seconds, so the pill
    catches the eye without shouting. Sits under the text via the isolate +
    negative z-index pairing, same as .btn-shine. */
@@ -641,6 +656,7 @@ details[open] .faq-answer {
   }
   .hero-enter,
   .marquee-track,
+  .badge-marquee,
   .loop-col,
   .float-card,
   .pill-shimmer::after,
