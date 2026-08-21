@@ -13,6 +13,7 @@ import {
   ShatterSurface,
 } from "@/components/Sections";
 import { Reveal } from "@/components/motion/Reveal";
+import { ConsultationLink } from "@/components/ConsultationLink";
 import { ReadingProgress } from "@/components/motion/ReadingProgress";
 
 /**
@@ -41,13 +42,31 @@ export async function generateMetadata({
   };
 }
 
+/** Blocks keep their list items on single newlines; splitting on one recovers them. */
+const NEWLINE = "\n";
+
+/** Stable, readable anchors for the contents list to point at. */
+const headingId = (text: string) =>
+  text.toLowerCase().trim().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "").slice(0, 60);
+
+/** The h2s, so the sidebar can list what the piece covers. */
+function outline(body: string[]) {
+  return body
+    .filter((b) => b.startsWith("## "))
+    .map((b) => ({ text: b.slice(3), id: headingId(b.slice(3)) }));
+}
+
 function Body({ body }: { body: string[] }) {
+  // The opening paragraph is set larger — it does the work a standfirst does,
+  // giving the eye somewhere to land before the body proper.
+  const firstProse = body.findIndex((b) => !b.startsWith("#") && !b.startsWith("- "));
+
   return (
     <div className="max-w-3xl">
       {body.map((block, i) => {
         if (block.startsWith("### ")) {
           return (
-            <h3 key={i} className="mt-8 font-display text-xl font-semibold text-forest">
+            <h3 key={i} id={headingId(block.slice(4))} className="mt-8 scroll-mt-28 font-display text-xl font-semibold text-forest">
               {block.slice(4)}
             </h3>
           );
@@ -56,7 +75,8 @@ function Body({ body }: { body: string[] }) {
           return (
             <h2
               key={i}
-              className="mt-12 border-s-4 border-sage ps-4 font-display text-2xl font-bold text-forest"
+              id={headingId(block.slice(3))}
+              className="mt-12 scroll-mt-28 border-s-4 border-amber ps-4 font-display text-2xl font-bold text-forest md:text-3xl"
             >
               {block.slice(3)}
             </h2>
@@ -64,15 +84,25 @@ function Body({ body }: { body: string[] }) {
         }
         if (block.startsWith("- ")) {
           return (
-            <ul key={i} className="mt-4 list-disc space-y-1.5 ps-6 text-base leading-relaxed text-ink/85">
-              {block.split("\n").map((li, j) => (
-                <li key={j}>{li.replace(/^- /, "")}</li>
+            <ul key={i} className="mt-4 space-y-2.5 text-base leading-relaxed text-ink/85">
+              {block.split(NEWLINE).map((li, j) => (
+                <li key={j} className="flex items-start gap-3">
+                  <span aria-hidden className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-amber" />
+                  {li.replace(/^- /, "")}
+                </li>
               ))}
             </ul>
           );
         }
         return (
-          <p key={i} className="mt-5 text-base leading-relaxed text-ink/85">
+          <p
+            key={i}
+            className={
+              i === firstProse
+                ? "mt-6 border-s-2 border-mint ps-5 font-display text-lg leading-relaxed text-forest md:text-xl"
+                : "mt-5 text-base leading-relaxed text-ink/85"
+            }
+          >
             {block}
           </p>
         );
@@ -93,6 +123,7 @@ export default async function BlogPostPage({
   const words = p.body.join(" ").split(/\s+/).length;
   const minutes = Math.max(2, Math.round(words / 200));
   const others = (await getBlogPosts()).filter((x) => x.slug !== p.slug).slice(0, 3);
+  const sections = outline(p.body);
 
   return (
     <>
@@ -122,7 +153,12 @@ export default async function BlogPostPage({
           { label: p.title, href: `/blog/${p.slug}/` },
         ]}
       />
-      <article className="mx-auto max-w-7xl px-4 py-10 sm:px-6">
+      {/* Two columns from lg. The article used to sit alone in a max-w-7xl
+          container while its own body was capped at max-w-3xl, which left about
+          500px of empty page beside every post. That space now carries the
+          contents and a way to get in touch. */}
+      <div className="ribbon-bg mx-auto grid max-w-7xl gap-10 px-4 py-10 sm:px-6 lg:grid-cols-[minmax(0,1fr)_17rem] lg:gap-14">
+        <article>
         <div className="flex flex-wrap items-center gap-3 text-xs text-ink/50">
           <span className="rounded-full bg-mint px-3 py-1 font-semibold text-forest">{p.category}</span>
           <span>
@@ -159,7 +195,48 @@ export default async function BlogPostPage({
             </div>
           </div>
         </Reveal>
-      </article>
+        </article>
+
+        <aside className="lg:sticky lg:top-28 lg:self-start">
+          {sections.length > 0 && (
+            <nav aria-label="On this page" className="rounded-3xl border border-mint bg-white p-6">
+              <p className="kicker text-fern">On this page</p>
+              <ol className="mt-4 space-y-2.5">
+                {sections.map((sec, i) => (
+                  <li key={sec.id} className="flex gap-3 text-sm leading-snug">
+                    <span aria-hidden className="font-display text-xs font-bold text-mint">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <a href={`#${sec.id}`} className="text-ink/70 transition-colors hover:text-fern">
+                      {sec.text}
+                    </a>
+                  </li>
+                ))}
+              </ol>
+            </nav>
+          )}
+
+          <div className="relative mt-6 overflow-hidden rounded-3xl bg-forest p-6 text-white">
+            <div
+              aria-hidden
+              className="blob pointer-events-none absolute -end-12 -top-12 h-40 w-40 rounded-full bg-fern/40 blur-3xl"
+            />
+            <p className="relative kicker text-sage">Work with us</p>
+            <p className="relative mt-3 font-display text-lg font-bold leading-snug">
+              Want this done on your account?
+            </p>
+            <p className="relative mt-2 text-sm leading-relaxed text-white/70">
+              Book a free consultation and we&rsquo;ll give you an honest read on where you stand.
+            </p>
+            <ConsultationLink
+              locale="en"
+              className="btn-fluid btn-shine relative mt-5 inline-block rounded-full bg-amber px-5 py-2.5 text-sm font-bold text-white"
+            >
+              Get a Free Consultation
+            </ConsultationLink>
+          </div>
+        </aside>
+      </div>
       {p.faqs && <FaqSection faqs={p.faqs} />}
       <CtaBand />
     </>
