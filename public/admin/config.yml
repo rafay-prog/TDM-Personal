@@ -13,8 +13,13 @@ backend:
   name: github
   repo: rafay-prog/TDM-Personal
   branch: main
-  # Token exchange endpoint. See docs/admin-setup.md — this must be your own
-  # deployment, never someone else's, since it brokers write access to the repo.
+  # The email sign-in service — admin-auth/worker.js, deployed to Cloudflare.
+  # The editor signs in with their email address and never needs a GitHub
+  # account; the worker checks the emailed code and hands back a one-hour token
+  # minted from a GitHub App. See docs/admin-setup.md.
+  #
+  # This must be your own deployment, never someone else's: it brokers write
+  # access to this repository.
   base_url: https://REPLACE-ME.workers.dev
 
 publish_mode: editorial_workflow

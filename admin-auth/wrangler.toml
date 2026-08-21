@@ -1,0 +1,19 @@
+name = "tdm-admin-auth"
+main = "worker.js"
+compatibility_date = "2026-08-01"
+
+# No KV, no D1, no Durable Objects: the sign-in code is carried as a signed
+# challenge in the form, so there is nothing to store between requests.
+
+# Secrets are NOT set here — they would end up in git. Set them with
+# `wrangler secret put NAME`, or in the Cloudflare dashboard under
+# Settings → Variables and Secrets. See README.md.
+#
+#   SIGNING_SECRET
+#   ALLOWED_EMAILS
+#   ALLOWED_ORIGINS
+#   RESEND_API_KEY
+#   MAIL_FROM
+#   GITHUB_APP_ID
+#   GITHUB_INSTALLATION_ID
+#   GITHUB_PRIVATE_KEY
