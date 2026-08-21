@@ -19,6 +19,8 @@ import {
   PageHero,
   Prose,
   ServiceIcon,
+  ShatterDefs,
+  ShatterSurface,
   StatBand,
 } from "@/components/Sections";
 import { Reveal } from "@/components/motion/Reveal";
@@ -139,8 +141,10 @@ export async function SectorView({ locale, sectorSlug }: { locale: Locale; secto
         </section>
       )}
 
+      {s.slug === "staff-augmentation" && <ShatterDefs />}
+
       {s.slug === "staff-augmentation" && (
-        <section className="bg-mint/50">
+        <section className="ribbon-bg bg-mint/50">
           <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6">
             <Reveal>
               <div className="text-center">
@@ -187,6 +191,76 @@ export async function SectorView({ locale, sectorSlug }: { locale: Locale; secto
             </div>
           </div>
         </section>
+      )}
+
+      {s.slug === "staff-augmentation" && (
+        <>
+          {/* What you can hire */}
+          <section className="ribbon-bg border-y border-mint">
+            <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6">
+              <Reveal>
+                <div className="text-center">
+                  <Kicker glow>{extras.staffAug.roles.kicker}</Kicker>
+                  <h2 className="mx-auto mt-3 max-w-2xl text-3xl font-bold text-forest md:text-4xl">
+                    {extras.staffAug.roles.title}
+                  </h2>
+                  <p className="mx-auto mt-4 max-w-2xl text-ink/75">{extras.staffAug.roles.sub}</p>
+                </div>
+              </Reveal>
+
+              <div className="mt-10 grid gap-6 md:grid-cols-2">
+                {extras.staffAug.roles.groups.map((group, gi) => (
+                  <Reveal key={group.name} delay={gi * 0.1} from={gi === 0 ? "left" : "right"} className="h-full">
+                    <div className="group sheen card-lift relative h-full rounded-3xl border border-transparent p-7 transition-colors duration-300 hover:border-fern hover:shadow-2xl">
+                      <ShatterSurface index={gi} />
+                      <h3 className="kicker relative text-fern">{group.name}</h3>
+                      <ul className="relative mt-4 space-y-2.5">
+                        {group.items.map((item) => (
+                          <li key={item} className="flex items-start gap-3 text-sm leading-relaxed text-ink/80">
+                            <span
+                              aria-hidden
+                              className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-amber transition-transform duration-300 group-hover:scale-150"
+                            />
+                            {item}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </Reveal>
+                ))}
+              </div>
+            </div>
+          </section>
+
+          {/* How a hire actually happens */}
+          <section className="relative overflow-hidden bg-forest text-white">
+            <HeroBlobs />
+            <div className="relative mx-auto max-w-7xl px-4 py-16 sm:px-6 md:py-20">
+              <Reveal>
+                <div className="text-center">
+                  <Kicker glow dark>
+                    {extras.staffAug.process.kicker}
+                  </Kicker>
+                  <h2 className="mx-auto mt-4 max-w-2xl font-display text-3xl font-bold md:text-4xl">
+                    {extras.staffAug.process.title}
+                  </h2>
+                </div>
+              </Reveal>
+
+              <ol className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+                {extras.staffAug.process.steps.map((step, i) => (
+                  <Reveal key={step.title} delay={i * 0.1} from={i % 2 === 0 ? "left" : "right"} className="h-full">
+                    <li className="glass card-lift relative h-full rounded-3xl p-6">
+                      <span className="font-display text-3xl font-bold text-amber">{String(i + 1).padStart(2, "0")}</span>
+                      <h3 className="mt-3 font-display text-lg font-bold">{step.title}</h3>
+                      <p className="mt-2 text-sm leading-relaxed text-white/75">{step.desc}</p>
+                    </li>
+                  </Reveal>
+                ))}
+              </ol>
+            </div>
+          </section>
+        </>
       )}
 
       {related.length > 0 && (

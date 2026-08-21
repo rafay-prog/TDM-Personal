@@ -83,6 +83,17 @@ export interface PagesCopy {
       title: string;
       pillars: { title: string; desc: string }[];
       paragraphs: string[];
+      roles: {
+        kicker: string;
+        title: string;
+        sub: string;
+        groups: { name: string; items: string[] }[];
+      };
+      process: {
+        kicker: string;
+        title: string;
+        steps: { title: string; desc: string }[];
+      };
     };
   };
   caseStudyPage: {
@@ -275,6 +286,51 @@ export const pages: PagesCopy = {
           desc: "Recruiting, HR, and performance management stay on our books, not yours.",
         },
       ],
+      roles: {
+        kicker: "Roles we place",
+        title: "The people you can hire through us.",
+        sub: "Engineering and marketing specialists, employed by TDM and working only on your projects.",
+        groups: [
+          {
+            name: "Technology",
+            items: [
+              "Front-end — React, Next.js, Vue",
+              "Back-end — Node, Django, Laravel",
+              "Full-stack — end-to-end builds",
+              "CMS & e-commerce — WordPress, Shopify",
+              "Mobile — React Native, Flutter",
+              "QA & testing — manual and automation",
+            ],
+          },
+          {
+            name: "Marketing",
+            items: [
+              "SEO — technical, on-page and content",
+              "PPC & paid media — Google, Meta, TikTok",
+              "Social media — strategy and daily management",
+              "Content & copywriting",
+              "Email & marketing automation",
+              "Graphic design",
+            ],
+          },
+        ],
+      },
+      process: {
+        kicker: "How it works",
+        title: "Four steps to someone at their desk.",
+        steps: [
+          { title: "Tell us the role", desc: "The skills, the seniority and the hours you need covered." },
+          {
+            title: "We match and vet",
+            desc: "We select from the specialists already on our payroll, or recruit for the role, and vet them for fit.",
+          },
+          { title: "You approve", desc: "Meet the candidate and decide. No obligation if they are not the right person." },
+          {
+            title: "They start — we manage",
+            desc: "They join your workflow, while TDM handles the daily oversight, HR and performance.",
+          },
+        ],
+      },
       paragraphs: [
         "You choose the roles. We handle sourcing, payroll, retention, and quality — and the team works your hours, on your tools. Clients typically save 50–70% versus an equivalent local hire, with no recruiting fees or office overhead.",
         "Every professional works from our managed Lahore delivery hub, mentored by TDM seniors — not alone in a spare room. If someone isn't the right fit, we replace them at no extra cost.",

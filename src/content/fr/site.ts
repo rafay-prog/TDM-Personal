@@ -406,6 +406,51 @@ export const frPages: PagesCopy = {
           desc: "Recrutement, RH et gestion de la performance restent à notre charge, pas à la vôtre.",
         },
       ],
+      roles: {
+        kicker: "Les profils que nous plaçons",
+        title: "Les personnes que vous pouvez recruter chez nous.",
+        sub: "Des spécialistes en développement et en marketing, salariés de TDM et affectés uniquement à vos projets.",
+        groups: [
+          {
+            name: "Technologie",
+            items: [
+              "Front-end — React, Next.js, Vue",
+              "Back-end — Node, Django, Laravel",
+              "Full-stack — développement de bout en bout",
+              "CMS & e-commerce — WordPress, Shopify",
+              "Mobile — React Native, Flutter",
+              "QA & tests — manuels et automatisés",
+            ],
+          },
+          {
+            name: "Marketing",
+            items: [
+              "SEO — technique, on-page et contenu",
+              "PPC & médias payants — Google, Meta, TikTok",
+              "Réseaux sociaux — stratégie et gestion quotidienne",
+              "Contenu & rédaction",
+              "Email & marketing automation",
+              "Design graphique",
+            ],
+          },
+        ],
+      },
+      process: {
+        kicker: "Comment ça marche",
+        title: "Quatre étapes avant la prise de poste.",
+        steps: [
+          { title: "Décrivez le poste", desc: "Les compétences, le niveau d'expérience et les horaires à couvrir." },
+          {
+            title: "Nous sélectionnons et évaluons",
+            desc: "Nous puisons parmi les spécialistes déjà salariés chez nous, ou recrutons pour le poste, puis évaluons l'adéquation.",
+          },
+          { title: "Vous validez", desc: "Vous rencontrez le candidat et décidez. Aucun engagement si ce n'est pas la bonne personne." },
+          {
+            title: "Il commence — nous gérons",
+            desc: "Il rejoint vos processus, pendant que TDM assure l'encadrement quotidien, les RH et la performance.",
+          },
+        ],
+      },
       paragraphs: [
         "Vous choisissez les postes. Nous gérons le sourcing, la paie, la fidélisation et la qualité — et l'équipe travaille à vos horaires, sur vos outils. Nos clients économisent généralement 50 à 70% par rapport à une embauche locale équivalente, sans frais de recrutement ni charges de bureau.",
         "Chaque professionnel travaille depuis notre hub de production encadré de Lahore, accompagné par les seniors de TDM — pas seul dans une chambre d'amis. Si quelqu'un ne convient pas, nous le remplaçons sans coût supplémentaire.",
