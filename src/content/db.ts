@@ -1,3 +1,5 @@
+import { readFileSync, readdirSync } from "node:fs";
+import path from "node:path";
 import type { BlogPost, CaseStudy, Locale, SectorSlug } from "@/lib/types";
 import { publicDb } from "@/lib/supabase";
 
@@ -112,10 +114,57 @@ async function safely<T>(
   }
 }
 
+/**
+ * Fallback to the JSON under /content while the database is still empty.
+ *
+ * This is a bridge, not a design. The migration moved this content into
+ * Postgres but the rows have not been loaded yet, and a blank blog and an empty
+ * portfolio are a worse answer than serving what we already have on disk.
+ *
+ * It only fires when a table returns nothing at all. Once the seed has run it
+ * never fires again, and it should be deleted then — two sources of truth is
+ * exactly the sort of thing that bites six months later, when someone empties a
+ * collection in the admin and watches the old content reappear.
+ */
+const CONTENT = path.join(process.cwd(), "content");
+
+function readFiles<T>(...segments: string[]): T[] {
+  const dir = path.join(CONTENT, ...segments);
+  try {
+    return readdirSync(dir)
+      .filter((f) => f.endsWith(".json"))
+      .map((f) => JSON.parse(readFileSync(path.join(dir, f), "utf8")) as T & { order?: number })
+      .sort((a, b) => (a.order ?? 0) - (b.order ?? 0))
+      .map((entry) => {
+        delete entry.order;
+        return entry as T;
+      });
+  } catch {
+    return [];
+  }
+}
+
+let warned = false;
+function bridging<T>(what: string, rows: T[]): boolean {
+  if (rows.length) return false;
+  if (!warned) {
+    warned = true;
+    console.warn(
+      `[content] ${what} is empty in the database — serving /content from disk instead. ` +
+        `Run: node scripts/seed-content.mjs`,
+    );
+  }
+  return true;
+}
+
 export async function getBlogPosts(): Promise<BlogPost[]> {
   const rows = await safely<BlogRow>("blog_posts", () =>
     publicDb().from("blog_posts").select("*").order("sort_order", { ascending: true }),
   );
+  if (bridging("blog_posts", rows)) {
+    type FilePost = Omit<BlogPost, "body"> & { body: string };
+    return readFiles<FilePost>("blog").map((f) => ({ ...f, body: toBlocks(f.body) }));
+  }
   return rows.map(toPost);
 }
 
@@ -128,6 +177,9 @@ export async function getCaseStudies(locale: Locale): Promise<CaseStudy[]> {
   const rows = await safely<CaseRow>(`case_studies(${locale})`, () =>
     publicDb().from("case_studies").select("*").eq("locale", locale).order("sort_order", { ascending: true }),
   );
+  if (bridging(`case_studies(${locale})`, rows)) {
+    return readFiles<CaseStudy>("case-studies", locale);
+  }
   return rows.map(toCase);
 }
 
